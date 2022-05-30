@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 
 class CounterPlus extends React.Component {
   render() {
-    return <button onClick={() => this.props.onClick}>+</button>;
+    return <button onClick={() => this.props.onClick()}>+</button>;
   }
 }
 
 class CounterMinus extends React.Component {
   render() {
-    return <button onClick={() => this.props.onClick}>-</button>;
+    return <button onClick={() => this.props.onClick()}>-</button>;
   }
 }
 
