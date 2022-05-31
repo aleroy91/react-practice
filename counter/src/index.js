@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 export function CounterPlus(props) {
@@ -13,38 +13,18 @@ export function Count(props) {
   return <p>{props.value}</p>;
 }
 
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      num: 0,
-    };
+export default function Counter() {
+  const [num, setNum] = useState(0);
+  const add = () => setNum((prevNum) => prevNum + 1);
+  const subtract = () => setNum((prevNum) => prevNum - 1);
 
-    this.add = this.add.bind(this);
-    this.subtract = this.subtract.bind(this);
-  }
-
-  add() {
-    this.setState((state) => {
-      return { num: state.num + 1 };
-    });
-  }
-
-  subtract() {
-    this.setState((state) => {
-      return { num: state.num - 1 };
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <CounterPlus onClick={() => this.add(this.state)} />
-        <CounterMinus onClick={() => this.subtract(this.state)} />
-        <Count value={this.state.num} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CounterPlus onClick={add} />
+      <CounterMinus onClick={subtract} />
+      <Count value={num} />
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
