@@ -1,22 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-class CounterPlus extends React.Component {
-  render() {
-    return <button onClick={() => this.props.onClick()}>+</button>;
-  }
+export function CounterPlus(props) {
+  return <button onClick={() => props.onClick()}>+</button>;
 }
 
-class CounterMinus extends React.Component {
-  render() {
-    return <button onClick={() => this.props.onClick()}>-</button>;
-  }
+export function CounterMinus(props) {
+  return <button onClick={() => props.onClick()}>-</button>;
 }
 
-class Count extends React.Component {
-  render() {
-    return <p>{this.props.value}</p>;
-  }
+export function Count(props) {
+  return <p>{props.value}</p>;
 }
 
 class Counter extends React.Component {
@@ -31,22 +25,22 @@ class Counter extends React.Component {
   }
 
   add() {
-    this.setState({
-      num: this.state.num + 1,
+    this.setState((state) => {
+      return { num: state.num + 1 };
     });
   }
 
   subtract() {
-    this.setState({
-      num: this.state.num - 1,
+    this.setState((state) => {
+      return { num: state.num - 1 };
     });
   }
 
   render() {
     return (
       <div>
-        <CounterPlus onClick={this.add} />
-        <CounterMinus onClick={this.subtract} />
+        <CounterPlus onClick={() => this.add(this.state)} />
+        <CounterMinus onClick={() => this.subtract(this.state)} />
         <Count value={this.state.num} />
       </div>
     );
