@@ -1,3 +1,7 @@
+.container {
+  margin: 50px;
+}
+
 .modal {
   display: flex;
 }
