@@ -31,30 +31,51 @@ function Avatar(props) {
 }
 
 function Player(props) {
-  const photo = "https://resources.premierleague.com/premierleague/photos/players/110x140/p141746.png";
-  const gif = "https://media0.giphy.com/media/61nKC1dCr6yCDrAs3m/giphy.gif?cid=ecf05e47ol31uwoxeisjlc5f6xg4zypw7ilboas8mlhw0lon&rid=giphy.gif&ct=g";
+  const photo = props.player.photo;
+  const gif = props.player.gif;
   const [avatar, setAvatar] = useState(photo);
 
   const toggleAvatar = () => setAvatar(() => (avatar === photo) ? gif: photo);
     
   return (
     <div className="profile">
-      <Name name="Bruno Fernandes" />
+      <Name name={props.player.name} />
       <Avatar 
         src={avatar} 
-        alt={"Bruno Fernandes"} 
+        alt={props.player.name} 
         onMouseEnter={toggleAvatar} 
         onMouseLeave={toggleAvatar} 
       />
-      <Position position="Midfield" />
-      <Price price="10" />
+      <Position position={props.player.position} />
+      <Price price={props.player.price} />
     </div>
   );
 }
 
-function PlayerList(props) {
+function ListElement(props) {
+  return (
+    <li
+      key={props.number}
+      onClick={() => props.onClick(props.player)}
+    >
+      {props.player.name}
+    </li>
+  ); 
+}
+
+function List(props) {
   const players = props.players;
-  const playerList = players.map((player) => <li key={player.number}>{player.name}</li>);
+  const playerList = players.map(
+    (player) => {
+      return (
+        <ListElement 
+          player={player}
+          number={player.number}
+          onClick={props.onClick} 
+        />
+      );
+    }
+  );
 
   return <ol>{playerList}</ol>;
 }
@@ -62,7 +83,7 @@ function PlayerList(props) {
 function Modal(props) {
   return (
     <div className="modal">
-      <Player/>
+      <Player player={props.player} />
     </div>
   );
 }
@@ -99,13 +120,15 @@ function Table(props) {
       price: 7.5
     } 
   ];
+  let [selectedPlayer, setPlayer] = useState(players[0]);
+  const displayPlayer = (newPlayer) => setPlayer(() => selectedPlayer = newPlayer);
 
-  return (<PlayerList players={players} />)
+  return (
+    <div className="container">
+      <Modal player={selectedPlayer} />
+      <List players={players} onClick={displayPlayer} />
+    </div>
+  );
 }
     
-root.render(
-  <div className="container">
-    <Modal />
-    <Table />
-  </div>
-);
+root.render(<Table />);
