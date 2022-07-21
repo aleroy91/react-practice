@@ -21,3 +21,18 @@
   height: 250px;
   width: 250px;
 }
+
+.table {
+  border-spacing: 0.5rem;
+  border: 1px black solid;
+  margin: 0 auto;
+}
+
+.table--header {
+  text-align: start;
+  border-bottom: black 1px solid
+}
+
+.table--cell {
+  padding: 0.5rem;
+}
