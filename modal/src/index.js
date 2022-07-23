@@ -8,14 +8,6 @@ function Name(props) {
   return <h1>{props.name}</h1>;
 }
 
-function Position(props) {
-  return <h2>Position: {props.position}</h2>;
-}
-
-function Price(props) {
-  return <h2>Price: {props.price}m</h2>;
-}
-
 function Avatar(props) {
   return (
     <div className="image--container">
@@ -30,15 +22,51 @@ function Avatar(props) {
   );
 }
 
+function Position(props) {
+  return <h2>Position: {props.position}</h2>;
+}  
+
+function Price(props) {
+  return <h2>Price: {props.price}m</h2>;
+}  
+
+function Notes(props) {
+  const [showEdit, setShowEdit] = useState(false);
+  const toggleNotes = () => setShowEdit(() => showEdit ? false : true);
+
+  const notesText = <p>{props.value}</p>
+  const textField = <textarea 
+    value={props.value} 
+    onChange={(event) => props.onChange(event)} 
+    className="element__standard-margin"
+  />;  
+  const notesButton = <button 
+    onClick={() => toggleNotes()}
+    className='element--shrinkwrap'>
+      {showEdit ? "Save" : "Write"} Notes
+  </button>;    
+
+  return (
+    <div className="column__flexbox">
+      {showEdit ? textField : notesText}
+      {notesButton}
+    </div>
+  );
+}
+
 function Player(props) {
   const photo = props.player.photo;
   const gif = props.player.gif;
+  const notes = props.player.notes;
+
   const [avatar, setAvatar] = useState(photo);
+  let [playerNotes, setPlayerNotes] = useState(notes);
 
   const toggleAvatar = () => setAvatar(() => (avatar === photo) ? gif: photo);
+  const editNotes = (event) => setPlayerNotes(event.target.value);
     
   return (
-    <div className="profile">
+    <div className="column__flexbox">
       <Name name={props.player.name} />
       <Avatar 
         src={avatar} 
@@ -48,6 +76,10 @@ function Player(props) {
       />
       <Position position={props.player.position} />
       <Price price={props.player.price} />
+      <Notes 
+        value={playerNotes} 
+        onChange={editNotes}
+      />
     </div>
   );
 }
@@ -57,10 +89,11 @@ function TableRow(props) {
     <tr
       key={props.number}
       onClick={() => props.onClick(props.player)}
+      className="table__row"
     >
-      <td className="table--cell">{props.player.name}</td>
-      <td className="table--cell">{props.player.position}</td>
-      <td className="table--cell">{props.player.price}</td>
+      <td className="element__standard-padding">{props.player.name}</td>
+      <td className="element__standard-padding">{props.player.position}</td>
+      <td className="element__standard-padding">{props.player.price}</td>
     </tr>
   ); 
 }
@@ -69,6 +102,7 @@ function Table(props) {
   const players = props.players;
   const playerTable = players.map((player) => 
   <TableRow 
+    key={player.number}
     player={player}
     number={player.number}
     onClick={props.onClick} 
@@ -76,17 +110,23 @@ function Table(props) {
 
   return (
     <table className="table">
-      <th className="table--header">Name</th>
-      <th className="table--header">Position</th>
-      <th className="table--header">Price</th>
-      {playerTable}
+      <thead>
+        <tr>
+          <th className="table__header element__standard-padding">Name</th>
+          <th className="table__header element__standard-padding">Position</th>
+          <th className="table__header element__standard-padding">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {playerTable}
+      </tbody>
     </table>
   );
 }
 
 function Modal(props) {
   return (
-    <div className="modal">
+    <div className="modal element__standard-margin">
       <Player player={props.player} />
     </div>
   );

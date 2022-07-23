@@ -4,9 +4,10 @@
 
 .modal {
   display: flex;
+  margin: 0 auto;
 }
 
-.profile {
+.column__flexbox {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -23,16 +24,26 @@
 }
 
 .table {
-  border-spacing: 0.5rem;
   border: 1px black solid;
   margin: 0 auto;
 }
 
-.table--header {
+.table__header {
   text-align: start;
   border-bottom: black 1px solid
 }
 
-.table--cell {
+.table__row:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+
+.element__standard-padding {
   padding: 0.5rem;
 }
+
+.element__standard-margin {
+  margin: 0.5rem;
+}
+
+.element--shrinkwrap {}
