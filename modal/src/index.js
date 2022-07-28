@@ -37,7 +37,7 @@ function Notes(props) {
   const notesText = <p>{props.value}</p>
   const textField = <textarea 
     value={props.value} 
-    onChange={(event) => props.onChange(event)} 
+    onChange={event => props.onChange(props.playerNumber, event.target.value)} 
     className="element__standard-margin"
   />;  
   const notesButton = <button 
@@ -60,10 +60,8 @@ function Player(props) {
   const notes = props.player.notes;
 
   const [avatar, setAvatar] = useState(photo);
-  let [playerNotes, setPlayerNotes] = useState(notes);
 
   const toggleAvatar = () => setAvatar(() => (avatar === photo) ? gif: photo);
-  const editNotes = (event) => setPlayerNotes(event.target.value);
     
   return (
     <div className="column__flexbox">
@@ -77,8 +75,9 @@ function Player(props) {
       <Position position={props.player.position} />
       <Price price={props.player.price} />
       <Notes 
-        value={playerNotes} 
-        onChange={editNotes}
+        playerNumber={props.player.number}
+        value={notes} 
+        onChange={props.onChange}
       />
     </div>
   );
@@ -127,56 +126,67 @@ function Table(props) {
 function Modal(props) {
   return (
     <div className="modal element__standard-margin">
-      <Player player={props.player} />
+      <Player 
+        player={props.player} 
+        onChange={props.onChange} 
+      />
     </div>
   );
 }
 
 function Container(props) {
-  const players = [
-    {
-      number: 1,
-      name: 'Bruno Fernandes',
-      photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p141746.png',
-      gif: 'https://media0.giphy.com/media/61nKC1dCr6yCDrAs3m/giphy.gif?cid=ecf05e47ol31uwoxeisjlc5f6xg4zypw7ilboas8mlhw0lon&rid=giphy.gif&ct=g',
-      position: "Midfield",
-      price: 10,
-      notes: ''
-    }, {
-      number: 2,
-      name: 'Harry Maguire',
-      photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p95658.png',
-      gif: 'https://media1.giphy.com/media/IhPL2nHX5cEdnvQ6mN/giphy.gif',
-      position: "Defence",
-      price: 5,
-      notes: ''
-    }, {
-      number: 3,
-      name: 'Christian Eriksen',
-      photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p80607.png',
-      gif: 'https://media.giphy.com/media/55iSqlzQ8CbYWnbCBn/giphy.gif',
-      position: "Midfield",
-      price: 6.5,
-      notes: ''
-    }, {
-      number: 4,
-      name: 'Jadon Sancho',
-      photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p209243.png',
-      gif: 'https://media.giphy.com/media/AbWzDpbWYTh9l1B3tc/giphy-downsized-large.gif',
-      position: "Midfield",
-      price: 7.5,
-      notes: ''
-    } 
-  ];
-  let [selectedPlayer, setPlayer] = useState(players[0]);
-  const displayPlayer = (newPlayer) => setPlayer(() => selectedPlayer = newPlayer);
+  let [playersArray, setPlayersArray] = useState(props.data);
+  let [selectedPlayer, setPlayer] = useState(props.data[0]);
+
+  const updatePlayerInfo = (playerNumber, playerNotes) => {
+    const newPlayersArray = playersArray;
+    newPlayersArray[playerNumber].notes = playerNotes;
+    setPlayersArray(newPlayersArray);
+  };
+  const displayPlayer = (newPlayer) => setPlayer(newPlayer);
 
   return (
     <div className="container">
-      <Modal player={selectedPlayer} />
-      <Table players={players} onClick={displayPlayer} />
+      <Modal player={selectedPlayer} onChange={updatePlayerInfo} />
+      <Table players={playersArray} onClick={displayPlayer} />
     </div>
   );
 }
+
+let players = [
+  {
+    number: 0,
+    name: 'Bruno Fernandes',
+    photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p141746.png',
+    gif: 'https://media0.giphy.com/media/61nKC1dCr6yCDrAs3m/giphy.gif?cid=ecf05e47ol31uwoxeisjlc5f6xg4zypw7ilboas8mlhw0lon&rid=giphy.gif&ct=g',
+    position: "Midfield",
+    price: 10,
+    notes: ''
+  }, {
+    number: 1,
+    name: 'Harry Maguire',
+    photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p95658.png',
+    gif: 'https://media1.giphy.com/media/IhPL2nHX5cEdnvQ6mN/giphy.gif',
+    position: "Defence",
+    price: 5,
+    notes: ''
+  }, {
+    number: 2,
+    name: 'Christian Eriksen',
+    photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p80607.png',
+    gif: 'https://media.giphy.com/media/55iSqlzQ8CbYWnbCBn/giphy.gif',
+    position: "Midfield",
+    price: 6.5,
+    notes: ''
+  }, {
+    number: 3,
+    name: 'Jadon Sancho',
+    photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p209243.png',
+    gif: 'https://media.giphy.com/media/AbWzDpbWYTh9l1B3tc/giphy-downsized-large.gif',
+    position: "Midfield",
+    price: 7.5,
+    notes: ''
+  } 
+];
     
-root.render(<Container />);
+root.render(<Container data={players} />);
