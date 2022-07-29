@@ -1,4 +1,4 @@
-let players = [
+export const mockData = [
     {
       number: 0,
       name: 'Bruno Fernandes',
