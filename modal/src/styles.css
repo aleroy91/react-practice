@@ -47,4 +47,7 @@
   margin: 0.5rem;
 }
 
-.element--shrinkwrap {}
+.element--shrinkwrap {
+  width: fit-content;
+  margin: auto;
+}
