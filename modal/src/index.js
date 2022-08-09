@@ -11,14 +11,23 @@ const Name = props => {
 
 const Avatar = props => {
   return (
-    <div className="image--container">
-      <img 
-        className="image" 
-        src={props.src} 
-        alt={props.name} 
-        onMouseEnter={() => props.onMouseEnter()} 
-        onMouseLeave={() => props.onMouseLeave()} 
-      />
+    <div 
+      className="image--container"
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+    >
+      {props.isUserHovering
+        ? <img 
+            className="image" 
+            src={props.gif} 
+            alt={props.name} 
+          />
+        : <img 
+            className="image" 
+            src={props.photo} 
+            alt={props.name} 
+          />
+      }
     </div>
   );
 }
@@ -52,19 +61,22 @@ const Notes = ({ notesText, onNotesChange }) => {
 
 const Player = ({ playerIndex, player, updatePlayerInfo }) => {
   const { name, number, position, price, photo, gif, notes } = {...player};
-  const [avatar, setAvatar] = useState(photo);
+  const [hoverState, setHoverState] = useState(false);
 
-  const toggleAvatar = () => setAvatar(() => (avatar === photo) ? gif: photo);
+  const toggleGif = () => setHoverState(() => hoverState ? false : true);
   const handleNoteschange = (updatedNotes) => updatePlayerInfo(playerIndex, updatedNotes);
-    
+    // change visability instead of source
+    // conditional rendering - use this paired with a boolean
   return (
     <div key={number} className="column__flexbox">
       <Name name={name} />
       <Avatar 
-        src={avatar} 
+        onMouseEnter={toggleGif}
+        onMouseLeave={toggleGif}
+        isUserHovering={hoverState}
+        photo={photo} 
+        gif={gif}
         alt={name} 
-        onMouseEnter={toggleAvatar} 
-        onMouseLeave={toggleAvatar} 
       />
       <Position position={position} />
       <Price price={price} />
