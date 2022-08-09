@@ -65,8 +65,7 @@ const Player = ({ playerIndex, player, updatePlayerInfo }) => {
 
   const toggleGif = () => setHoverState(() => hoverState ? false : true);
   const handleNoteschange = (updatedNotes) => updatePlayerInfo(playerIndex, updatedNotes);
-    // change visability instead of source
-    // conditional rendering - use this paired with a boolean
+
   return (
     <div key={number} className="column__flexbox">
       <Name name={name} />
