@@ -5,10 +5,6 @@ import { mockData } from './mockData.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const Name = props => {
-  return <h1>{props.name}</h1>;
-}
-
 const Avatar = props => {
   return (
     <div 
@@ -32,14 +28,6 @@ const Avatar = props => {
   );
 }
 
-const Position = props => {
-  return <h2>Position: {props.position}</h2>;
-}  
-
-const Price = props => {
-  return <h2>Price: {props.price}m</h2>;
-}  
-
 const Notes = ({ notesText, onNotesChange }) => {
   const [notes, setNotes] = useState(notesText);
 
@@ -54,7 +42,9 @@ const Notes = ({ notesText, onNotesChange }) => {
 
   return (
     <div className="column__flexbox">
+      <p>{notes}</p>
       {textField}
+      <button>Save Notes</button>
     </div>
   );
 }
@@ -68,7 +58,7 @@ const Player = ({ playerIndex, player, updatePlayerInfo }) => {
 
   return (
     <div key={number} className="column__flexbox">
-      <Name name={name} />
+      <h1>{name}</h1>
       <Avatar 
         onMouseEnter={toggleGif}
         onMouseLeave={toggleGif}
@@ -77,8 +67,8 @@ const Player = ({ playerIndex, player, updatePlayerInfo }) => {
         gif={gif}
         alt={name} 
       />
-      <Position position={position} />
-      <Price price={price} />
+      <h2>Position: {position}</h2>
+      <h2>Price: £{price}m</h2>
       <Notes 
         notesText={notes}
         onNotesChange={handleNoteschange}
@@ -128,8 +118,10 @@ const Table = ({players, displayPlayer}) => {
 
 const Modal = props => {
   return (
-    <div className="modal element__standard-margin">
-      <Player {...props} />
+    <div className="container">
+        <div className="modal element--shrinkwrap">
+          <Player {...props} />
+        </div>
     </div>
   );
 }
@@ -147,6 +139,7 @@ const Container = ({data}) => {
   return (
     <div className="container">
       <Modal 
+        hide={false}
         playerIndex={selectedPlayerId} 
         player={playersData[selectedPlayerId]} 
         updatePlayerInfo={updatePlayerInfo} 

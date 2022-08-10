@@ -1,17 +1,20 @@
 .container {
-  margin: 50px;
+  margin: 50px auto;
 }
 
 .modal {
   display: flex;
-  margin: 0 auto;
+  flex-direction: column;
+  padding: 10px;
+  border: solid 1px grey;
+  border-radius: 10px;
 }
 
 .column__flexbox {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: auto;
+  padding: 10px 20px;
 }
 
 .image {
@@ -43,11 +46,17 @@
   padding: 0.5rem;
 }
 
-.element__standard-margin {
-  margin: 0.5rem;
-}
-
 .element--shrinkwrap {
   width: fit-content;
   margin: auto;
+}
+
+.button__exit {
+  width: fit-content;
+  margin: 0 0 auto auto;
+  border: 0;
+  border-radius: 5px;
+  background-color: orangered;
+  color: white;
+  padding: 5px 10px
 }
