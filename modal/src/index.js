@@ -30,21 +30,35 @@ const Avatar = props => {
 
 const Notes = ({ notesText, onNotesChange }) => {
   const [notes, setNotes] = useState(notesText);
-
-  const textField = <textarea 
-    value={notes} 
-    onChange={event => {
-      setNotes(event.target.value);
-      onNotesChange(event.target.value);
-    }} 
-    className="element__standard-margin"
-  />;  
+  const [displayNotesHideTextarea, setDisplayNotesHideTextarea] = useState(true);
+  const [showSaveNotesButton, setShowSaveNotesButton] = useState(false);
 
   return (
     <div className="column__flexbox">
-      <p>{notes}</p>
-      {textField}
-      <button>Save Notes</button>
+      {(notesText && displayNotesHideTextarea) && 
+        <p>{notes}</p>
+      }
+      {displayNotesHideTextarea &&
+        <button 
+          onClick={() => setDisplayNotesHideTextarea(false)}
+        >
+          Click To Add Notes
+        </button>
+      }
+      {!displayNotesHideTextarea && 
+        <textarea 
+          autoFocus
+          value={notes} 
+          onChange={event => {
+            setShowSaveNotesButton(true);
+            setNotes(event.target.value);
+          }} 
+          className="element__standard-margin"
+        />
+      }
+      {showSaveNotesButton &&
+        <button onClick={onNotesChange(notes)}>Save Notes</button>
+      }
     </div>
   );
 }
