@@ -35,20 +35,21 @@ const Notes = ({ notesText, onNotesChange }) => {
 
   return (
     <div className="column__flexbox">
-      {(notesText && displayNotesHideTextarea) && 
+      {(notes && displayNotesHideTextarea) && 
         <p>{notes}</p>
       }
       {displayNotesHideTextarea &&
         <button 
           onClick={() => setDisplayNotesHideTextarea(false)}
         >
-          Click To Add Notes
+          {notes ? "Edit" : "Add"} Notes
         </button>
       }
       {!displayNotesHideTextarea && 
         <textarea 
           autoFocus
           value={notes} 
+          onBlur={() => setDisplayNotesHideTextarea(true)}
           onChange={event => {
             setShowSaveNotesButton(true);
             setNotes(event.target.value);
@@ -57,7 +58,15 @@ const Notes = ({ notesText, onNotesChange }) => {
         />
       }
       {showSaveNotesButton &&
-        <button onClick={onNotesChange(notes)}>Save Notes</button>
+        <button 
+          onClick={() => {
+            onNotesChange(notes);
+            setDisplayNotesHideTextarea(true);
+            setShowSaveNotesButton(false);
+          }}
+        >
+          Save Changes
+        </button>
       }
     </div>
   );

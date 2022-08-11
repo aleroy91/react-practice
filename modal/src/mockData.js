@@ -19,7 +19,7 @@ export const mockData = [
       number: 2,
       name: 'Christian Eriksen',
       photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p80607.png',
-      gif: 'https://media.giphy.com/media/55iSqlzQ8CbYWnbCBn/giphy.gif',
+      gif: 'https://media.giphy.com/media/8Xc17VerGgrppVsVKk/giphy.gif',
       position: "Midfield",
       price: 6.5,
       notes: ''
