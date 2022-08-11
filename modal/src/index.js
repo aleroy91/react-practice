@@ -38,15 +38,10 @@ const Notes = ({ notesText, onNotesChange }) => {
       {(notes && displayNotesHideTextarea) && 
         <p>{notes}</p>
       }
-      {displayNotesHideTextarea &&
-        <button 
-          onClick={() => setDisplayNotesHideTextarea(false)}
-        >
-          {notes ? "Edit" : "Add"} Notes
-        </button>
-      }
       {!displayNotesHideTextarea && 
         <textarea 
+          className="textarea"
+          placeholder='Add Notes...'
           autoFocus
           value={notes} 
           onBlur={() => setDisplayNotesHideTextarea(true)}
@@ -54,20 +49,30 @@ const Notes = ({ notesText, onNotesChange }) => {
             setShowSaveNotesButton(true);
             setNotes(event.target.value);
           }} 
-          className="element__standard-margin"
         />
       }
-      {showSaveNotesButton &&
-        <button 
-          onClick={() => {
-            onNotesChange(notes);
-            setDisplayNotesHideTextarea(true);
-            setShowSaveNotesButton(false);
-          }}
-        >
-          Save Changes
-        </button>
-      }
+      <div className="container--row">
+        {displayNotesHideTextarea &&
+          <button 
+            className="button button__action"
+            onClick={() => setDisplayNotesHideTextarea(false)}
+          >
+            {notes ? "Edit" : "Add"} Notes
+          </button>
+        }
+        {showSaveNotesButton &&
+          <button 
+            className="button button__submit"
+            onClick={() => {
+              onNotesChange(notes);
+              setDisplayNotesHideTextarea(true);
+              setShowSaveNotesButton(false);
+            }}
+          >
+            Save Changes
+          </button>
+        }
+      </div>
     </div>
   );
 }
