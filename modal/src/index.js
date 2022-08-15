@@ -44,7 +44,6 @@ const Notes = ({ notesText, onNotesChange }) => {
           placeholder='Add Notes...'
           autoFocus
           value={notes} 
-          onBlur={() => setDisplayNotesHideTextarea(true)}
           onChange={event => {
             setShowSaveNotesButton(true);
             setNotes(event.target.value);
