@@ -8,18 +8,18 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const Avatar = props => {
   return (
     <div 
-      className="image--container"
+      className="image-container"
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
       {props.isUserHovering
         ? <img 
-            className="image" 
+            className="image-container__image" 
             src={props.gif} 
             alt={props.name} 
           />
         : <img 
-            className="image" 
+            className="image-container__image" 
             src={props.photo} 
             alt={props.name} 
           />
@@ -34,7 +34,7 @@ const Notes = ({ notesText, onNotesChange }) => {
   const [showSaveNotesButton, setShowSaveNotesButton] = useState(false);
 
   return (
-    <div className="column__flexbox">
+    <div className="vertical-container">
       {(notes && displayNotesHideTextarea) && 
         <p>{notes}</p>
       }
@@ -50,10 +50,10 @@ const Notes = ({ notesText, onNotesChange }) => {
           }} 
         />
       }
-      <div className="container--row">
+      <div className="horizontal-container">
         {displayNotesHideTextarea &&
           <button 
-            className="button button__action"
+            className="button__action"
             onClick={() => setDisplayNotesHideTextarea(false)}
           >
             {notes ? "Edit" : "Add"} Notes
@@ -61,7 +61,7 @@ const Notes = ({ notesText, onNotesChange }) => {
         }
         {showSaveNotesButton &&
           <button 
-            className="button button__submit"
+            className="button__submit"
             onClick={() => {
               onNotesChange(notes);
               setDisplayNotesHideTextarea(true);
@@ -84,7 +84,7 @@ const Player = ({ playerIndex, player, updatePlayerInfo }) => {
   const handleNoteschange = (updatedNotes) => updatePlayerInfo(playerIndex, updatedNotes);
 
   return (
-    <div key={number} className="column__flexbox">
+    <div key={number} className="vertical-container">
       <h1>{name}</h1>
       <Avatar 
         onMouseEnter={toggleGif}
@@ -111,9 +111,9 @@ const TableRow = ({ player, onClick }) => {
       onClick={onClick}
       className="table__row"
     >
-      <td className="element__standard-padding">{player.name}</td>
-      <td className="element__standard-padding">{player.position}</td>
-      <td className="element__standard-padding">{player.price}</td>
+      <td className="table__data-cell">{player.name}</td>
+      <td className="table__data-cell">{player.position}</td>
+      <td className="table__data-cell">{player.price}</td>
     </tr>
   ); 
 }
@@ -131,9 +131,9 @@ const Table = ({players, displayPlayer}) => {
     <table className="table">
       <thead>
         <tr>
-          <th className="table__header element__standard-padding">Name</th>
-          <th className="table__header element__standard-padding">Position</th>
-          <th className="table__header element__standard-padding">Price</th>
+          <th className="table__header">Name</th>
+          <th className="table__header">Position</th>
+          <th className="table__header">Price</th>
         </tr>
       </thead>
       <tbody>
@@ -146,7 +146,7 @@ const Table = ({players, displayPlayer}) => {
 const Modal = props => {
   return (
     <div className="container">
-        <div className="modal element--shrinkwrap">
+        <div className="modal">
           <Player {...props} />
         </div>
     </div>

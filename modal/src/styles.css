@@ -2,7 +2,7 @@
   margin: 50px auto;
 }
 
-.container--row {
+.horizontal-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -14,27 +14,30 @@
   padding: 10px;
   border-radius: 10px;
   border: solid 1px lightgrey;
+  width: fit-content;
+  margin: auto;
 }
 
 .modal:hover {
   border: solid 1px grey;
 }
 
-.column__flexbox {
+.vertical-container {
   display: flex;
   flex-direction: column;
   text-align: center;
   padding: 10px 20px;
 }
 
-.image {
-  max-height: 250px;
-}
-
-.image--container {
+.image-container {
   height: 250px;
   width: 250px;
   margin: auto;
+}
+
+.image-container__image {
+  max-height: 250px;
+  max-width: 250px;
 }
 
 .table {
@@ -44,7 +47,8 @@
 
 .table__header {
   text-align: start;
-  border-bottom: black 1px solid
+  border-bottom: black 1px solid;
+  padding: 0.5rem;
 }
 
 .table__row:hover {
@@ -52,46 +56,61 @@
   cursor: pointer;
 }
 
-.element__standard-padding {
+.table__data-cell {
   padding: 0.5rem;
 }
 
-.element--shrinkwrap {
-  width: fit-content;
-  margin: auto;
-}
-
 .textarea {
-  border: 1px;
+  border: 1px white solid;
   border-radius: 5px;
-  border-color: lightgrey;
 }
 
-.button {
+.textarea:hover {
+  border: 1px lightgrey solid;
+}
+
+.button__exit {
   width: fit-content;
   border: 1px;
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px 0;
-}
-
-.button:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.button__exit {
   margin: 0 0 auto auto;
   background-color: orangered;
   color: white;
 }
 
+.button__exit:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .button__action {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px auto;
   background-color: cadetblue;
   color: white;
 }
 
+.button__action:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .button__submit {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px auto;
   background-color: darkgreen;
   color: white;
+}
+
+.button__submit:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
