@@ -145,15 +145,22 @@ const Table = ({players, displayPlayer}) => {
 
 // WIP for an array of modals
 const ModalsArray = props => {
-  const selectedPlayersArray = props.selectedPlayersArray; 
+  const {selectedPlayersArray, playersData, updatePlayerInfo} = {...props};
 
-  return (<p>{selectedPlayersArray}</p>);
-  
-  // selectedPlayersArray.forEach(selectedPlayerId => {
-  //   return (
-  //     <p>{selectedPlayerId}</p>
-  //   );
-  // });
+  const modalsFromArray = selectedPlayersArray.map((selectedPlayerId) =>
+    <Modal
+      hide={false}
+      playerIndex={selectedPlayerId} 
+      player={playersData[selectedPlayerId]} 
+      updatePlayerInfo={updatePlayerInfo} 
+    />
+  );
+
+  return (
+    <div className="horizontal-container">
+      {modalsFromArray}
+    </div>
+  );
 }
 
 const Modal = props => {
@@ -210,14 +217,10 @@ const Container = ({data}) => {
       <div className="horizontal-container">
         <ModalsArray 
           selectedPlayersArray={selectedPlayersArray}
+          playersData={playersData} 
+          updatePlayerInfo={updatePlayerInfo} 
         />
       </div>
-      <Modal 
-        hide={false}
-        playerIndex={selectedPlayerId} 
-        player={playersData[selectedPlayerId]} 
-        updatePlayerInfo={updatePlayerInfo} 
-      />
       <Table 
         players={playersData} 
         displayPlayer={displayPlayer} 
