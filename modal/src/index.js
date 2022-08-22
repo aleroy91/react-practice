@@ -143,6 +143,19 @@ const Table = ({players, displayPlayer}) => {
   );
 }
 
+// WIP for an array of modals
+const ModalsArray = props => {
+  const selectedPlayersArray = props.selectedPlayersArray; 
+
+  return (<p>{selectedPlayersArray}</p>);
+  
+  // selectedPlayersArray.forEach(selectedPlayerId => {
+  //   return (
+  //     <p>{selectedPlayerId}</p>
+  //   );
+  // });
+}
+
 const Modal = props => {
   return (
     <div className="container">
@@ -156,15 +169,49 @@ const Modal = props => {
 const Container = ({data}) => {
   const [playersData, setPlayersdata] = useState(data);
   const [selectedPlayerId, setSelectedPlayerId] = useState(0);
+  // WIP for an array of modals
+  const [selectedPlayersArray, setSelectedPlayersArray] = useState([0]);
 
   const updatePlayerInfo = (playerId, playerNotes) => {
     playersData[playerId] = {...playersData[playerId], notes: playerNotes}
     setPlayersdata(playersData);
   };
-  const displayPlayer = (playerId) => setSelectedPlayerId(playerId);
+  const displayPlayer = (playerId) => {
+    // Old functionality for displaying one player modal at a time
+    setSelectedPlayerId(playerId);
+    // new functionality for displaying multiple player modals simultaneously
+    let newSelectedPlayersArray = selectedPlayersArray;
+    
+    if (selectedPlayersArray.includes(playerId) && (selectedPlayersArray.length > 0)) {
+      // If player id already selected, remove from selected players array
+      let indexToRemove;
+      
+      selectedPlayersArray.forEach((element, index) => {
+        if (element === playerId) {
+          indexToRemove = index;
+        }
+      });
+
+      if (indexToRemove === undefined) {
+        console.error(`indexToRemove has not been set. The value of indexToRemove is ${indexToRemove}`);
+      }
+      
+      newSelectedPlayersArray.splice(indexToRemove, 1);
+    } else {
+      // If player id not already selected, add to selected players array
+      newSelectedPlayersArray.push(playerId);
+    }
+
+    setSelectedPlayersArray(newSelectedPlayersArray);
+  };
 
   return (
     <div className="container">
+      <div className="horizontal-container">
+        <ModalsArray 
+          selectedPlayersArray={selectedPlayersArray}
+        />
+      </div>
       <Modal 
         hide={false}
         playerIndex={selectedPlayerId} 
