@@ -175,8 +175,6 @@ const Modal = props => {
 // Needs some cleanup
 const Container = ({data}) => {
   const [playersData, setPlayersdata] = useState(data);
-  const [selectedPlayerId, setSelectedPlayerId] = useState();
-  // WIP for an array of modals
   const [selectedPlayersArray, setSelectedPlayersArray] = useState([]);
 
   const updatePlayerInfo = (playerId, playerNotes) => {
@@ -184,10 +182,6 @@ const Container = ({data}) => {
     setPlayersdata(playersData);
   };
   const displayPlayer = (playerId) => {
-    console.log(playerId);
-    // Old functionality for displaying one player modal at a time
-    setSelectedPlayerId(playerId);
-    // new functionality for displaying multiple player modals simultaneously
     let newSelectedPlayersArray = selectedPlayersArray;
     
     if (selectedPlayersArray.includes(playerId) && (selectedPlayersArray.length > 0)) {
@@ -209,8 +203,7 @@ const Container = ({data}) => {
       // If player id not already selected, add to selected players array
       newSelectedPlayersArray.push(playerId);
     }
-    setSelectedPlayersArray(newSelectedPlayersArray);
-    console.log(selectedPlayersArray);
+    setSelectedPlayersArray([...newSelectedPlayersArray]);
   };
 
   return (
