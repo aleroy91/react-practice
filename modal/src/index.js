@@ -146,7 +146,6 @@ const Table = ({players, displayPlayer}) => {
 // WIP for an array of modals
 const ModalsArray = props => {
   const {selectedPlayersArray, playersData, updatePlayerInfo} = {...props};
-
   const modalsFromArray = selectedPlayersArray.map((selectedPlayerId) =>
     <Modal
       hide={false}
@@ -173,17 +172,19 @@ const Modal = props => {
   );
 }
 
+// Needs some cleanup
 const Container = ({data}) => {
   const [playersData, setPlayersdata] = useState(data);
-  const [selectedPlayerId, setSelectedPlayerId] = useState(0);
+  const [selectedPlayerId, setSelectedPlayerId] = useState();
   // WIP for an array of modals
-  const [selectedPlayersArray, setSelectedPlayersArray] = useState([0]);
+  const [selectedPlayersArray, setSelectedPlayersArray] = useState([]);
 
   const updatePlayerInfo = (playerId, playerNotes) => {
     playersData[playerId] = {...playersData[playerId], notes: playerNotes}
     setPlayersdata(playersData);
   };
   const displayPlayer = (playerId) => {
+    console.log(playerId);
     // Old functionality for displaying one player modal at a time
     setSelectedPlayerId(playerId);
     // new functionality for displaying multiple player modals simultaneously
@@ -198,7 +199,7 @@ const Container = ({data}) => {
           indexToRemove = index;
         }
       });
-
+      
       if (indexToRemove === undefined) {
         console.error(`indexToRemove has not been set. The value of indexToRemove is ${indexToRemove}`);
       }
@@ -208,19 +209,17 @@ const Container = ({data}) => {
       // If player id not already selected, add to selected players array
       newSelectedPlayersArray.push(playerId);
     }
-
     setSelectedPlayersArray(newSelectedPlayersArray);
+    console.log(selectedPlayersArray);
   };
 
   return (
     <div className="container">
-      <div className="horizontal-container">
-        <ModalsArray 
-          selectedPlayersArray={selectedPlayersArray}
-          playersData={playersData} 
-          updatePlayerInfo={updatePlayerInfo} 
-        />
-      </div>
+      <ModalsArray 
+        selectedPlayersArray={selectedPlayersArray}
+        playersData={playersData} 
+        updatePlayerInfo={updatePlayerInfo} 
+      />
       <Table 
         players={playersData} 
         displayPlayer={displayPlayer} 
