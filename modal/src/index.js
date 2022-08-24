@@ -145,13 +145,14 @@ const Table = ({players, displayPlayer}) => {
 
 // WIP for an array of modals
 const ModalsArray = props => {
-  const {selectedPlayersArray, playersData, updatePlayerInfo} = {...props};
+  const {selectedPlayersArray, playersData, updatePlayerInfo, displayPlayer} = {...props};
   const modalsFromArray = selectedPlayersArray.map((selectedPlayerId) =>
     <Modal
       hide={false}
       playerIndex={selectedPlayerId} 
       player={playersData[selectedPlayerId]} 
       updatePlayerInfo={updatePlayerInfo} 
+      displayPlayer={displayPlayer} 
     />
   );
 
@@ -163,9 +164,15 @@ const ModalsArray = props => {
 }
 
 const Modal = props => {
+  const {displayPlayer, playerIndex} = {...props}
+
   return (
     <div className="container">
         <div className="modal">
+          <button 
+            className="button__exit"
+            onClick={() => displayPlayer(playerIndex)}
+          >X</button>
           <Player {...props} />
         </div>
     </div>
@@ -212,6 +219,7 @@ const Container = ({data}) => {
         selectedPlayersArray={selectedPlayersArray}
         playersData={playersData} 
         updatePlayerInfo={updatePlayerInfo} 
+        displayPlayer={displayPlayer} 
       />
       <Table 
         players={playersData} 
