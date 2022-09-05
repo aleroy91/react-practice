@@ -104,12 +104,18 @@ const Player = ({ playerIndex, player, updatePlayerInfo }) => {
   );
 }
 
-const TableRow = ({ player, onClick }) => {
+const TableRow = ({ player, onClick, isPlayerSelected }) => {
+  let rowClass = "table__row";
+
+  if (isPlayerSelected) {
+    rowClass = "table__row--selected";
+  }
+
   return (
     <tr
       key={player.number}
       onClick={onClick}
-      className="table__row"
+      className={rowClass}
     >
       <td className="table__data-cell">{player.name}</td>
       <td className="table__data-cell">{player.position}</td>
@@ -118,14 +124,22 @@ const TableRow = ({ player, onClick }) => {
   ); 
 }
 
-const Table = ({players, displayPlayer}) => {
-  const playerTable = players.map((player) => 
-  <TableRow 
-    key={player.number}
-    player={player}
-    number={player.number}
-    onClick={() => displayPlayer(player.number)} 
-  />);
+const Table = ({players, displayPlayer, selectedPlayersArray}) => {
+  const playerTable = players.map((player) => {
+    let isPlayerSelected = false;
+    
+    if (selectedPlayersArray.includes(player.number)) {
+      isPlayerSelected = true;
+    }
+
+    return <TableRow 
+      key={player.number}
+      player={player}
+      number={player.number}
+      isPlayerSelected={isPlayerSelected}
+      onClick={() => displayPlayer(player.number)} 
+    />
+  });
 
   return (
     <table className="table">
@@ -179,7 +193,6 @@ const Modal = props => {
   );
 }
 
-// Needs some cleanup
 const Container = ({data}) => {
   const [playersData, setPlayersdata] = useState(data);
   const [selectedPlayersArray, setSelectedPlayersArray] = useState([]);
@@ -222,6 +235,7 @@ const Container = ({data}) => {
         displayPlayer={displayPlayer} 
       />
       <Table 
+        selectedPlayersArray={selectedPlayersArray}
         players={playersData} 
         displayPlayer={displayPlayer} 
       />

@@ -56,6 +56,14 @@
   cursor: pointer;
 }
 
+.table__row--selected {
+  background-color: #B9D9EB;
+}
+
+.table__row--selected:hover {
+  background-color: #F08080;
+}
+
 .table__data-cell {
   padding: 0.5rem;
 }
