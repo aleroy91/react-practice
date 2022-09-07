@@ -1,0 +1,28 @@
+.table {
+    border: 1px black solid;
+    margin: 0 auto;
+  }
+  
+  .table__header {
+    text-align: start;
+    border-bottom: black 1px solid;
+    padding: 0.5rem;
+  }
+  
+  .table__row:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+  }
+  
+  .table__row--selected {
+    background-color: #B9D9EB;
+  }
+  
+  .table__row--selected:hover {
+    background-color: #F08080;
+  }
+  
+  .table__data-cell {
+    padding: 0.5rem;
+  }
+  

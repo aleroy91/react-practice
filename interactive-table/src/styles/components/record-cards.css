@@ -1,4 +1,4 @@
-.modal {
+.record-card {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -8,7 +8,7 @@
     margin: auto;
   }
   
-  .modal:hover {
+  .record-card:hover {
     border: solid 1px grey;
   }
   

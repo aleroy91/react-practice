@@ -1,64 +1,57 @@
 import React, { useState } from 'react';
 
-export const ModalsArray = props => {
-    const {selectedPlayersArray, playersData, updatePlayerInfo, displayPlayer} = {...props};
-    const modalsFromArray = selectedPlayersArray.map((selectedPlayerId) =>
-      <Modal
+export const RecordCardsArray = props => {
+    const {selectedRecordsArray, recordData, updateRecordInfo, displayRecordCard} = {...props};
+    const recordCardsFromArray = selectedRecordsArray.map((selectedrecordId) =>
+      <RecordCard
         hide={false}
-        playerIndex={selectedPlayerId} 
-        player={playersData[selectedPlayerId]} 
-        updatePlayerInfo={updatePlayerInfo} 
-        displayPlayer={displayPlayer} 
+        recordIndex={selectedrecordId} 
+        record={recordData[selectedrecordId]} 
+        updateRecordInfo={updateRecordInfo} 
+        displayRecordCard={displayRecordCard} 
       />
     );
   
     return (
       <div className="horizontal-container">
-        {modalsFromArray}
+        {recordCardsFromArray}
       </div>
     );
   }
   
-  const Modal = props => {
-    const {displayPlayer, playerIndex} = {...props}
-  
-    return (
-      <div className="container">
-          <div className="modal">
-            <button 
-              className="button__exit"
-              onClick={() => displayPlayer(playerIndex)}
-            >X</button>
-            <Player {...props} />
-          </div>
-      </div>
-    );
-  }
-
-  const Player = ({ playerIndex, player, updatePlayerInfo }) => {
-    const { name, number, position, price, photo, gif, notes } = {...player};
+export const RecordCard = props => {
+    const {displayRecordCard, recordIndex, record, updateRecordInfo} = {...props}
+    const { name, number, position, price, photo, gif, notes } = {...record};
     const [hoverState, setHoverState] = useState(false);
   
     const toggleGif = () => setHoverState(() => hoverState ? false : true);
-    const handleNoteschange = (updatedNotes) => updatePlayerInfo(playerIndex, updatedNotes);
+    const handleNoteschange = (updatedNotes) => updateRecordInfo(recordIndex, updatedNotes);
   
     return (
-      <div key={number} className="vertical-container">
-        <h1>{name}</h1>
-        <Avatar 
-          onMouseEnter={toggleGif}
-          onMouseLeave={toggleGif}
-          isUserHovering={hoverState}
-          photo={photo} 
-          gif={gif}
-          alt={name} 
-        />
-        <h2>Position: {position}</h2>
-        <h2>Price: £{price}m</h2>
-        <Notes 
-          notesText={notes}
-          onNotesChange={handleNoteschange}
-        />
+      <div className="container">
+          <div className="record-card">
+            <button 
+              className="button__exit"
+              onClick={() => displayRecordCard(recordIndex)}
+            >X</button>
+              <div key={number} className="vertical-container">
+                <h1>{name}</h1>
+                <Avatar 
+                  onMouseEnter={toggleGif}
+                  onMouseLeave={toggleGif}
+                  isUserHovering={hoverState}
+                  photo={photo} 
+                  gif={gif}
+                  alt={name} 
+                />
+                <h2>Position: {position}</h2>
+                <h2>Price: £{price}m</h2>
+                <Notes 
+                  notesText={notes}
+                  onNotesChange={handleNoteschange}
+                />
+              </div>
+          </div>
       </div>
     );
   }
