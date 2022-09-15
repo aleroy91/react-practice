@@ -87,7 +87,7 @@ export const RecordCard = props => {
     return (
       <div className="vertical-container">
         {(notes && displayNotesHideTextarea) && 
-          <p>{notes}</p>
+          <p className="text-container">{notes}</p>
         }
         {!displayNotesHideTextarea && 
           <textarea 
