@@ -31,5 +31,13 @@ export const mockData = [
       position: "Midfield",
       price: 7.5,
       notes: ''
-    } 
+    }, {
+      number: 4,
+      name: 'Cristiano Ronaldo',
+      photo: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p14937.png',
+      gif: 'https://media.giphy.com/media/hryis7A55UXZNCUTNA/giphy.gif',
+      position: "Forward",
+      price: 10.2,
+      notes: ''
+    }
   ];

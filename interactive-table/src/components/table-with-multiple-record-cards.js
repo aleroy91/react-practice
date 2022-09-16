@@ -11,8 +11,10 @@ export const TableWithMultipleRecordCards = ({data}) => {
       setRecordData(recordData);
     };
     const displayRecordCard = (recordId) => {
+      let screenWidth = window.screen.width;
+      let newCardsArrayWidth = 312 * (selectedRecordsArray.length + 1);
       let newSelectedRecordsArray = selectedRecordsArray;
-      
+
       if (selectedRecordsArray.includes(recordId) && (selectedRecordsArray.length > 0)) {
         // If record id already selected, remove from selected records array
         let indexToRemove;
@@ -28,6 +30,9 @@ export const TableWithMultipleRecordCards = ({data}) => {
         }
         
         newSelectedRecordsArray.splice(indexToRemove, 1);
+      } else if (newCardsArrayWidth > screenWidth) {
+        alert("There is not enough screen space to display further record cards. Please remove one of the existing records if you would like to add another");
+        return;
       } else {
         // If record id not already selected, add to selected records array
         newSelectedRecordsArray.push(recordId);
