@@ -19,7 +19,7 @@ import React from 'react';
   
     return (
       <table className="table">
-        <thead>
+        <thead className="table__row-header">
           <tr>
             <th className="table__header">Players Table</th>
             <th></th>

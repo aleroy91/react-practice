@@ -1,14 +1,13 @@
 .record-card {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 10px;
-    border: solid 1px lightgrey;
-    width: fit-content;
-    margin: auto;
-  }
-  
-  .record-card:hover {
-    border: solid 1px grey;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px lightgrey;
+  width: fit-content;
+  margin: auto;
+}
+
+.record-card:hover {
+  border: solid 1px grey;
+}
