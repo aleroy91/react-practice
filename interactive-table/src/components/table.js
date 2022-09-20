@@ -23,6 +23,7 @@ import React from 'react';
           <tr>
             <th className="table__header">Players Table</th>
             <th></th>
+            <th><span className="material-icons">more_vert</span></th>
           </tr>
           <tr>
             <th className="table__column-header">Name</th>

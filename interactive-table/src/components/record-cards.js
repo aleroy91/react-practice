@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 export const RecordCardsArray = props => {
     const {selectedRecordsArray, recordData, updateRecordInfo, displayRecordCard} = {...props};
-    const recordCardsFromArray = selectedRecordsArray.map((selectedrecordId) =>
+    const recordCardsFromArray = selectedRecordsArray.map((selectedrecordId, index) =>
       <RecordCard
+        key={index}
         hide={false}
         recordIndex={selectedrecordId} 
         record={recordData[selectedrecordId]} 
@@ -33,24 +34,26 @@ export const RecordCard = props => {
             <button 
               className="button__exit"
               onClick={() => displayRecordCard(recordIndex)}
-            >X</button>
-              <div key={number} className="vertical-container">
-                <h1>{name}</h1>
-                <Avatar 
-                  onMouseEnter={toggleGif}
-                  onMouseLeave={toggleGif}
-                  isUserHovering={hoverState}
-                  photo={photo} 
-                  gif={gif}
-                  alt={name} 
-                />
-                <h2>Position: {position}</h2>
-                <h2>Price: £{price}m</h2>
-                <Notes 
-                  notesText={notes}
-                  onNotesChange={handleNoteschange}
-                />
-              </div>
+            >
+              <span className="material-icons">close</span>
+            </button>
+            <div key={number} className="vertical-container">
+              <h1>{name}</h1>
+              <Avatar 
+                onMouseEnter={toggleGif}
+                onMouseLeave={toggleGif}
+                isUserHovering={hoverState}
+                photo={photo} 
+                gif={gif}
+                alt={name} 
+              />
+              <h2>Position: {position}</h2>
+              <h2>Price: £{price}m</h2>
+              <Notes 
+                notesText={notes}
+                onNotesChange={handleNoteschange}
+              />
+            </div>
           </div>
       </div>
     );

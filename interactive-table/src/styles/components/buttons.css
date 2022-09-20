@@ -1,45 +1,45 @@
 .button__exit {
-    width: fit-content;
-    border: 1px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px 0;
-    margin: 0 0 auto auto;
-    background-color: crimson;
-    color: white;
-  }
-  
-  .button__exit:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-  
-  .button__action {
-    width: fit-content;
-    border: 1px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px auto;
-    background-color: cadetblue;
-    color: white;
-  }
-  
-  .button__action:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-  
-  .button__submit {
-    width: fit-content;
-    border: 1px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px auto;
-    background-color: darkgreen;
-    color: white;
-  }
-  
-  .button__submit:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
+  display: flex;
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0 0 auto auto;
+  background-color: crimson;
+  color: white;
+}
+
+.button__exit:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.button__action {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px auto;
+  background-color: cadetblue;
+  color: white;
+}
+
+.button__action:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.button__submit {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px auto;
+  background-color: darkgreen;
+  color: white;
+}
+
+.button__submit:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
