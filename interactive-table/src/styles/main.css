@@ -1,3 +1,36 @@
+@font-face {
+    font-family: "Roboto-Regular";
+    src: local("Roboto-Regular"), url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto-Light";
+    src: local("Roboto-Light"), url("../assets/fonts/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Roboto-Black";
+    src: local("Roboto-Black"), url("../assets/fonts/Roboto-Black.ttf") format("truetype");
+    font-weight: 400;
+}
+
+body {
+    font-family: 'Roboto-Light', sans-serif;
+    font-size: 1em;
+}
+
+h1 {
+    font-family: 'Roboto-Black', sans-serif;
+    font-size: 2em;
+}
+
+h2 {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 1em;
+}
+
 @import 'layout.css';
 @import 'components/buttons.css';
 @import 'components/record-cards.css';

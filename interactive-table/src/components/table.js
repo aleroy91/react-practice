@@ -21,9 +21,13 @@ import React from 'react';
       <table className="table">
         <thead>
           <tr>
-            <th className="table__header">Name</th>
-            <th className="table__header">Position</th>
-            <th className="table__header">Price</th>
+            <th className="table__header">Players Table</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th className="table__column-header">Name</th>
+            <th className="table__column-header">Position</th>
+            <th className="table__column-header">Price</th>
           </tr>
         </thead>
         <tbody>
