@@ -1,8 +1,9 @@
 .textarea {
   border: 1px white solid;
   border-radius: 5px;
+  font-family: 'Roboto-Regular', sans-serif;
 }
 
 .textarea:hover {
-  border: 1px aliceblue solid;
+  border: 1px lightgrey solid;
 }
