@@ -1,6 +1,10 @@
 import React from 'react';
   
-  export const Table = ({records, displayRecordCard, selectedRecordsArray}) => {
+  export const Table = ({records, displayRecordCard, selectedRecordsArray, defaultTableSettings, displaySettings}) => {
+    const tableColumns = defaultTableSettings.defaultColumns.map((columnName, index) => {
+      return <th className="table__column-header" key={index}>{columnName}</th>;
+    });
+    
     const tableBody = records.map((record) => {
       let isRecordSelected = false;
       
@@ -23,12 +27,17 @@ import React from 'react';
           <tr>
             <th className="table__header">Players Table</th>
             <th></th>
-            <th><span className="material-icons">more_vert</span></th>
+            <th>
+              <button 
+                className="button__info"
+                onClick={() => displaySettings()}
+              >
+                <span className="material-icons">more_vert</span>
+              </button>
+            </th>
           </tr>
           <tr>
-            <th className="table__column-header">Name</th>
-            <th className="table__column-header">Position</th>
-            <th className="table__column-header">Price</th>
+            {tableColumns}
           </tr>
         </thead>
         <tbody>

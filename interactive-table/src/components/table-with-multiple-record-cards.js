@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RecordCardsArray } from './record-cards';
 import { Table } from './table';
 
-export const TableWithMultipleRecordCards = ({data}) => {
+export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
     const [recordData, setRecordData] = useState(data);
     const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
   
@@ -39,6 +39,9 @@ export const TableWithMultipleRecordCards = ({data}) => {
       }
       setSelectedRecordsArray([...newSelectedRecordsArray]);
     };
+    const displaySettings = () => {
+      console.log('display table settings');
+    }
   
     return (
       <div className="container">
@@ -51,7 +54,9 @@ export const TableWithMultipleRecordCards = ({data}) => {
         <Table 
           selectedRecordsArray={selectedRecordsArray}
           records={recordData} 
-          displayRecordCard={displayRecordCard} 
+          displayRecordCard={displayRecordCard}
+          defaultTableSettings={defaultTableSettings}
+          displaySettings={displaySettings} 
         />
       </div>
     );
