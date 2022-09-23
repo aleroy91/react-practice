@@ -5,6 +5,8 @@ import { Table } from './table';
 export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
     const [recordData, setRecordData] = useState(data);
     const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
+
+    const defaultColumns = defaultTableSettings.defaultColumns;
   
     const updateRecordInfo = (recordId, recordNotes) => {
       recordData[recordId] = {...recordData[recordId], notes: recordNotes}
@@ -55,7 +57,7 @@ export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
           selectedRecordsArray={selectedRecordsArray}
           records={recordData} 
           displayRecordCard={displayRecordCard}
-          defaultTableSettings={defaultTableSettings}
+          defaultColumns={defaultColumns}
           displaySettings={displaySettings} 
         />
       </div>

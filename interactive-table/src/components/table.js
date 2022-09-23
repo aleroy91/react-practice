@@ -1,7 +1,10 @@
 import React from 'react';
   
-  export const Table = ({records, displayRecordCard, selectedRecordsArray, defaultTableSettings, displaySettings}) => {
-    const tableColumns = defaultTableSettings.defaultColumns.map((columnName, index) => {
+  export const Table = ({records, displayRecordCard, selectedRecordsArray, defaultColumns, displaySettings}) => {
+    const tableColumnsArray = Object.values(defaultColumns);
+    const selectedCellValues = Object.keys(defaultColumns);
+
+    const tableColumns = tableColumnsArray.map((columnName, index) => {
       return <th className="table__column-header" key={index}>{columnName}</th>;
     });
     
@@ -15,6 +18,7 @@ import React from 'react';
       return <TableRow 
         key={record.number}
         record={record}
+        cellValues={selectedCellValues}
         number={record.number}
         isRecordSelected={isRecordSelected}
         onClick={() => displayRecordCard(record.number)} 
@@ -47,8 +51,15 @@ import React from 'react';
     );
   }
 
-  const TableRow = ({ record, onClick, isRecordSelected }) => {
+  const TableRow = ({ record, onClick, isRecordSelected, cellValues }) => {
     let rowClass = "table__row";
+    const tableCells = cellValues.map((valueName, index) => {
+      return (
+        <td className="table__data-cell" key={index}>
+          {record[valueName] || ''}
+        </td>
+      );
+    });
   
     if (isRecordSelected) {
       rowClass = "table__row--selected";
@@ -60,9 +71,7 @@ import React from 'react';
         onClick={onClick}
         className={rowClass}
       >
-        <td className="table__data-cell">{record.name}</td>
-        <td className="table__data-cell">{record.position}</td>
-        <td className="table__data-cell">{record.price}</td>
+        {tableCells}
       </tr>
     ); 
   }

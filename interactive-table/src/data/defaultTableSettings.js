@@ -1,7 +1,7 @@
 export const defaultTableSettings = {
-    defaultColumns: [
-        'Name',
-        'Position',
-        'Price'
-    ]
+    defaultColumns: {
+        name: 'Name',
+        position: 'Position',
+        price: 'Price'
+    }
 }
