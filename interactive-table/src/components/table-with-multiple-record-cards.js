@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { RecordCardsArray } from './record-cards';
 import { Table } from './table';
+import { Modal } from './modal';
 
 export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
+    const [isDisplayed, setIsDisplayed] = useState(false);
     const [recordData, setRecordData] = useState(data);
     const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
-
     const defaultColumns = defaultTableSettings.defaultColumns;
   
     const updateRecordInfo = (recordId, recordNotes) => {
       recordData[recordId] = {...recordData[recordId], notes: recordNotes}
       setRecordData(recordData);
     };
+
     const displayRecordCard = (recordId) => {
       let screenWidth = window.screen.width;
       let newCardsArrayWidth = 312 * (selectedRecordsArray.length + 1);
@@ -41,8 +43,9 @@ export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
       }
       setSelectedRecordsArray([...newSelectedRecordsArray]);
     };
+
     const displaySettings = () => {
-      console.log('display table settings');
+      setIsDisplayed(!isDisplayed);
     }
   
     return (
@@ -52,6 +55,9 @@ export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
           recordData={recordData} 
           updateRecordInfo={updateRecordInfo} 
           displayRecordCard={displayRecordCard} 
+        />
+        <Modal 
+          isDisplayed={isDisplayed}
         />
         <Table 
           selectedRecordsArray={selectedRecordsArray}
