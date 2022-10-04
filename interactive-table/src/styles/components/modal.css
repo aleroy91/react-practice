@@ -1,0 +1,14 @@
+.modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    top: 35%;
+    left: calc(50% - 200px/2);
+    right: calc(50% - 200px/2);
+    align-self: initial;
+    width: 200px;
+    border-radius: 10px;
+    background-color: white;
+    border: solid 3px #1C849B;
+}

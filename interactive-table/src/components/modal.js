@@ -3,7 +3,11 @@ export const Modal = props => {
 
     return (
         <div>
-            {isDisplayed && <p>Put Modal Here</p>}
+            {isDisplayed && 
+                <div className="modal">
+                    Modal Here
+                </div>
+            }
         </div>
     );
 }

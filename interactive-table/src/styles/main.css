@@ -3,6 +3,7 @@
 @import 'components/record-cards.css';
 @import 'components/table.css';
 @import 'components/textarea.css';
+@import 'components/modal.css';
 
 @font-face {
     font-family: "Roboto-Regular";
