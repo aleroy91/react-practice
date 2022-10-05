@@ -58,6 +58,7 @@ export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
         />
         <Modal 
           isDisplayed={isDisplayed}
+          displaySettings={displaySettings}
         />
         <Table 
           selectedRecordsArray={selectedRecordsArray}

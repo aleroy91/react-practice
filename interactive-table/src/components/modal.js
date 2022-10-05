@@ -4,8 +4,19 @@ export const Modal = props => {
     return (
         <div>
             {isDisplayed && 
-                <div className="modal">
-                    Modal Here
+                <div>
+                    <div className="modal-container"></div>
+                    <div className="modal">
+                        <button 
+                            className="button__exit"
+                            onClick={() => props.displaySettings()}
+                        >
+                            <span className="material-icons">
+                                close
+                            </span>
+                        </button>
+                        <p>Modal Here</p>
+                    </div>
                 </div>
             }
         </div>
