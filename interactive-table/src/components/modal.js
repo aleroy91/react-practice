@@ -1,5 +1,17 @@
 export const Modal = props => {
-    const isDisplayed = props.isDisplayed;
+    const {isDisplayed, recordData, defaultColumns} = {...props};
+    const isDataAvailable = Boolean(Object.values(recordData)[0]);
+    let columnSettings = Object.values(defaultColumns).map((property) => {
+        return <p>{property}</p>;
+    });
+
+    if (isDataAvailable) {
+        columnSettings = Object.keys(recordData[0]).map((property, index) => {
+            if (property !== 'number' && property !== 'photo' && property !== 'gif') {
+                return <p key={index}>{property}</p>;
+            }
+        });
+    }
 
     return (
         <div>
@@ -15,7 +27,7 @@ export const Modal = props => {
                                 close
                             </span>
                         </button>
-                        <p>Modal Here</p>
+                        {columnSettings}
                     </div>
                 </div>
             }

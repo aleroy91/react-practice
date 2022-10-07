@@ -58,6 +58,8 @@ export const TableWithMultipleRecordCards = ({data, defaultTableSettings}) => {
         />
         <Modal 
           isDisplayed={isDisplayed}
+          recordData={recordData}
+          defaultColumns={defaultColumns}
           displaySettings={displaySettings}
         />
         <Table 
