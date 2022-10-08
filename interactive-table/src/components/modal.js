@@ -1,3 +1,5 @@
+import { Checkbox } from './checkbox';
+
 export const Modal = props => {
     const {isDisplayed, recordData, defaultColumns} = {...props};
     const isDataAvailable = Boolean(Object.values(recordData)[0]);
@@ -8,7 +10,7 @@ export const Modal = props => {
     if (isDataAvailable) {
         columnSettings = Object.keys(recordData[0]).map((property, index) => {
             if (property !== 'number' && property !== 'photo' && property !== 'gif') {
-                return <p key={index}>{property}</p>;
+                return <Checkbox key={index} name={property} />;
             }
         });
     }
