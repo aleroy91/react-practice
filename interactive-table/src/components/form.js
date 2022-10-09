@@ -6,7 +6,13 @@ export const Form = props => {
 
     const formElementsFactory = () => {
         for (const [formElementName, formElementType] of formElementsArray) {
-            return <Input key={index} inputName={formElementName} inputType={formElementType} />;
+            return (
+                <Input 
+                    key={formElementsArray.indexOf(formElementName)} 
+                    inputName={formElementName} 
+                    inputType={formElementType}
+                />
+            );
         }
     };
 
