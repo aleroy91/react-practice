@@ -1,4 +1,4 @@
-export const Input = props => {
+export const ControlledInput = props => {
     const [inputName, inputType] = {...props};
 
     const inputTypeFactory = inputType => {

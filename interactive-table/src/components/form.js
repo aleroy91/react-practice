@@ -1,4 +1,4 @@
-import { Input } from './input';
+import { ControlledInput } from './controlled-input';
 
 export const Form = props => {
     const [name, formElements] = {...props};
@@ -7,7 +7,7 @@ export const Form = props => {
     const formElementsFactory = () => {
         for (const [formElementName, formElementType] of formElementsArray) {
             return (
-                <Input 
+                <ControlledInput 
                     key={formElementsArray.indexOf(formElementName)} 
                     inputName={formElementName} 
                     inputType={formElementType}
