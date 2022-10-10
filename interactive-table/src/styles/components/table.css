@@ -18,13 +18,13 @@
 }
 
 .table__row-header {
-  background-color: #1C849B;
+  background-color: #1c849b;
   color: white;
-  border-bottom: #1C849B 1px solid;
+  border-bottom: #1c849b 1px solid;
 }
 
 .table__row-footer {
-  background-color: #1C849B;
+  background-color: #1c849b;
   color: white;
 }
 
@@ -34,11 +34,11 @@
 }
 
 .table__row--selected {
-  background-color: #B9D9EB;
+  background-color: #b9d9eb;
 }
 
 .table__row--selected:hover {
-  background-color: #F08080;
+  background-color: #f08080;
 }
 
 .table__data-cell {
