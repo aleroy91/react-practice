@@ -1,9 +1,9 @@
 import { ControlledInput } from './controlled-input';
 
 export const Form = props => {
-    const [name, formElements] = {...props};
+    const {name, formElements} = {...props};
     const formElementsArray = Object.entries(formElements);
-
+    
     const formElementsFactory = () => {
         for (const [formElementName, formElementType] of formElementsArray) {
             return (
@@ -20,7 +20,7 @@ export const Form = props => {
         <form>
             <fieldset>
                 <legend>{name}</legend>
-                {formElementsFactory}
+                {formElementsFactory()}
                 <input type="submit" value="Submit" />
             </fieldset>
         </form>
