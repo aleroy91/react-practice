@@ -1,5 +1,5 @@
 export const ControlledInput = props => {
-    const [inputName, inputType] = {...props};
+    const {inputName, inputType} = {...props};
 
     const inputTypeFactory = inputType => {
         switch(inputType) {
@@ -25,7 +25,11 @@ export const ControlledInput = props => {
                     </div>
                 );
         }
-    }
+    };
 
-    return {inputTypeFactory};
+    return (
+        <div>
+            {inputTypeFactory(inputType)}
+        </div>
+    );
 }

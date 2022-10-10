@@ -21,6 +21,7 @@ export const Form = props => {
             <fieldset>
                 <legend>{name}</legend>
                 {formElementsFactory}
+                <input type="submit" value="Submit" />
             </fieldset>
         </form>
     );
