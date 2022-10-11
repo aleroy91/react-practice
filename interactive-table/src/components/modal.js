@@ -3,27 +3,29 @@ import { Form } from "./form";
 
 export const Modal = (props) => {
   const { isDisplayed, recordData, defaultColumns } = { ...props };
-  const isDataAvailable = Boolean(Object.values(recordData)[0]);
+  const isDataAvailable = false; // Boolean(Object.values(recordData)[0]);
   let columnSettingsArray = [];
 
-  if (isDataAvailable) {
-    Object.keys(recordData[0]).map((property) => {
-      if (property !== "number" && property !== "photo" && property !== "gif") {
-        let columnNameObject = {
-          name: property,
-          type: "checkbox",
-        };
-        columnSettingsArray.push(columnNameObject);
-      }
-    });
-  } else {
-    Object.values(defaultColumns).map((columnName) => {
-      let columnNameObject = {
-        name: columnName,
+  const buildModalFormArray = (formObject) => {
+    let formArray = Object.values(formObject);
+    let modalFormArray = [];
+
+    formArray.map((formInput) => {
+      let formInputObject = {
+        name: formInput,
         type: "checkbox",
       };
-      columnSettingsArray.push(columnNameObject);
+
+      modalFormArray.push(formInputObject);
     });
+
+    return modalFormArray;
+  };
+
+  if (isDataAvailable) {
+    columnSettingsArray = buildModalFormArray(recordData);
+  } else {
+    columnSettingsArray = buildModalFormArray(defaultColumns);
   }
 
   return (
