@@ -1,26 +1,26 @@
 import { ControlledInput } from "./controlled-input";
 
 export const Form = (props) => {
-  const { name, formElements } = { ...props };
-  const formElementsArray = Object.entries(formElements);
+  const { name, formInputsArray } = { ...props };
 
-  const formElementsFactory = () => {
-    for (const [formElementName, formElementType] of formElementsArray) {
-      return (
-        <ControlledInput
-          key={formElementsArray.indexOf(formElementName)}
-          inputName={formElementName}
-          inputType={formElementType}
-        />
-      );
-    }
-  };
+  const formElementsFactory = formInputsArray.map((inputObject, index) => {
+    let inputName = inputObject.name;
+    let inputType = inputObject.type;
+
+    return (
+      <ControlledInput
+        key={index}
+        inputName={inputName}
+        inputType={inputType}
+      />
+    );
+  });
 
   return (
     <form>
       <fieldset>
         <legend>{name}</legend>
-        {formElementsFactory()}
+        {formElementsFactory}
         <input type="submit" value="Submit" />
       </fieldset>
     </form>

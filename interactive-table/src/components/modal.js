@@ -4,23 +4,27 @@ import { Form } from "./form";
 export const Modal = (props) => {
   const { isDisplayed, recordData, defaultColumns } = { ...props };
   const isDataAvailable = Boolean(Object.values(recordData)[0]);
-  let columnSettingsObject = () => {
-    let columnSettings = {};
+  let columnSettingsArray = [];
 
-    Object.values(defaultColumns).map((columnName) => {
-      Object.assign(columnSettings, { columnName: "checkbox" });
+  if (isDataAvailable) {
+    Object.keys(recordData[0]).map((property) => {
+      if (property !== "number" && property !== "photo" && property !== "gif") {
+        let columnNameObject = {
+          name: property,
+          type: "checkbox",
+        };
+        columnSettingsArray.push(columnNameObject);
+      }
     });
-
-    return columnSettings;
-  };
-
-  // if (isDataAvailable) {
-  //     columnSettings = Object.keys(recordData[0]).map((property, index) => {
-  //         if (property !== 'number' && property !== 'photo' && property !== 'gif') {
-  //             return <Checkbox key={index} name={property} />;
-  //         }
-  //     });
-  // }
+  } else {
+    Object.values(defaultColumns).map((columnName) => {
+      let columnNameObject = {
+        name: columnName,
+        type: "checkbox",
+      };
+      columnSettingsArray.push(columnNameObject);
+    });
+  }
 
   return (
     <div>
@@ -36,7 +40,7 @@ export const Modal = (props) => {
             </button>
             <Form
               name="Select Column Settings"
-              formElements={columnSettingsObject}
+              formInputsArray={columnSettingsArray}
             />
           </div>
         </div>
