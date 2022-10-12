@@ -10,7 +10,13 @@ export const TableWithMultipleRecordCards = ({
   const [isDisplayed, setIsDisplayed] = useState(false);
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
-  const defaultColumns = defaultTableSettings.defaultColumns;
+  const [selectedTableColumns, setSelectedTableColumns] = useState(
+    defaultTableSettings.defaultColumns
+  );
+
+  const updateSelectedTableColumns = (selectedColumns) => {
+    setSelectedTableColumns(selectedColumns);
+  };
 
   const updateRecordInfo = (recordId, recordNotes) => {
     recordData[recordId] = { ...recordData[recordId], notes: recordNotes };
@@ -69,14 +75,15 @@ export const TableWithMultipleRecordCards = ({
       <Modal
         isDisplayed={isDisplayed}
         recordData={recordData}
-        defaultColumns={defaultColumns}
+        selectedInputs={selectedTableColumns}
+        updateSelectedInputs={updateSelectedTableColumns}
         displaySettings={displaySettings}
       />
       <Table
         selectedRecordsArray={selectedRecordsArray}
         records={recordData}
         displayRecordCard={displayRecordCard}
-        defaultColumns={defaultColumns}
+        selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
       />
     </div>

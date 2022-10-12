@@ -1,10 +1,21 @@
-import { ControlledInput } from "./controlled-input";
 import { Form } from "./form";
 
 export const Modal = (props) => {
-  const { isDisplayed, recordData, defaultColumns } = { ...props };
+  const { isDisplayed, recordData, selectedInputs, updateSelectedInputs } = {
+    ...props,
+  };
   const isDataAvailable = false; // Boolean(Object.values(recordData)[0]);
-  let columnSettingsArray = [];
+
+  const stringArrayToLowerCase = (arrayToConvert) => {
+    let lowercaseArray = [];
+    arrayToConvert.forEach((element) =>
+      lowercaseArray.push(element.toLowerCase())
+    );
+    return lowercaseArray;
+  };
+  const lowercaseSelectedInputs = stringArrayToLowerCase(
+    Object.values(selectedInputs)
+  );
 
   const buildModalFormArray = (formObject) => {
     let formArray = Object.values(formObject);
@@ -14,6 +25,7 @@ export const Modal = (props) => {
       let formInputObject = {
         name: formInput,
         type: "checkbox",
+        value: lowercaseSelectedInputs.includes(formInput.toLowerCase()),
       };
 
       modalFormArray.push(formInputObject);
@@ -22,10 +34,12 @@ export const Modal = (props) => {
     return modalFormArray;
   };
 
+  let columnSettingsArray = [];
+
   if (isDataAvailable) {
     columnSettingsArray = buildModalFormArray(recordData);
   } else {
-    columnSettingsArray = buildModalFormArray(defaultColumns);
+    columnSettingsArray = buildModalFormArray(selectedInputs);
   }
 
   return (
@@ -43,6 +57,7 @@ export const Modal = (props) => {
             <Form
               name="Select Column Settings"
               formInputsArray={columnSettingsArray}
+              updateSelectedInputs={updateSelectedInputs}
             />
           </div>
         </div>

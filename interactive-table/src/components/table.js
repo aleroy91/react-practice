@@ -4,11 +4,11 @@ export const Table = ({
   records,
   displayRecordCard,
   selectedRecordsArray,
-  defaultColumns,
+  selectedTableColumns,
   displaySettings,
 }) => {
-  const tableColumnsArray = Object.values(defaultColumns);
-  const selectedCellValues = Object.keys(defaultColumns);
+  const tableColumnsArray = Object.values(selectedTableColumns);
+  const selectedCellValues = Object.keys(selectedTableColumns);
 
   const tableColumns = tableColumnsArray.map((columnName, index) => {
     return (

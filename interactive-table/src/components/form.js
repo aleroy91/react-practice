@@ -1,17 +1,22 @@
 import { ControlledInput } from "./controlled-input";
 
 export const Form = (props) => {
-  const { name, formInputsArray } = { ...props };
+  const { name, formInputsArray, updateSelectedInputs } = { ...props };
+  const handleFormChange = (updatedForm) => {
+    updateSelectedInputs(updatedForm);
+  };
 
   const formElementsFactory = formInputsArray.map((inputObject, index) => {
-    let inputName = inputObject.name;
-    let inputType = inputObject.type;
+    const inputName = inputObject.name;
+    const inputType = inputObject.type;
+    const inputValue = inputObject.value;
 
     return (
       <ControlledInput
         key={index}
         inputName={inputName}
         inputType={inputType}
+        inputValue={inputValue}
       />
     );
   });
