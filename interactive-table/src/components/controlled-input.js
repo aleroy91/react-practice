@@ -1,5 +1,10 @@
+import React, { useState } from "react";
+
 export const ControlledInput = (props) => {
-  const { inputName, inputType, inputValue } = { ...props };
+  const { inputName, inputType, inputValue, onInputChange } = {
+    ...props,
+  };
+  const [checkboxValue, setCheckboxValue] = useState(inputValue);
 
   const inputTypeFactory = (inputType) => {
     switch (inputType) {
@@ -20,7 +25,14 @@ export const ControlledInput = (props) => {
       case "checkbox":
         return (
           <div>
-            <input type="checkbox" checked={inputValue} />
+            <input
+              type="checkbox"
+              checked={checkboxValue}
+              onChange={() => {
+                onInputChange(inputName, !inputValue);
+                setCheckboxValue(!inputValue);
+              }}
+            />
             <label>{inputName}</label>
           </div>
         );

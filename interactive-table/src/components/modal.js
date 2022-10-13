@@ -1,10 +1,15 @@
 import { Form } from "./form";
 
 export const Modal = (props) => {
-  const { isDisplayed, recordData, selectedInputs, updateSelectedInputs } = {
+  const {
+    isDisplayed,
+    selectedInputs,
+    availableInputs,
+    updateSelectedInputs,
+    displaySettings,
+  } = {
     ...props,
   };
-  const isDataAvailable = false; // Boolean(Object.values(recordData)[0]);
 
   const stringArrayToLowerCase = (arrayToConvert) => {
     let lowercaseArray = [];
@@ -13,13 +18,16 @@ export const Modal = (props) => {
     );
     return lowercaseArray;
   };
+  const lowercaseAvailableInputs = stringArrayToLowerCase(
+    Object.values(availableInputs)
+  );
   const lowercaseSelectedInputs = stringArrayToLowerCase(
     Object.values(selectedInputs)
   );
 
   const buildModalFormArray = (formObject) => {
-    let formArray = Object.values(formObject);
     let modalFormArray = [];
+    let formArray = Object.values(formObject);
 
     formArray.map((formInput) => {
       let formInputObject = {
@@ -36,11 +44,7 @@ export const Modal = (props) => {
 
   let columnSettingsArray = [];
 
-  if (isDataAvailable) {
-    columnSettingsArray = buildModalFormArray(recordData);
-  } else {
-    columnSettingsArray = buildModalFormArray(selectedInputs);
-  }
+  columnSettingsArray = buildModalFormArray(lowercaseAvailableInputs);
 
   return (
     <div>
@@ -48,10 +52,7 @@ export const Modal = (props) => {
         <div>
           <div className="modal-container"></div>
           <div className="modal">
-            <button
-              className="button__exit"
-              onClick={() => props.displaySettings()}
-            >
+            <button className="button__exit" onClick={() => displaySettings()}>
               <span className="material-icons">close</span>
             </button>
             <Form

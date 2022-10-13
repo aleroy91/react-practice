@@ -13,9 +13,29 @@ export const TableWithMultipleRecordCards = ({
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
+  const availableTableColumns = data
+    ? Object.keys(data[0])
+    : defaultTableSettings.defaultColumns;
 
-  const updateSelectedTableColumns = (selectedColumns) => {
-    setSelectedTableColumns(selectedColumns);
+  const updateSelectedInputs = (newInputName, newInputValue) => {
+    const newInputNameLowercase = newInputName.toLowerCase();
+    const newSelectedTableColumns = Object.values(selectedTableColumns);
+    console.log(selectedTableColumns);
+
+    availableTableColumns.forEach((columnName) => {
+      const columnNameLowerCase = columnName.toLowerCase();
+
+      if (newInputNameLowercase === columnNameLowerCase) {
+        if (newInputValue) {
+          newSelectedTableColumns.push(newInputNameLowercase);
+        } else {
+          const indexOfElementToRemove =
+            newSelectedTableColumns.indexOf(columnName);
+          newSelectedTableColumns.splice(indexOfElementToRemove, 1);
+        }
+      }
+    });
+    setSelectedTableColumns(newSelectedTableColumns);
   };
 
   const updateRecordInfo = (recordId, recordNotes) => {
@@ -74,9 +94,9 @@ export const TableWithMultipleRecordCards = ({
       />
       <Modal
         isDisplayed={isDisplayed}
-        recordData={recordData}
         selectedInputs={selectedTableColumns}
-        updateSelectedInputs={updateSelectedTableColumns}
+        availableInputs={availableTableColumns}
+        updateSelectedInputs={updateSelectedInputs}
         displaySettings={displaySettings}
       />
       <Table
