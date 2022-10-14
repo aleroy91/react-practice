@@ -37,19 +37,15 @@ export const TableWithMultipleRecordCards = ({
   };
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
-    const newInputNameLowercase = newInputName.toLowerCase();
     const newSelectedTableColumns = Object.values(selectedTableColumns);
-    console.log(selectedTableColumns);
 
-    availableTableColumns.forEach((columnName) => {
-      const columnNameLowerCase = columnName.toLowerCase();
-
-      if (newInputNameLowercase === columnNameLowerCase) {
+    availableTableColumns.forEach((columnObject) => {
+      if (newInputName === columnObject.name) {
         if (newInputValue) {
-          newSelectedTableColumns.push(newInputNameLowercase);
+          newSelectedTableColumns.push(columnObject);
         } else {
           const indexOfElementToRemove =
-            newSelectedTableColumns.indexOf(columnName);
+            newSelectedTableColumns.indexOf(columnObject);
           newSelectedTableColumns.splice(indexOfElementToRemove, 1);
         }
       }
