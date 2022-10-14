@@ -37,7 +37,7 @@ export const TableWithMultipleRecordCards = ({
   };
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
-    const newSelectedTableColumns = Object.values(selectedTableColumns);
+    const newSelectedTableColumns = selectedTableColumns;
 
     availableTableColumns.forEach((columnObject) => {
       if (newInputName === columnObject.name) {

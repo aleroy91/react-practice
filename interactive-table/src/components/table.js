@@ -7,13 +7,16 @@ export const Table = ({
   selectedTableColumns,
   displaySettings,
 }) => {
-  const tableColumnsArray = Object.values(selectedTableColumns);
-  const selectedCellValues = Object.keys(selectedTableColumns);
+  const selectedCellValues = [];
+  selectedTableColumns.map((tableColumnObject) => {
+    let tableColumnName = tableColumnObject.name.toLowerCase();
+    selectedCellValues.push(tableColumnName);
+  });
 
-  const tableColumns = tableColumnsArray.map((columnName, index) => {
+  const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
       <th className="table__column-header" key={index}>
-        {columnName}
+        {columnObject.name}
       </th>
     );
   });
