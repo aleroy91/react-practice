@@ -1,6 +1,5 @@
 export const mockData = [
   {
-    number: 0,
     name: "Bruno Fernandes",
     photo:
       "https://resources.premierleague.com/premierleague/photos/players/110x140/p141746.png",
@@ -10,7 +9,6 @@ export const mockData = [
     notes: "",
   },
   {
-    number: 1,
     name: "Harry Maguire",
     photo:
       "https://resources.premierleague.com/premierleague/photos/players/110x140/p95658.png",
@@ -20,7 +18,6 @@ export const mockData = [
     notes: "",
   },
   {
-    number: 2,
     name: "Christian Eriksen",
     photo:
       "https://resources.premierleague.com/premierleague/photos/players/110x140/p80607.png",
@@ -30,7 +27,6 @@ export const mockData = [
     notes: "",
   },
   {
-    number: 3,
     name: "Jadon Sancho",
     photo:
       "https://resources.premierleague.com/premierleague/photos/players/110x140/p209243.png",
@@ -40,7 +36,6 @@ export const mockData = [
     notes: "",
   },
   {
-    number: 4,
     name: "Cristiano Ronaldo",
     photo:
       "https://resources.premierleague.com/premierleague/photos/players/110x140/p14937.png",

@@ -13,9 +13,28 @@ export const TableWithMultipleRecordCards = ({
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
-  const availableTableColumns = data
-    ? Object.keys(data[0])
-    : defaultTableSettings.defaultColumns;
+  const availableTableColumns = (data) => {
+    if (data) {
+      let tableColumnsFromData = [];
+
+      data[0].forEach((element) => {
+        if (element !== "photo" && element !== "gif" && element !== "notes") {
+          let capitalisedColumnName =
+            element.charAt(0).toUpperCase() + element.slice(1);
+
+          tableColumnsFromData.push({
+            name: capitalisedColumnName,
+            type: "checkbox",
+            value: false,
+          });
+        }
+      });
+
+      return tableColumnsFromData;
+    } else {
+      return defaultTableSettings.defaultColumns;
+    }
+  };
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
     const newInputNameLowercase = newInputName.toLowerCase();
