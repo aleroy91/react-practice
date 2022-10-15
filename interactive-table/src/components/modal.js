@@ -11,29 +11,14 @@ export const Modal = (props) => {
     ...props,
   };
 
-  const stringArrayToLowerCase = (arrayToConvert) => {
-    let lowercaseArray = [];
-    arrayToConvert.forEach((element) =>
-      lowercaseArray.push(element.toLowerCase())
-    );
-    return lowercaseArray;
-  };
-  const lowercaseAvailableInputs = stringArrayToLowerCase(
-    Object.values(availableInputs)
-  );
-  const lowercaseSelectedInputs = stringArrayToLowerCase(
-    Object.values(selectedInputs)
-  );
-
-  const buildModalFormArray = (formObject) => {
+  const buildModalFormArray = (formArray) => {
     let modalFormArray = [];
-    let formArray = Object.values(formObject);
 
     formArray.map((formInput) => {
       let formInputObject = {
         name: formInput,
         type: "checkbox",
-        value: lowercaseSelectedInputs.includes(formInput.toLowerCase()),
+        value: selectedInputs.includes(formInput),
       };
 
       modalFormArray.push(formInputObject);
@@ -44,7 +29,7 @@ export const Modal = (props) => {
 
   let columnSettingsArray = [];
 
-  columnSettingsArray = buildModalFormArray(lowercaseAvailableInputs);
+  columnSettingsArray = buildModalFormArray(availableInputs);
 
   return (
     <div>
