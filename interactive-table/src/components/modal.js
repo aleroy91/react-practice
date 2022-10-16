@@ -10,15 +10,14 @@ export const Modal = (props) => {
   } = {
     ...props,
   };
-
   const buildModalFormArray = (formArray) => {
     let modalFormArray = [];
 
     formArray.map((formInput) => {
       let formInputObject = {
-        name: formInput,
+        name: formInput.name,
         type: "checkbox",
-        value: selectedInputs.includes(formInput),
+        value: selectedInputs.includes(formInput.name),
       };
 
       modalFormArray.push(formInputObject);
@@ -27,9 +26,7 @@ export const Modal = (props) => {
     return modalFormArray;
   };
 
-  let columnSettingsArray = [];
-
-  columnSettingsArray = buildModalFormArray(availableInputs);
+  let columnSettingsArray = buildModalFormArray(availableInputs);
 
   return (
     <div>

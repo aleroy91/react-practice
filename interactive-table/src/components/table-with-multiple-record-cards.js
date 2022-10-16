@@ -13,28 +13,27 @@ export const TableWithMultipleRecordCards = ({
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
-  const availableTableColumns = (data) => {
-    if (data) {
-      let tableColumnsFromData = [];
+  let availableTableColumns = defaultTableSettings.defaultColumns;
+  let selectedColumns = selectedTableColumns.map((input) => input.name);
 
-      data[0].forEach((element) => {
-        if (element !== "photo" && element !== "gif" && element !== "notes") {
-          let capitalisedColumnName =
-            element.charAt(0).toUpperCase() + element.slice(1);
+  if (data) {
+    let tableColumnsFromData = [];
 
-          tableColumnsFromData.push({
-            name: capitalisedColumnName,
-            type: "checkbox",
-            value: false,
-          });
-        }
-      });
+    Object.keys(data[0]).forEach((element) => {
+      if (element !== "photo" && element !== "gif") {
+        let capitalisedColumnName =
+          element.charAt(0).toUpperCase() + element.slice(1);
 
-      return tableColumnsFromData;
-    } else {
-      return defaultTableSettings.defaultColumns;
-    }
-  };
+        tableColumnsFromData.push({
+          name: capitalisedColumnName,
+          type: "checkbox",
+          value: false,
+        });
+      }
+    });
+
+    availableTableColumns = tableColumnsFromData;
+  }
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
     const newSelectedTableColumns = selectedTableColumns;
@@ -109,7 +108,7 @@ export const TableWithMultipleRecordCards = ({
       />
       <Modal
         isDisplayed={isDisplayed}
-        selectedInputs={selectedTableColumns}
+        selectedInputs={selectedColumns}
         availableInputs={availableTableColumns}
         updateSelectedInputs={updateSelectedInputs}
         displaySettings={displaySettings}
