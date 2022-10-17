@@ -42,26 +42,45 @@ export const Table = ({
 
   const tableHead = selectedTableColumns.map((element, index) => {
     if (index === 0) {
-      return <th className="table__header">Players Table</th>;
+      return (
+        <th className="table__header" key={index}>
+          Players Table
+        </th>
+      );
     } else if (index === selectedTableColumns.length - 1) {
       return (
-        <th>
+        <th key={index}>
           <button className="button__info" onClick={() => displaySettings()}>
             <span className="material-icons">more_vert</span>
           </button>
         </th>
       );
     } else {
-      return <th></th>;
+      return <th key={index}></th>;
     }
   });
 
   return (
     <table className="table">
-      <thead className="table__row-header">
-        <tr>{tableHead}</tr>
-        <tr>{tableColumns}</tr>
-      </thead>
+      {selectedTableColumns.length < 2 ? (
+        <thead className="table__row-header">
+          <tr>
+            {tableHead}
+            <button className="button__info" onClick={() => displaySettings()}>
+              <span className="material-icons">more_vert</span>
+            </button>
+          </tr>
+          <tr>
+            {tableColumns}
+            <th className="table__column-header" key={1}></th>
+          </tr>
+        </thead>
+      ) : (
+        <thead className="table__row-header">
+          <tr>{tableHead}</tr>
+          <tr>{tableColumns}</tr>
+        </thead>
+      )}
       <tbody>{tableBody}</tbody>
     </table>
   );
