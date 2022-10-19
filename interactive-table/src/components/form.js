@@ -23,8 +23,8 @@ export const Form = (props) => {
     <form>
       <fieldset>
         <legend>{name}</legend>
-        {formElementsFactory
-      </fieldset
+        {formElementsFactory}
+      </fieldset>
     </form>
   );
 };
