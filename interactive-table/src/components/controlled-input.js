@@ -12,7 +12,7 @@ export const ControlledInput = (props) => {
         return (
           <div>
             <textarea></textarea>
-            <label>{inputName}</label
+            <label>{inputName}</label>
           </div>
         );
       case "select":
