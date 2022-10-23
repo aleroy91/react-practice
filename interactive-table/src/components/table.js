@@ -7,10 +7,8 @@ export const Table = ({
   selectedTableColumns,
   displaySettings,
 }) => {
-  const selectedCellValues = [];
-  selectedTableColumns.map((tableColumnObject) => {
-    let tableColumnName = tableColumnObject.name.toLowerCase();
-    selectedCellValues.push(tableColumnName);
+  const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
+    return tableColumnObject.name.toLowerCase();
   });
 
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
