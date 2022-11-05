@@ -5,7 +5,6 @@ export const ControlledInput = (props) => {
     ...props,
   };
   const [checkboxValue, setCheckboxValue] = useState(inputValue);
-  const checkboxToggle = (inputValue) => !inputValue;
 
   const inputTypeFactory = (inputType) => {
     switch (inputType) {
@@ -30,8 +29,8 @@ export const ControlledInput = (props) => {
               type="checkbox"
               checked={checkboxValue}
               onChange={() => {
-                onInputChange(inputName, checkboxToggle(checkboxValue));
-                setCheckboxValue(checkboxToggle(checkboxValue));
+                onInputChange(inputName, !checkboxValue);
+                setCheckboxValue(!checkboxValue);
               }}
             />
             <label>{inputName}</label>
