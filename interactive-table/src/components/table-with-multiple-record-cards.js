@@ -37,15 +37,17 @@ export const TableWithMultipleRecordCards = ({
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
     const newSelectedTableColumns = selectedTableColumns;
-
-    availableTableColumns.forEach((columnObject) => {
+    const selectedColumnsArray = selectedTableColumns.map((input) => input.name);
+    
+    availableTableColumns.forEach((columnObject, availableColumnIndex) => {
       if (newInputName === columnObject.name) {
+        let selectedColumnIndex = selectedColumnsArray.indexOf(newInputName);
         if (newInputValue) {
-          newSelectedTableColumns.push(columnObject);
+          columnObject.value = newInputValue;
+          newSelectedTableColumns.splice(availableColumnIndex, 0, columnObject);
         } else {
-          const indexOfElementToRemove =
-            newSelectedTableColumns.indexOf(columnObject);
-          newSelectedTableColumns.splice(indexOfElementToRemove, 1);
+          columnObject.value = newInputValue;
+          newSelectedTableColumns.splice(selectedColumnIndex, 1);
         }
       }
     });
