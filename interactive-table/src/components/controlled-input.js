@@ -1,40 +1,19 @@
-import React, { useState } from "react";
+import { Checkbox } from "./checkbox";
 
 export const ControlledInput = (props) => {
   const { inputName, inputType, inputValue, onInputChange } = {
     ...props,
   };
-  const [checkboxValue, setCheckboxValue] = useState(inputValue);
 
   const inputTypeFactory = (inputType) => {
     switch (inputType) {
-      case "textarea":
-        return (
-          <div>
-            <textarea></textarea>
-            <label>{inputName}</label>
-          </div>
-        );
-      case "select":
-        return (
-          <div>
-            <select></select>
-            <label>{inputName}</label>
-          </div>
-        );
       case "checkbox":
         return (
-          <div>
-            <input
-              type="checkbox"
-              checked={checkboxValue}
-              onChange={() => {
-                onInputChange(inputName, !checkboxValue);
-                setCheckboxValue(!checkboxValue);
-              }}
-            />
-            <label>{inputName}</label>
-          </div>
+          <Checkbox
+            inputName={inputName}
+            inputValue={inputValue}
+            onInputChange={onInputChange}
+          />
         );
       default:
         return (
