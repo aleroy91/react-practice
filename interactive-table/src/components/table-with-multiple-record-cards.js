@@ -15,17 +15,33 @@ export const TableWithMultipleRecordCards = ({
   );
   let availableTableColumns = defaultTableSettings.defaultColumns;
   let selectedColumns = selectedTableColumns.map((input) => input.name);
+  let setCharAt = (stringToModify, index, characterToModify) => {
+    if (index > stringToModify.length-1) {
+      return stringToModify;
+    } else {
+      return stringToModify.substring(0, index)
+       + characterToModify
+       + stringToModify.substring(index + 1);
+    }
+  }
 
   if (data) {
     let tableColumnsFromData = [];
 
     Object.keys(data[0]).forEach((element) => {
       if (element !== "photo" && element !== "gif") {
-        let capitalisedColumnName =
-          element.charAt(0).toUpperCase() + element.slice(1);
+        let sanitisedColumnName = element;
+        for (var i = 0; i < element.length; i++) {
+          if (i === 0 || (element[i - 1] === "_")) {
+            sanitisedColumnName = setCharAt(sanitisedColumnName, i, element.charAt(i).toUpperCase());
+          }
+          if (element[i] === "_") {
+            sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
+          }
+        }
 
         tableColumnsFromData.push({
-          name: capitalisedColumnName,
+          name: sanitisedColumnName,
           type: "checkbox",
           value: false,
         });
