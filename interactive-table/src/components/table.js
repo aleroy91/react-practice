@@ -22,18 +22,18 @@ export const Table = ({
   const tableBody = records.map((record) => {
     let isRecordSelected = false;
 
-    if (selectedRecordsArray.includes(record.number)) {
+    if (selectedRecordsArray.includes(record.id)) {
       isRecordSelected = true;
     }
 
     return (
       <TableRow
-        key={record.number}
+        key={record.id}
         record={record}
         cellValues={selectedCellValues}
-        number={record.number}
+        number={record.id}
         isRecordSelected={isRecordSelected}
-        onClick={() => displayRecordCard(record.number)}
+        onClick={() => displayRecordCard(record.id)}
       />
     );
   });
@@ -99,7 +99,7 @@ const TableRow = ({ record, onClick, isRecordSelected, cellValues }) => {
   }
 
   return (
-    <tr key={record.number} onClick={onClick} className={rowClass}>
+    <tr key={record.id} onClick={onClick} className={rowClass}>
       {tableCells}
     </tr>
   );
