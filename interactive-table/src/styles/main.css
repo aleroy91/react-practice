@@ -4,6 +4,7 @@
 @import "components/table.css";
 @import "components/textarea.css";
 @import "components/modal.css";
+@import "components/search-bar.css";
 
 @font-face {
   font-family: "Roboto-Regular";

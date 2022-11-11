@@ -8,11 +8,6 @@
   color: white;
 }
 
-.button__action:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
 .button__exit {
   display: flex;
   width: fit-content;
@@ -24,24 +19,25 @@
   color: white;
 }
 
-.button__exit:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
 .button__info {
   width: fit-content;
   border: 1px;
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px auto;
-  color: black;
+  color: #1c849b;
   background-color: white;
 }
 
-.button__info:hover {
-  cursor: pointer;
-  opacity: 0.7;
+.button__search {
+  display: flex;
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 2px;
+  color: #1c849b;
+  background-color: white;
 }
 
 .button__submit {
@@ -54,6 +50,10 @@
   color: white;
 }
 
+.button__action:hover,
+.button__exit:hover,
+.button__info:hover,
+.button__search:hover,
 .button__submit:hover {
   cursor: pointer;
   opacity: 0.7;

@@ -32,7 +32,7 @@ export const Modal = (props) => {
               <span className="material-icons">close</span>
             </button>
             <Form
-              name="Select Column Settings"
+              name="Select Columns"
               formInputsArray={columnSettingsArray}
               updateSelectedInputs={updateSelectedInputs}
             />
