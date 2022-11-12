@@ -5,11 +5,45 @@ export const SearchBar = (props) => {
     const toggleSearchBar = (toggle) => {
         setDisplaySearchBar(!toggle);
     }
+    const myDataToFilter = [
+        {
+            name: "Bruno Fernandes",
+            position: "Midfield",
+            price: 10         
+        }, {
+            name: "Cristiano Ronaldo",
+            position: "Forward",
+            price: 9.7
+        }, {
+            name: "Christian Eriksen",
+            position: "Midfield",
+            price: 6,
+        }
+    ];
+
+    const filterData = (input, dataToFilter = myDataToFilter) => {
+        let filteredData = [];
+        dataToFilter.forEach((element) => {
+            let passesTest = Object.values(element);
+            let test = passesTest.filter(item => item.includes(input));
+            console.log(test);
+            // filter(objectProperty => objectProperty.includes(input));
+            if (passesTest) {
+                filteredData.push(element);
+            }
+        });
+        console.log("filtered data: ", filteredData);
+    }
 
     return (
         <div className="horizontal-container">
             {displaySearchBar && (
-                <input className="search-bar"></input>
+                <input 
+                    className="search-bar"
+                    onChange={(event) => {
+                        filterData(event.target.value);
+                      }}
+                ></input>
             )}
             <button 
                 className="button__search" 
