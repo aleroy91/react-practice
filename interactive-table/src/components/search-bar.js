@@ -24,13 +24,14 @@ export const SearchBar = (props) => {
     const filterData = (input, dataToFilter = myDataToFilter) => {
         let filteredData = [];
         dataToFilter.forEach((element) => {
-            let passesTest = Object.values(element);
-            let test = passesTest.filter(item => item.includes(input));
-            console.log(test);
-            // filter(objectProperty => objectProperty.includes(input));
-            if (passesTest) {
-                filteredData.push(element);
-            }
+            let passesTest = false;
+            Object.values(element).filter(item => {
+                if (typeof item === "string") {
+                    if (item.includes(input)) {
+                        filteredData.push(element);
+                    }
+                }
+            });
         });
         console.log("filtered data: ", filteredData);
     }
