@@ -135,8 +135,8 @@ export const TableWithMultipleRecordCards = ({
         filteredData.push(element);
       }
     });
-    console.log(filteredData);
-    return filteredData;
+
+    setRecordData(filteredData);
   } 
 
   return (
@@ -163,7 +163,7 @@ export const TableWithMultipleRecordCards = ({
       />
       <SearchBar 
         filterData={filterData}
-        data={recordData}
+        data={data}
       />
     </div>
   );
