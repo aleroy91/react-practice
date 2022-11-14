@@ -139,7 +139,7 @@ export const TableWithMultipleRecordCards = ({
     dataToFilter.forEach((element) => {
       let inputInElement = false;
 
-      Object.values(element).filter(property => {
+      Object.values(element).forEach(property => {
         if (typeof property === "string") {
           if (property.toLowerCase().includes(input.toLowerCase())) {
             inputInElement = true;      
