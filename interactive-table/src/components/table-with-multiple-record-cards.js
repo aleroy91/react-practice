@@ -117,22 +117,6 @@ export const TableWithMultipleRecordCards = ({
     setIsDisplayed(!isDisplayed);
   };
 
-  const myDataToFilter = [
-    {
-        name: "Bruno Fernandes",
-        position: "Midfield",
-        price: 10         
-    }, {
-        name: "Cristiano Ronaldo",
-        position: "Forward",
-        price: 9.7
-    }, {
-        name: "Christian Eriksen",
-        position: "Midfield",
-        price: 6,
-    }
-  ];
-
   const filterData = (input, dataToFilter) => {
     let filteredData = [];
 
@@ -179,7 +163,7 @@ export const TableWithMultipleRecordCards = ({
       />
       <SearchBar 
         filterData={filterData}
-        data={myDataToFilter}
+        data={recordData}
       />
     </div>
   );
