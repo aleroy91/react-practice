@@ -117,6 +117,39 @@ export const TableWithMultipleRecordCards = ({
     setIsDisplayed(!isDisplayed);
   };
 
+  const myDataToFilter = [
+    {
+        name: "Bruno Fernandes",
+        position: "Midfield",
+        price: 10         
+    }, {
+        name: "Cristiano Ronaldo",
+        position: "Forward",
+        price: 9.7
+    }, {
+        name: "Christian Eriksen",
+        position: "Midfield",
+        price: 6,
+    }
+  ];
+
+  const filterData = (input, dataToFilter) => {
+    let filteredData = [];
+
+    dataToFilter.forEach((element) => {
+        Object.values(element).filter(property => {
+            if (typeof property === "string") {
+              let lowercaseStringProperty = property.toLowerCase();
+                if (lowercaseStringProperty.includes(input)) {
+                    filteredData.push(element);
+                }
+            }
+        });
+    });
+    console.log(filteredData);
+    return filteredData;
+  } 
+
   return (
     <div className="container">
       <RecordCardsArray
@@ -139,7 +172,10 @@ export const TableWithMultipleRecordCards = ({
         selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
       />
-      <SearchBar/>
+      <SearchBar 
+        filterData={filterData}
+        data={myDataToFilter}
+      />
     </div>
   );
 };
