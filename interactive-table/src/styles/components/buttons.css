@@ -24,9 +24,18 @@
   border: 1px;
   border-radius: 5px;
   padding: 5px 10px;
-  margin: 5px auto;
+  margin: 5px;
   color: #1c849b;
   background-color: white;
+}
+
+.button__sort {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  background-color: #1c849b;
 }
 
 .button__search {
@@ -53,6 +62,7 @@
 .button__action:hover,
 .button__exit:hover,
 .button__info:hover,
+.button__sort:hover,
 .button__search:hover,
 .button__submit:hover {
   cursor: pointer;

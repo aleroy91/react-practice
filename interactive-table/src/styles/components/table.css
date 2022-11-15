@@ -17,6 +17,16 @@
   padding: 0.5rem;
 }
 
+.table__column-header--horizontal-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table__column-header--justify-right {
+  display: flex;
+  justify-content: right;
+}
+
 .table__row-header {
   background-color: #1c849b;
   color: white;

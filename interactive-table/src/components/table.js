@@ -14,7 +14,17 @@ export const Table = ({
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
       <th className="table__column-header" key={index}>
-        {columnObject.name}
+        <div className="table__column-header--horizontal-group">
+          <h4>
+            {columnObject.name}
+          </h4>
+
+          <button className="button__sort">
+            <span class="material-icons">
+              arrow_downward
+            </span>
+          </button>
+        </div>
       </th>
     );
   });
@@ -47,7 +57,7 @@ export const Table = ({
       );
     } else if (index === selectedTableColumns.length - 1) {
       return (
-        <th key={index}>
+        <th key={index} className="table__column-header--justify-right">
           <button className="button__info" onClick={() => displaySettings()}>
             <span className="material-icons">more_vert</span>
           </button>
@@ -62,7 +72,7 @@ export const Table = ({
     <table className="table">
       {selectedTableColumns.length < 2 ? (
         <thead className="table__row-header">
-          <tr>
+          <tr className="table__column-header--justify-right">
             {tableHead}
             <button className="button__info" onClick={() => displaySettings()}>
               <span className="material-icons">more_vert</span>
