@@ -5,6 +5,8 @@
 .horizontal-container {
   display: flex;
   flex-direction: row;
+  width: fit-content;
+  margin: auto;
 }
 
 .vertical-container {

@@ -154,16 +154,16 @@ export const TableWithMultipleRecordCards = ({
         updateSelectedInputs={updateSelectedInputs}
         displaySettings={displaySettings}
       />
+      <SearchBar 
+        filterData={filterData}
+        data={data}
+      />
       <Table
         selectedRecordsArray={selectedRecordsArray}
         records={recordData}
         displayRecordCard={displayRecordCard}
         selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
-      />
-      <SearchBar 
-        filterData={filterData}
-        data={data}
       />
     </div>
   );

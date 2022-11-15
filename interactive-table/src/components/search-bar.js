@@ -14,14 +14,14 @@ export const SearchBar = (props) => {
                     className="search-bar"
                     onChange={(event) => {
                         filterData(event.target.value, data);
-                      }}
+                    }}
                 ></input>
             )}
             <button 
                 className="button__search" 
                 onClick={() => toggleSearchBar(displaySearchBar)}
             >
-              <span className="material-icons">search</span>
+            <span className="material-icons">search</span>
             </button>
         </div>
     );
