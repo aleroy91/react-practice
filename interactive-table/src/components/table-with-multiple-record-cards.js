@@ -139,6 +139,31 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(filteredData);
   } 
 
+  const sortData = (columnToSortBy, sortOrder, dataToSort) => {
+    let sortedData = [];
+    let orderHighToLow = sortOrder;
+    
+    const compareNumbersHighToLow = (a, b) => {
+      return a - b;
+    };
+
+    const compareNumbersLowToHigh = (a, b) => {
+      return b - a;
+    }
+
+    selectedTableColumns.forEach(column => {
+      if (column === columnToSortBy) {
+        if (orderHighToLow) {
+          sortedData = dataToSort.sort(compareNumbersHighToLow);
+        } else {
+          sortedData = dataToSort.sort(compareNumbersLowToHigh);
+        }
+      }
+    });
+
+    setRecordData(sortedData);
+  }
+
   return (
     <div className="container">
       <RecordCardsArray
