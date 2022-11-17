@@ -20,7 +20,7 @@ export const Table = ({
           </h4>
 
           <button className="button__sort">
-            <span class="material-icons">
+            <span className="material-icons">
               arrow_downward
             </span>
           </button>

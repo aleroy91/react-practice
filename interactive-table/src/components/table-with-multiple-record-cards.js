@@ -139,30 +139,52 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(filteredData);
   } 
 
-  const sortData = (columnToSortBy, sortOrder, dataToSort) => {
+  const sortData = (columnName, highToLow, dataToSort) => {
+    const typeOfDataInColumnName = typeof dataToSort[0][columnName];
     let sortedData = [];
-    let orderHighToLow = sortOrder;
-    
-    const compareNumbersHighToLow = (a, b) => {
-      return a - b;
-    };
 
-    const compareNumbersLowToHigh = (a, b) => {
-      return b - a;
+    if (typeOfDataInColumnName === "number") {
+      sortedData = dataToSort.sort((a, b) => {
+        if (highToLow) {
+          return b[columnName] - a[columnName];
+        } else {
+          return a[columnName] - b[columnName];
+        }
+      })
+    } else if (typeOfDataInColumnName === "number") {
+      sortedData = dataToSort.sort((a, b) => {
+        const columnNameA = a[columnName].toUpperCase();
+        const columnNameB = b[columnName].toUpperCase();
+
+        if (highToLow) {
+          if (columnNameA < columnNameB) {
+            return -1;
+          }
+  
+          if (columnNameA > columnNameB) {
+            return 1;
+          }
+        } else {
+          if (columnNameA > columnNameB) {
+            return -1;
+          }
+  
+          if (columnNameA < columnNameB) {
+            return 1;
+          }
+        }
+
+        return 0;
+      });
+    } else {
+      console.error("A sort was not performed as the data provided was neither of type string nor type number");
     }
 
-    selectedTableColumns.forEach(column => {
-      if (column === columnToSortBy) {
-        if (orderHighToLow) {
-          sortedData = dataToSort.sort(compareNumbersHighToLow);
-        } else {
-          sortedData = dataToSort.sort(compareNumbersLowToHigh);
-        }
-      }
-    });
-
-    setRecordData(sortedData);
+    // setRecordData(sortedData);
+    console.log(sortedData);
   }
+
+  sortData('name', false, recordData);
 
   return (
     <div className="container">
