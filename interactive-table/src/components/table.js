@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const Table = ({
-  records,
-  displayRecordCard,
-  selectedRecordsArray,
-  selectedTableColumns,
-  displaySettings,
-}) => {
+export const Table = (props) => {
+  const {   
+    records,
+    displayRecordCard,
+    selectedRecordsArray,
+    selectedTableColumns,
+    displaySettings,
+    sortData
+  } = { ...props };
+
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
   });
+  
+  const [sortHighToLow, setSortHighToLow] = useState(true);
 
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
@@ -18,10 +23,15 @@ export const Table = ({
           <h4>
             {columnObject.name}
           </h4>
-
-          <button className="button__sort">
+          <button 
+            className="button__sort"
+            onClick={() => {
+              setSortHighToLow(!sortHighToLow);
+              sortData(columnObject.property, sortHighToLow, records);
+            }}
+          >
             <span className="material-icons">
-              arrow_downward
+              swap_vert
             </span>
           </button>
         </div>

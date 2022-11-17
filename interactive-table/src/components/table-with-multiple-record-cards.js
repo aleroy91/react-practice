@@ -45,6 +45,7 @@ export const TableWithMultipleRecordCards = ({
           name: sanitisedColumnName,
           type: "checkbox",
           value: false,
+          property: element
         });
       }
     });
@@ -151,7 +152,7 @@ export const TableWithMultipleRecordCards = ({
           return a[columnName] - b[columnName];
         }
       })
-    } else if (typeOfDataInColumnName === "number") {
+    } else if (typeOfDataInColumnName === "string") {
       sortedData = dataToSort.sort((a, b) => {
         const columnNameA = a[columnName].toUpperCase();
         const columnNameB = b[columnName].toUpperCase();
@@ -180,11 +181,8 @@ export const TableWithMultipleRecordCards = ({
       console.error("A sort was not performed as the data provided was neither of type string nor type number");
     }
 
-    // setRecordData(sortedData);
-    console.log(sortedData);
+    setRecordData(sortedData);
   }
-
-  sortData('name', false, recordData);
 
   return (
     <div className="container">
@@ -211,6 +209,7 @@ export const TableWithMultipleRecordCards = ({
         displayRecordCard={displayRecordCard}
         selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
+        sortData={sortData}
       />
     </div>
   );
