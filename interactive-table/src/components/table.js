@@ -14,7 +14,8 @@ export const Table = (props) => {
     return tableColumnObject.name.toLowerCase();
   });
   
-  const [sortHighToLow, setSortHighToLow] = useState(true);
+  let selectedTableColumnsSortOrder = selectedTableColumns.map(() => false);
+  const [sortedColumns, setSortedColumns] = useState(selectedTableColumnsSortOrder);
 
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
@@ -26,8 +27,9 @@ export const Table = (props) => {
           <button 
             className="button__sort"
             onClick={() => {
-              setSortHighToLow(!sortHighToLow);
-              sortData(columnObject.property, sortHighToLow, records);
+              selectedTableColumnsSortOrder[index] = !selectedTableColumnsSortOrder[index]; 
+              setSortedColumns(selectedTableColumnsSortOrder);
+              sortData(columnObject.property, sortedColumns[index], records);
             }}
           >
             <span className="material-icons">
