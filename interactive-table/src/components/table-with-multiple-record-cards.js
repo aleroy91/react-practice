@@ -14,6 +14,8 @@ export const TableWithMultipleRecordCards = ({
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
+  const [sortOrder, setSortOrder] = useState(selectedTableColumns.map(() => false));
+
   let availableTableColumns = defaultTableSettings.defaultColumns;
   let selectedColumns = selectedTableColumns.map((input) => input.name);
   let setCharAt = (stringToModify, index, characterToModify) => {
@@ -140,10 +142,15 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(filteredData);
   } 
 
-  const sortData = (columnName, highToLow, dataToSort) => {
+  const sortData = (columnName, columnIndex, dataToSort, highToLow) => {
     const typeOfDataInColumnName = typeof dataToSort[0][columnName];
+    
     let sortedData = [];
+    let newSortOrder = sortOrder;
 
+    newSortOrder[columnIndex] = highToLow;
+    setSortOrder(newSortOrder);
+    
     if (typeOfDataInColumnName === "number") {
       sortedData = dataToSort.sort((a, b) => {
         if (highToLow) {
@@ -156,12 +163,12 @@ export const TableWithMultipleRecordCards = ({
       sortedData = dataToSort.sort((a, b) => {
         const columnNameA = a[columnName].toUpperCase();
         const columnNameB = b[columnName].toUpperCase();
-
+        
         if (highToLow) {
           if (columnNameA < columnNameB) {
             return -1;
           }
-  
+          
           if (columnNameA > columnNameB) {
             return 1;
           }
@@ -169,12 +176,12 @@ export const TableWithMultipleRecordCards = ({
           if (columnNameA > columnNameB) {
             return -1;
           }
-  
+          
           if (columnNameA < columnNameB) {
             return 1;
           }
         }
-
+        
         return 0;
       });
     } else {
@@ -183,7 +190,7 @@ export const TableWithMultipleRecordCards = ({
 
     setRecordData(sortedData);
   }
-
+  
   return (
     <div className="container">
       <RecordCardsArray
@@ -191,7 +198,7 @@ export const TableWithMultipleRecordCards = ({
         recordData={recordData}
         updateRecordInfo={updateRecordInfo}
         displayRecordCard={displayRecordCard}
-      />
+        />
       <Modal
         isDisplayed={isDisplayed}
         selectedInputs={selectedColumns}
@@ -210,6 +217,7 @@ export const TableWithMultipleRecordCards = ({
         selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
         sortData={sortData}
+        sortOrder={sortOrder}
       />
     </div>
   );
