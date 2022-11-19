@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const SearchBar = (props) => {
-    const {filterData, data} = {...props};
+    const {filterData} = {...props};
     const [displaySearchBar, setDisplaySearchBar] = useState(false);
     const toggleSearchBar = (toggle) => {
         setDisplaySearchBar(!toggle);
@@ -13,7 +13,7 @@ export const SearchBar = (props) => {
                 <input 
                     className="search-bar"
                     onChange={(event) => {
-                        filterData(event.target.value, data);
+                        filterData(event.target.value);
                     }}
                 ></input>
             )}

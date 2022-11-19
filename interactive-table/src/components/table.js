@@ -25,7 +25,7 @@ export const Table = (props) => {
           <button 
             className="button__sort"
             onClick={() => {
-              sortData(columnObject.property, index, records, !sortOrder[index]);
+              sortData(columnObject.property, index, !sortOrder[index]);
             }}
           >
             { sortOrder[index] 
