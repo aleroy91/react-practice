@@ -123,19 +123,24 @@ export const TableWithMultipleRecordCards = ({
   const filterData = (input) => {
     let filteredData = [];
 
-    data.forEach((element) => {
-      let inputInElement = false;
+    data.forEach((record) => {
+      let newRecord = record;
+      delete newRecord.photo;
+      delete newRecord.gif;
 
-      Object.values(element).forEach(property => {
+      let sanitisedRecordArray = Object.values(newRecord);
+      let inputInRecord = false;
+
+      sanitisedRecordArray.forEach(property => {
         if (typeof property === "string") {
           if (property.toLowerCase().includes(input.toLowerCase())) {
-            inputInElement = true;      
+            inputInRecord = true;      
           }
         }
       });
 
-      if (inputInElement) {
-        filteredData.push(element);
+      if (inputInRecord) {
+        filteredData.push(record);
       }
     });
 
@@ -151,42 +156,42 @@ export const TableWithMultipleRecordCards = ({
     newSortOrder[columnIndex] = highToLow;
     setSortOrder(newSortOrder);
     
-    // if (typeOfDataInColumnName === "number") {
-    //   sortedData.sort((a, b) => {
-    //     if (highToLow) {
-    //       return b[columnName] - a[columnName];
-    //     } else {
-    //       return a[columnName] - b[columnName];
-    //     }
-    //   })
-    // } else if (typeOfDataInColumnName === "string") {
-    //   sortedData.sort((a, b) => {
-    //     const columnNameA = a[columnName].toUpperCase();
-    //     const columnNameB = b[columnName].toUpperCase();
+    if (typeOfDataInColumnName === "number") {
+      sortedData.sort((a, b) => {
+        if (highToLow) {
+          return b[columnName] - a[columnName];
+        } else {
+          return a[columnName] - b[columnName];
+        }
+      })
+    } else if (typeOfDataInColumnName === "string") {
+      sortedData.sort((a, b) => {
+        const columnNameA = a[columnName].toUpperCase();
+        const columnNameB = b[columnName].toUpperCase();
         
-    //     if (highToLow) {
-    //       if (columnNameA < columnNameB) {
-    //         return -1;
-    //       }
+        if (highToLow) {
+          if (columnNameA < columnNameB) {
+            return -1;
+          }
           
-    //       if (columnNameA > columnNameB) {
-    //         return 1;
-    //       }
-    //     } else {
-    //       if (columnNameA > columnNameB) {
-    //         return -1;
-    //       }
+          if (columnNameA > columnNameB) {
+            return 1;
+          }
+        } else {
+          if (columnNameA > columnNameB) {
+            return -1;
+          }
           
-    //       if (columnNameA < columnNameB) {
-    //         return 1;
-    //       }
-    //     }
+          if (columnNameA < columnNameB) {
+            return 1;
+          }
+        }
         
-    //     return 0;
-    //   });
-    // } else {
-    //   console.error("A sort was not performed as the data provided was neither of type string nor type number");
-    // }
+        return 0;
+      });
+    } else {
+      console.error("A sort was not performed as the data provided was neither of type string nor type number");
+    }
 
     setRecordData(sortedData);
   }
