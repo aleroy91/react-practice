@@ -150,7 +150,7 @@ export const TableWithMultipleRecordCards = ({
   const sortData = (columnName, columnIndex, highToLow) => {
     const typeOfDataInColumnName = typeof data[0][columnName];
     
-    let sortedData = data;
+    let sortedData = [...data];
     let newSortOrder = sortOrder;
 
     newSortOrder[columnIndex] = highToLow;
