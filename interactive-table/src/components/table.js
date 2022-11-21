@@ -1,4 +1,5 @@
 import React from "react";
+import { SearchBar } from "./search-bar";
 
 export const Table = (props) => {
   const {   
@@ -7,6 +8,7 @@ export const Table = (props) => {
     displayRecordCard,
     selectedTableColumns,
     displaySettings,
+    filterData,
     sortData,
     sortOrder
   } = { ...props };
@@ -61,6 +63,8 @@ export const Table = (props) => {
     );
   });
 
+  // Change this so that the table head consists of a single td 
+  // with a colspan property equal to selectedTableColumns.length
   const tableHead = selectedTableColumns.map((element, index) => {
     if (index === 0) {
       return (
@@ -71,6 +75,9 @@ export const Table = (props) => {
     } else if (index === selectedTableColumns.length - 1) {
       return (
         <th key={index} className="table__column-header--justify-right">
+          <SearchBar 
+            filterData={filterData}
+          />
           <button className="button__info" onClick={() => displaySettings()}>
             <span className="material-icons">more_vert</span>
           </button>

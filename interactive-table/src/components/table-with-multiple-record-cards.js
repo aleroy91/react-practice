@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { RecordCardsArray } from "./record-cards";
 import { Table } from "./table";
 import { Modal } from "./modal";
-import { SearchBar } from "./search-bar";
 
 export const TableWithMultipleRecordCards = ({
   data,
@@ -211,15 +210,13 @@ export const TableWithMultipleRecordCards = ({
         updateSelectedInputs={updateSelectedInputs}
         displaySettings={displaySettings}
       />
-      <SearchBar 
-        filterData={filterData}
-      />
       <Table
         selectedRecordsArray={selectedRecordsArray}
         records={recordData}
         displayRecordCard={displayRecordCard}
         selectedTableColumns={selectedTableColumns}
         displaySettings={displaySettings}
+        filterData={filterData}
         sortData={sortData}
         sortOrder={sortOrder}
       />
