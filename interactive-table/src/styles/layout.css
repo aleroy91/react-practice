@@ -1,11 +1,13 @@
 .container {
-  margin: 50px auto;
+  margin: auto;
 }
 
 .horizontal-container {
   display: flex;
   flex-direction: row;
   width: fit-content;
+  align-items: center;
+  justify-items: center;
   margin: auto;
 }
 

@@ -21,6 +21,7 @@
 
 .button__info {
   width: fit-content;
+  height: fit-content;
   border: 1px;
   border-radius: 5px;
   padding: 5px 10px;
@@ -43,8 +44,8 @@
   width: fit-content;
   border: 1px;
   border-radius: 5px;
-  padding: 2px;
-  margin: 2px;
+  padding: 6px 10px;
+  margin: 5px;
   color: #1c849b;
   background-color: white;
 }

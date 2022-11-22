@@ -1,5 +1,4 @@
 import React from "react";
-import { SearchBar } from "./search-bar";
 
 export const Table = (props) => {
   const {   
@@ -7,8 +6,6 @@ export const Table = (props) => {
     records,
     displayRecordCard,
     selectedTableColumns,
-    displaySettings,
-    filterData,
     sortData,
     sortOrder
   } = { ...props };
@@ -63,52 +60,11 @@ export const Table = (props) => {
     );
   });
 
-  // Change this so that the table head consists of a single td 
-  // with a colspan property equal to selectedTableColumns.length
-  const tableHead = selectedTableColumns.map((element, index) => {
-    if (index === 0) {
-      return (
-        <th className="table__header" key={index}>
-          Players Table
-        </th>
-      );
-    } else if (index === selectedTableColumns.length - 1) {
-      return (
-        <th key={index} className="table__column-header--justify-right">
-          <SearchBar 
-            filterData={filterData}
-          />
-          <button className="button__info" onClick={() => displaySettings()}>
-            <span className="material-icons">more_vert</span>
-          </button>
-        </th>
-      );
-    } else {
-      return <th key={index}></th>;
-    }
-  });
-
   return (
     <table className="table">
-      {selectedTableColumns.length < 2 ? (
         <thead className="table__row-header">
-          <tr className="table__column-header--justify-right">
-            {tableHead}
-            <button className="button__info" onClick={() => displaySettings()}>
-              <span className="material-icons">more_vert</span>
-            </button>
-          </tr>
-          <tr>
-            {tableColumns}
-            <th className="table__column-header" key={1}></th>
-          </tr>
-        </thead>
-      ) : (
-        <thead className="table__row-header">
-          <tr>{tableHead}</tr>
           <tr>{tableColumns}</tr>
         </thead>
-      )}
       <tbody>{tableBody}</tbody>
     </table>
   );

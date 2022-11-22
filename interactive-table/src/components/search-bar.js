@@ -12,6 +12,7 @@ export const SearchBar = (props) => {
             {displaySearchBar && (
                 <input 
                     className="search-bar"
+                    autoFocus
                     onChange={(event) => {
                         filterData(event.target.value);
                     }}

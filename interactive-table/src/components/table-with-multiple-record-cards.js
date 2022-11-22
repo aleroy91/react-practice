@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RecordCardsArray } from "./record-cards";
 import { Table } from "./table";
 import { Modal } from "./modal";
+import { Toolbar } from "./toolbar";
 
 export const TableWithMultipleRecordCards = ({
   data,
@@ -197,6 +198,10 @@ export const TableWithMultipleRecordCards = ({
   
   return (
     <div className="container">
+      <Toolbar
+        displaySettings={displaySettings}
+        filterData={filterData}
+      />
       <RecordCardsArray
         selectedRecordsArray={selectedRecordsArray}
         recordData={recordData}
@@ -215,8 +220,6 @@ export const TableWithMultipleRecordCards = ({
         records={recordData}
         displayRecordCard={displayRecordCard}
         selectedTableColumns={selectedTableColumns}
-        displaySettings={displaySettings}
-        filterData={filterData}
         sortData={sortData}
         sortOrder={sortOrder}
       />
