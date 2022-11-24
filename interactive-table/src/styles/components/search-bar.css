@@ -2,8 +2,10 @@
     border: 1px white solid;
     border-radius: 5px;
     font-family: "Roboto-Regular", sans-serif;  
-    margin-right: 5px;
-    height: 32px;
+    margin-right: -30px;
+    height: 33px;
+    width: 250px;
+    padding-left: 10px;
 }
 
 .search-bar:hover {

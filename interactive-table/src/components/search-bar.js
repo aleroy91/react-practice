@@ -1,29 +1,20 @@
-import React, { useState } from "react";
+// Change this so that there is no button and the searchbar looks nice on desktop in the current layout
+// Add placeholder 
+import React from "react";
 
 export const SearchBar = (props) => {
     const {filterData} = {...props};
-    const [displaySearchBar, setDisplaySearchBar] = useState(false);
-    const toggleSearchBar = (toggle) => {
-        setDisplaySearchBar(!toggle);
-    }
 
     return (
         <div className="horizontal-container">
-            {displaySearchBar && (
-                <input 
-                    className="search-bar"
-                    autoFocus
-                    onChange={(event) => {
-                        filterData(event.target.value);
-                    }}
-                ></input>
-            )}
-            <button 
-                className="button__search" 
-                onClick={() => toggleSearchBar(displaySearchBar)}
-            >
-            <span className="material-icons">search</span>
-            </button>
+            <input 
+                className="search-bar"
+                placeholder="Filter Records"
+                onChange={(event) => {
+                    filterData(event.target.value);
+                }}
+            />
+            <span className="material-icons icon--search">search</span>
         </div>
     );
 }
