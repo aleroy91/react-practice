@@ -1,5 +1,3 @@
-// Change this so that there is no button and the searchbar looks nice on desktop in the current layout
-// Add placeholder 
 import React from "react";
 
 export const SearchBar = (props) => {

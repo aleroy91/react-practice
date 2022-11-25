@@ -148,9 +148,9 @@ export const TableWithMultipleRecordCards = ({
   } 
 
   const sortData = (columnName, columnIndex, highToLow) => {
-    const typeOfDataInColumnName = typeof data[0][columnName];
+    const typeOfDataInColumnName = typeof recordData[0][columnName];
     
-    let sortedData = [...data];
+    let sortedData = [...recordData];
     let newSortOrder = sortOrder;
 
     newSortOrder[columnIndex] = highToLow;
