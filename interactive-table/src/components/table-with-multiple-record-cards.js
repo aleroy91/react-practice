@@ -144,7 +144,11 @@ export const TableWithMultipleRecordCards = ({
       }
     });
 
-    setRecordData(filteredData);
+    if (input === '') {
+      setRecordData(data);
+    } else {
+      setRecordData(filteredData);
+    }
   } 
 
   const sortData = (columnName, columnIndex, highToLow) => {
