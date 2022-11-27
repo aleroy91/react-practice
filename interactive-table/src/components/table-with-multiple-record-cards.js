@@ -151,6 +151,8 @@ export const TableWithMultipleRecordCards = ({
     }
   } 
 
+  // Need a numerical filter to filter records by property by greater than less than.
+
   const sortData = (columnName, columnIndex, highToLow) => {
     const typeOfDataInColumnName = typeof recordData[0][columnName];
     

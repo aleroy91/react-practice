@@ -17,9 +17,6 @@ export const Toolbar = (props) => {
                             <button className="button__info" onClick={() => displaySettings()}>
                                 <span className="material-icons">more_vert</span>
                             </button>
-                            <button className="button__info" onClick={() => filterData('Midfield')}>
-                                <span className="material-icons">filter_list</span>
-                            </button>
                         </div>
                     </div>
                 </div>
