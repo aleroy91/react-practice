@@ -7,6 +7,7 @@
 @import "components/search-bar.css";
 @import "components/toolbar.css";
 @import "components/icons.css";
+@import "components/side-panel.css";
 
 @font-face {
   font-family: "Roboto-Regular";

@@ -1,10 +1,8 @@
 import React from "react";
 import { SearchBar } from "./search-bar";
-// Also add an icon to display a filter side panel which will allow more complex filtering
-// such as (by > than < than)
-// By column (radio button multiple choice)
+
 export const Toolbar = (props) => {
-  const { filterData } = { ...props };
+  const { filterData, toggleSidePanel } = { ...props };
 
   return (
     <div className="toolbar--margin-bottom">
@@ -16,7 +14,10 @@ export const Toolbar = (props) => {
             </div>
             <div className="horizontal-container">
               <SearchBar filterData={filterData} />
-              <button className="button__filter">
+              <button
+                className="button__filter"
+                onClick={() => toggleSidePanel()}
+              >
                 <span className="material-icons">tune</span>
               </button>
             </div>

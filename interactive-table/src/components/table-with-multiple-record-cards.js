@@ -3,12 +3,14 @@ import { RecordCardsArray } from "./record-cards";
 import { Table } from "./table";
 import { Modal } from "./modal";
 import { Toolbar } from "./toolbar";
+import { SidePanel } from "./side-panel";
 
 export const TableWithMultipleRecordCards = ({
   data,
   defaultTableSettings,
 }) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
+  const [showSidePanel, setShowSidePanel] = useState(false);
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
   const [selectedTableColumns, setSelectedTableColumns] = useState(
@@ -130,6 +132,10 @@ export const TableWithMultipleRecordCards = ({
     setIsDisplayed(!isDisplayed);
   };
 
+  const toggleSidePanel = () => {
+    setShowSidePanel(!showSidePanel);
+  };
+
   const filterData = (input) => {
     let filteredData = [];
 
@@ -214,9 +220,11 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(sortedData);
   };
 
+  // Need further filtering options such as (by > than < than)
+  // By column (radio button multiple choice)
   return (
     <div className="container">
-      <Toolbar filterData={filterData} />
+      <Toolbar filterData={filterData} toggleSidePanel={toggleSidePanel} />
       <RecordCardsArray
         selectedRecordsArray={selectedRecordsArray}
         recordData={recordData}
@@ -239,6 +247,7 @@ export const TableWithMultipleRecordCards = ({
         sortData={sortData}
         sortOrder={sortOrder}
       />
+      <SidePanel showSidePanel={showSidePanel} />
     </div>
   );
 };
