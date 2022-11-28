@@ -4,19 +4,19 @@ export const defaultTableSettings = {
       name: "Name",
       type: "checkbox",
       value: true,
-      property: "name"
+      property: "name",
     },
     {
       name: "Position",
       type: "checkbox",
       value: true,
-      property: "position"
+      property: "position",
     },
     {
       name: "Price",
       type: "checkbox",
       value: true,
-      property: "price"
+      property: "price",
     },
   ],
 };

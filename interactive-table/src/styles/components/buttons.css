@@ -19,7 +19,19 @@
   color: white;
 }
 
-.button__info {
+.button__edit-columns {
+  width: fit-content;
+  height: fit-content;
+  border: 1px;
+  border-radius: 0 5px 5px 0;
+  padding: 26px 10px;
+  margin: 21px auto auto 5px;
+  color: white;
+  background-color: #1c849b;
+  cursor: pointer;
+}
+
+.button__filter {
   width: fit-content;
   height: fit-content;
   border: 1px;
@@ -62,7 +74,8 @@
 
 .button__action:hover,
 .button__exit:hover,
-.button__info:hover,
+.button__edit-columns:hover,
+.button__filter:hover,
 .button__sort:hover,
 .button__search:hover,
 .button__submit:hover {

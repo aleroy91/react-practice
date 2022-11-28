@@ -14,19 +14,23 @@ export const TableWithMultipleRecordCards = ({
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
-  const [sortOrder, setSortOrder] = useState(selectedTableColumns.map(() => false));
+  const [sortOrder, setSortOrder] = useState(
+    selectedTableColumns.map(() => false)
+  );
 
   let availableTableColumns = defaultTableSettings.defaultColumns;
   let selectedColumns = selectedTableColumns.map((input) => input.name);
   let setCharAt = (stringToModify, index, characterToModify) => {
-    if (index > stringToModify.length-1) {
+    if (index > stringToModify.length - 1) {
       return stringToModify;
     } else {
-      return stringToModify.substring(0, index)
-       + characterToModify
-       + stringToModify.substring(index + 1);
+      return (
+        stringToModify.substring(0, index) +
+        characterToModify +
+        stringToModify.substring(index + 1)
+      );
     }
-  }
+  };
 
   if (data) {
     let tableColumnsFromData = [];
@@ -35,8 +39,12 @@ export const TableWithMultipleRecordCards = ({
       if (element !== "photo" && element !== "gif") {
         let sanitisedColumnName = element;
         for (var i = 0; i < element.length; i++) {
-          if (i === 0 || (element[i - 1] === "_")) {
-            sanitisedColumnName = setCharAt(sanitisedColumnName, i, element.charAt(i).toUpperCase());
+          if (i === 0 || element[i - 1] === "_") {
+            sanitisedColumnName = setCharAt(
+              sanitisedColumnName,
+              i,
+              element.charAt(i).toUpperCase()
+            );
           }
           if (element[i] === "_") {
             sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
@@ -47,7 +55,7 @@ export const TableWithMultipleRecordCards = ({
           name: sanitisedColumnName,
           type: "checkbox",
           value: false,
-          property: element
+          property: element,
         });
       }
     });
@@ -57,8 +65,10 @@ export const TableWithMultipleRecordCards = ({
 
   const updateSelectedInputs = (newInputName, newInputValue) => {
     const newSelectedTableColumns = selectedTableColumns;
-    const selectedColumnsArray = selectedTableColumns.map((input) => input.name);
-    
+    const selectedColumnsArray = selectedTableColumns.map(
+      (input) => input.name
+    );
+
     availableTableColumns.forEach((columnObject, availableColumnIndex) => {
       if (newInputName === columnObject.name) {
         let selectedColumnIndex = selectedColumnsArray.indexOf(newInputName);
@@ -131,10 +141,10 @@ export const TableWithMultipleRecordCards = ({
       let sanitisedRecordArray = Object.values(newRecord);
       let inputInRecord = false;
 
-      sanitisedRecordArray.forEach(property => {
+      sanitisedRecordArray.forEach((property) => {
         if (typeof property === "string") {
           if (property.toLowerCase().includes(input.toLowerCase())) {
-            inputInRecord = true;      
+            inputInRecord = true;
           }
         }
       });
@@ -144,24 +154,24 @@ export const TableWithMultipleRecordCards = ({
       }
     });
 
-    if (input === '') {
+    if (input === "") {
       setRecordData(data);
     } else {
       setRecordData(filteredData);
     }
-  } 
+  };
 
   // Need a numerical filter to filter records by property by greater than less than.
 
   const sortData = (columnName, columnIndex, highToLow) => {
     const typeOfDataInColumnName = typeof recordData[0][columnName];
-    
+
     let sortedData = [...recordData];
     let newSortOrder = sortOrder;
 
     newSortOrder[columnIndex] = highToLow;
     setSortOrder(newSortOrder);
-    
+
     if (typeOfDataInColumnName === "number") {
       sortedData.sort((a, b) => {
         if (highToLow) {
@@ -169,17 +179,17 @@ export const TableWithMultipleRecordCards = ({
         } else {
           return a[columnName] - b[columnName];
         }
-      })
+      });
     } else if (typeOfDataInColumnName === "string") {
       sortedData.sort((a, b) => {
         const columnNameA = a[columnName].toUpperCase();
         const columnNameB = b[columnName].toUpperCase();
-        
+
         if (highToLow) {
           if (columnNameA < columnNameB) {
             return -1;
           }
-          
+
           if (columnNameA > columnNameB) {
             return 1;
           }
@@ -187,33 +197,32 @@ export const TableWithMultipleRecordCards = ({
           if (columnNameA > columnNameB) {
             return -1;
           }
-          
+
           if (columnNameA < columnNameB) {
             return 1;
           }
         }
-        
+
         return 0;
       });
     } else {
-      console.error("A sort was not performed as the data provided was neither of type string nor type number");
+      console.error(
+        "A sort was not performed as the data provided was neither of type string nor type number"
+      );
     }
 
     setRecordData(sortedData);
-  }
-  
+  };
+
   return (
     <div className="container">
-      <Toolbar
-        displaySettings={displaySettings}
-        filterData={filterData}
-      />
+      <Toolbar filterData={filterData} />
       <RecordCardsArray
         selectedRecordsArray={selectedRecordsArray}
         recordData={recordData}
         updateRecordInfo={updateRecordInfo}
         displayRecordCard={displayRecordCard}
-        />
+      />
       <Modal
         isDisplayed={isDisplayed}
         selectedInputs={selectedColumns}
@@ -225,6 +234,7 @@ export const TableWithMultipleRecordCards = ({
         selectedRecordsArray={selectedRecordsArray}
         records={recordData}
         displayRecordCard={displayRecordCard}
+        displaySettings={displaySettings}
         selectedTableColumns={selectedTableColumns}
         sortData={sortData}
         sortOrder={sortOrder}

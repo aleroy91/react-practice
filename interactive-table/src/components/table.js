@@ -1,40 +1,36 @@
 import React from "react";
 
 export const Table = (props) => {
-  const {   
+  const {
     selectedRecordsArray,
     records,
     displayRecordCard,
+    displaySettings,
     selectedTableColumns,
     sortData,
-    sortOrder
+    sortOrder,
   } = { ...props };
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
   });
-  
+
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
       <th className="table__column-header" key={index}>
         <div className="table__column-header--horizontal-group">
-          <h4>
-            {columnObject.name}
-          </h4>
-          <button 
+          <h4>{columnObject.name}</h4>
+          <button
             className="button__sort"
             onClick={() => {
               sortData(columnObject.property, index, !sortOrder[index]);
             }}
           >
-            { sortOrder[index] 
-              ? <span className="material-icons">
-                  arrow_upward
-                </span>
-              : <span className="material-icons">
-                  arrow_downward
-                </span>
-            }
+            {sortOrder[index] ? (
+              <span className="material-icons">arrow_upward</span>
+            ) : (
+              <span className="material-icons">arrow_downward</span>
+            )}
           </button>
         </div>
       </th>
@@ -61,12 +57,20 @@ export const Table = (props) => {
   });
 
   return (
-    <table className="table">
+    <div className="horizontal-container">
+      <table className="table">
         <thead className="table__row-header">
           <tr>{tableColumns}</tr>
         </thead>
-      <tbody>{tableBody}</tbody>
-    </table>
+        <tbody>{tableBody}</tbody>
+      </table>
+      <button
+        className="button__edit-columns "
+        onClick={() => displaySettings()}
+      >
+        <span className="material-icons">playlist_add</span>
+      </button>
+    </div>
   );
 };
 
