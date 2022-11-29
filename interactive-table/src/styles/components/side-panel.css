@@ -3,11 +3,20 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 400px;
-  margin-right: 400px;
+  padding: 20px;
+  box-shadow: 1px 1px 10px 0 black;
+  width: fit-content;
   background-color: #1c849b;
+  display: flex;
 }
 
-.side-panel--margin-right {
-  margin-right: 400px;
+.side-panel__content {
+  align-self: flex-start;
+  margin: 40px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel__header {
+  color: white;
 }

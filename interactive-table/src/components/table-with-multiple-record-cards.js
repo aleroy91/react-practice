@@ -247,7 +247,10 @@ export const TableWithMultipleRecordCards = ({
         sortData={sortData}
         sortOrder={sortOrder}
       />
-      <SidePanel showSidePanel={showSidePanel} />
+      <SidePanel
+        showSidePanel={showSidePanel}
+        toggleSidePanel={toggleSidePanel}
+      />
     </div>
   );
 };
