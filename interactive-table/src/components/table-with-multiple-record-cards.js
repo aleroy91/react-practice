@@ -136,10 +136,34 @@ export const TableWithMultipleRecordCards = ({
     setShowSidePanel(!showSidePanel);
   };
 
-  const filterData = (input) => {
+  const filterNumericData = (recordAttribute, value, greaterOrEqual) => {
     let filteredData = [];
 
-    data.forEach((record) => {
+    recordData.forEach((record) => {
+      let recordKeysArray = Object.keys(record);
+
+      recordKeysArray.forEach((property) => {
+        if (property === recordAttribute) {
+          if (greaterOrEqual) {
+            if (record[recordAttribute] >= value) {
+              filteredData.push(record);
+            }
+          } else {
+            if (record[recordAttribute] <= value) {
+              filteredData.push(record);
+            }
+          }
+        }
+      });
+    });
+
+    setRecordData(filteredData);
+  };
+
+  const filterStringData = (input) => {
+    let filteredData = [];
+
+    recordData.forEach((record) => {
       let newRecord = record;
       delete newRecord.photo;
       delete newRecord.gif;
@@ -224,7 +248,10 @@ export const TableWithMultipleRecordCards = ({
   // By column (radio button multiple choice)
   return (
     <div className="container">
-      <Toolbar filterData={filterData} toggleSidePanel={toggleSidePanel} />
+      <Toolbar
+        filterStringData={filterStringData}
+        toggleSidePanel={toggleSidePanel}
+      />
       <RecordCardsArray
         selectedRecordsArray={selectedRecordsArray}
         recordData={recordData}
@@ -250,6 +277,7 @@ export const TableWithMultipleRecordCards = ({
       <SidePanel
         showSidePanel={showSidePanel}
         toggleSidePanel={toggleSidePanel}
+        filterStringData={filterStringData}
       />
     </div>
   );

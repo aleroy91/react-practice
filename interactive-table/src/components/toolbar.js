@@ -2,7 +2,7 @@ import React from "react";
 import { SearchBar } from "./search-bar";
 
 export const Toolbar = (props) => {
-  const { filterData, toggleSidePanel } = { ...props };
+  const { filterStringData, toggleSidePanel } = { ...props };
 
   return (
     <div className="toolbar--margin-bottom">
@@ -13,7 +13,7 @@ export const Toolbar = (props) => {
               <h1>Players Table</h1>
             </div>
             <div className="horizontal-container">
-              <SearchBar filterData={filterData} />
+              <SearchBar filterStringData={filterStringData} />
               <button
                 className="button__filter"
                 onClick={() => toggleSidePanel()}
