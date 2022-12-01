@@ -160,10 +160,11 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(filteredData);
   };
 
-  const filterStringData = (input) => {
+  const filterStringData = (input, useFullData) => {
     let filteredData = [];
+    let dataToUse = useFullData ? data : recordData;
 
-    recordData.forEach((record) => {
+    dataToUse.forEach((record) => {
       let newRecord = record;
       delete newRecord.photo;
       delete newRecord.gif;
