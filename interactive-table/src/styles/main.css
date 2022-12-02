@@ -47,21 +47,25 @@ body {
 h1 {
   font-family: "Roboto-Black", sans-serif;
   font-size: 2em;
+  margin: 10px;
 }
 
 h2 {
   font-family: "Roboto-Regular", sans-serif;
   font-size: 2em;
+  margin: 10px;
 }
 
 h3 {
   font-family: "Roboto-Regular", sans-serif;
   font-size: 1.5em;
+  margin: 10px;
 }
 
 h4 {
   font-family: "Roboto-Regular", sans-serif;
   font-size: 1em;
+  margin: 10px;
 }
 
 .material-icons {

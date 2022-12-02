@@ -60,8 +60,10 @@ export const SidePanel = (props) => {
           Forward
         </label>
       </div>
-      <button onClick={() => filterStringData("")}>Clear Filter</button>
     </div>
+  );
+  const clearFilterButton = (
+    <button onClick={() => filterStringData("")}>Clear Filter</button>
   );
 
   return (
@@ -70,7 +72,8 @@ export const SidePanel = (props) => {
         <div className="side-panel">
           <div className="side-panel__content">
             <h3 className="side-panel__header">Filter Table Data</h3>
-            <form>{filterByPosition}</form>
+            {filterByPosition}
+            {clearFilterButton}
           </div>
           <button className="button__exit" onClick={() => toggleSidePanel()}>
             <span className="material-icons">close</span>

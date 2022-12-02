@@ -27,7 +27,17 @@ export const RecordCard = (props) => {
   const { displayRecordCard, recordIndex, record, updateRecordInfo } = {
     ...props,
   };
-  const { name, number, position, price, points, expected_points, photo, gif, notes } = { ...record };
+  const {
+    name,
+    number,
+    position,
+    price,
+    points,
+    expected_points,
+    photo,
+    gif,
+    notes,
+  } = { ...record };
   const [hoverState, setHoverState] = useState(false);
 
   const toggleGif = () => setHoverState(() => (hoverState ? false : true));
@@ -53,10 +63,10 @@ export const RecordCard = (props) => {
             gif={gif}
             alt={name}
           />
-          <h2>Position: {position}</h2>
-          <h2>Price: £{price}m</h2>
-          <h2>Points: {points}</h2>
-          <h2>Expected Points: {expected_points}</h2>          
+          <h4>Position: {position}</h4>
+          <h4>Price: £{price}m</h4>
+          <h4>Points: {points}</h4>
+          <h4>Expected Points: {expected_points}</h4>
           <Notes notesText={notes} onNotesChange={handleNoteschange} />
         </div>
       </div>
