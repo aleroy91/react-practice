@@ -137,19 +137,20 @@ export const TableWithMultipleRecordCards = ({
   };
 
   const filterNumericData = (recordAttribute, value, greaterOrEqual) => {
+    let attribute = recordAttribute.toLowerCase();
     let filteredData = [];
 
-    recordData.forEach((record) => {
+    data.forEach((record) => {
       let recordKeysArray = Object.keys(record);
 
       recordKeysArray.forEach((property) => {
-        if (property === recordAttribute) {
-          if (greaterOrEqual) {
-            if (record[recordAttribute] >= value) {
+        if (property === attribute) {
+          if (greaterOrEqual === "true") {
+            if (record[attribute] >= value) {
               filteredData.push(record);
             }
           } else {
-            if (record[recordAttribute] <= value) {
+            if (record[attribute] <= value) {
               filteredData.push(record);
             }
           }
@@ -243,8 +244,6 @@ export const TableWithMultipleRecordCards = ({
     setRecordData(sortedData);
   };
 
-  // Need further filtering options such as (by > than < than)
-  // By column (radio button multiple choice)
   return (
     <div className="container">
       <Toolbar
@@ -277,6 +276,8 @@ export const TableWithMultipleRecordCards = ({
         showSidePanel={showSidePanel}
         toggleSidePanel={toggleSidePanel}
         filterStringData={filterStringData}
+        filterNumericData={filterNumericData}
+        selectedTableColumns={selectedTableColumns}
       />
     </div>
   );
