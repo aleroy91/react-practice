@@ -8,6 +8,7 @@ export const SidePanel = (props) => {
     filterStringData,
     filterNumericData,
     selectedTableColumns,
+    availableTableColumns,
   } = { ...props };
   const [radioChecked, setRadioChecked] = useState([
     false,
@@ -20,6 +21,14 @@ export const SidePanel = (props) => {
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
+  const selectedTableColumnsTypes = [];
+  selectedTableColumnsArray.forEach((columnName) => {
+    availableTableColumns.forEach((availableColumn) => {
+      if (availableColumn.name === columnName) {
+        selectedTableColumnsTypes.push(availableColumn.type);
+      }
+    });
+  });
 
   const filterByPosition = (
     <div>
@@ -85,11 +94,14 @@ export const SidePanel = (props) => {
     <div>
       <span>Show records where</span>
       <select onChange={(e) => setColumnToFilter(e.target.value)}>
-        {selectedTableColumnsArray.map((column, i) => (
-          <option key={i} value={column}>
-            {column}
-          </option>
-        ))}
+        {selectedTableColumnsArray.map(
+          (column, i) =>
+            selectedTableColumnsTypes[i] === "number" && (
+              <option key={i} value={column}>
+                {column}
+              </option>
+            )
+        )}
       </select>
       <select onChange={(e) => setIsGreaterOrEqual(e.target.value)}>
         <option value={true}>Higher Than or Equal to</option>

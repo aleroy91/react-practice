@@ -55,7 +55,7 @@ export const TableWithMultipleRecordCards = ({
 
         tableColumnsFromData.push({
           name: sanitisedColumnName,
-          type: "checkbox",
+          type: typeof data[0][element],
           value: false,
           property: element,
         });
@@ -278,6 +278,7 @@ export const TableWithMultipleRecordCards = ({
         filterStringData={filterStringData}
         filterNumericData={filterNumericData}
         selectedTableColumns={selectedTableColumns}
+        availableTableColumns={availableTableColumns}
       />
     </div>
   );
