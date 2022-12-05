@@ -16,7 +16,7 @@ export const SidePanel = (props) => {
     false,
     false,
   ]);
-  const [columnToFilter, setColumnToFilter] = useState([null]);
+  const [columnToFilter, setColumnToFilter] = useState(null);
   const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(true);
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
@@ -26,6 +26,9 @@ export const SidePanel = (props) => {
     availableTableColumns.forEach((availableColumn) => {
       if (availableColumn.name === columnName) {
         selectedTableColumnsTypes.push(availableColumn.type);
+        if (availableColumn.type === "number" && columnToFilter === null) {
+          setColumnToFilter(columnName);
+        }
       }
     });
   });
@@ -36,7 +39,6 @@ export const SidePanel = (props) => {
         <label>
           <input
             type="radio"
-            value="option1"
             checked={radioChecked[0]}
             onChange={() => {
               filterStringData("Goalkeeper", true);
@@ -50,7 +52,6 @@ export const SidePanel = (props) => {
         <label>
           <input
             type="radio"
-            value="option2"
             checked={radioChecked[1]}
             onChange={() => {
               filterStringData("Defence", true);
@@ -64,7 +65,6 @@ export const SidePanel = (props) => {
         <label>
           <input
             type="radio"
-            value="option3"
             checked={radioChecked[2]}
             onChange={() => {
               filterStringData("Midfield", true);
@@ -78,7 +78,6 @@ export const SidePanel = (props) => {
         <label>
           <input
             type="radio"
-            value="option4"
             checked={radioChecked[3]}
             onChange={() => {
               filterStringData("Forward", true);
@@ -97,7 +96,7 @@ export const SidePanel = (props) => {
         {selectedTableColumnsArray.map(
           (column, i) =>
             selectedTableColumnsTypes[i] === "number" && (
-              <option key={i} value={column}>
+              <option key={i + 1} value={column}>
                 {column}
               </option>
             )
