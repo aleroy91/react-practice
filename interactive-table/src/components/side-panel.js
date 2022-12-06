@@ -17,7 +17,7 @@ export const SidePanel = (props) => {
     false,
   ]);
   const [columnToFilter, setColumnToFilter] = useState(null);
-  const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(true);
+  const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(1);
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
@@ -102,9 +102,11 @@ export const SidePanel = (props) => {
             )
         )}
       </select>
-      <select onChange={(e) => setIsGreaterOrEqual(e.target.value)}>
-        <option value={true}>Higher Than or Equal to</option>
-        <option value={false}>Lower Than or Equal to</option>
+      <select
+        onChange={(e) => setIsGreaterOrEqual(Number.parseInt(e.target.value))}
+      >
+        <option value={1}>Higher Than or Equal to</option>
+        <option value={0}>Lower Than or Equal to</option>
       </select>
       <input
         type="number"

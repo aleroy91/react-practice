@@ -34,7 +34,7 @@ export const Modal = (props) => {
             <Form
               name="Select Columns"
               formInputsArray={columnSettingsArray}
-              updateSelectedInputs={updateSelectedInputs}
+              onInputChange={updateSelectedInputs}
             />
           </div>
         </div>

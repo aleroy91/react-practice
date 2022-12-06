@@ -145,7 +145,7 @@ export const TableWithMultipleRecordCards = ({
 
       recordKeysArray.forEach((property) => {
         if (property === attribute) {
-          if (greaterOrEqual === "true") {
+          if (greaterOrEqual) {
             if (record[attribute] >= value) {
               filteredData.push(record);
             }

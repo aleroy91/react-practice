@@ -1,4 +1,5 @@
 import { Checkbox } from "./checkbox";
+import { Radio } from "./radio";
 
 export const ControlledInput = (props) => {
   const { inputName, inputType, inputValue, onInputChange } = {
@@ -12,6 +13,14 @@ export const ControlledInput = (props) => {
           <Checkbox
             inputName={inputName}
             inputValue={inputValue}
+            onInputChange={onInputChange}
+          />
+        );
+      case "radio":
+        return (
+          <Radio
+            inputNamesArray={inputName}
+            inputValuesArray={inputValue}
             onInputChange={onInputChange}
           />
         );
