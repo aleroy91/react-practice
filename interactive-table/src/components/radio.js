@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const Radio = (props) => {
-  const { inputNamesArray, inputValuesArray } = {
+  const { inputNamesArray, inputValuesArray, updateRadioButtonArray } = {
     ...props,
-  };
-  const [radioButtonArrayValues, setRadioButtonArrayValues] =
-    useState(inputValuesArray);
-  const updateRadioButtonArray = (i) => {
-    const newRadioButtonArrayValues = radioButtonArrayValues.map(
-      (element, index) => (i === index ? true : false)
-    );
-    setRadioButtonArrayValues(...newRadioButtonArrayValues);
   };
 
   const radioButtonControl = inputNamesArray.map((inputName, index) => {

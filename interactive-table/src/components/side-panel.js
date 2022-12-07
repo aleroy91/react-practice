@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Radio } from "./radio";
 import { Form } from "./form";
 
 export const SidePanel = (props) => {
@@ -18,6 +19,15 @@ export const SidePanel = (props) => {
   ]);
   const [columnToFilter, setColumnToFilter] = useState(null);
   const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(1);
+  const positionsArray = ["Goalkeeper", "Defence", "Midfield", "Forward"];
+  const updateRadioButtonArray = (i) => {
+    const newRadioButtonArrayValues = radioChecked.map((element, index) =>
+      i === index ? true : false
+    );
+    setRadioChecked(...newRadioButtonArrayValues);
+    filterStringData(positionsArray[i], true);
+  };
+
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
@@ -34,61 +44,13 @@ export const SidePanel = (props) => {
   });
 
   const filterByPosition = (
-    <div>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            checked={radioChecked[0]}
-            onChange={() => {
-              filterStringData("Goalkeeper", true);
-              setRadioChecked([true, false, false, false]);
-            }}
-          />
-          Goalkeeper
-        </label>
-      </div>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            checked={radioChecked[1]}
-            onChange={() => {
-              filterStringData("Defence", true);
-              setRadioChecked([false, true, false, false]);
-            }}
-          />
-          Defence
-        </label>
-      </div>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            checked={radioChecked[2]}
-            onChange={() => {
-              filterStringData("Midfield", true);
-              setRadioChecked([false, false, true, false]);
-            }}
-          />
-          Midfield
-        </label>
-      </div>
-      <div className="radio">
-        <label>
-          <input
-            type="radio"
-            checked={radioChecked[3]}
-            onChange={() => {
-              filterStringData("Forward", true);
-              setRadioChecked([false, false, false, true]);
-            }}
-          />
-          Forward
-        </label>
-      </div>
-    </div>
+    <Radio
+      inputNamesArray={positionsArray}
+      inputValuesArray={radioChecked}
+      updateRadioButtonArray={updateRadioButtonArray}
+    />
   );
+
   const higherOrLower = (
     <div>
       <span>Show records where</span>
