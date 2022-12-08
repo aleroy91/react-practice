@@ -24,7 +24,7 @@ export const SidePanel = (props) => {
     const newRadioButtonArrayValues = radioChecked.map((element, index) =>
       i === index ? true : false
     );
-    setRadioChecked(...newRadioButtonArrayValues);
+    setRadioChecked(newRadioButtonArrayValues);
     filterStringData(positionsArray[i], true);
   };
 
