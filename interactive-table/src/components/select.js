@@ -7,7 +7,7 @@ export const Select = (props) => {
 
   const selectOptions = inputValuesArray.map((inputValue, index) => {
     return (
-      <option key={index} value={inputValue}>
+      <option key={index + 1} value={inputValue}>
         {inputValue}
       </option>
     );
@@ -15,7 +15,7 @@ export const Select = (props) => {
 
   return (
     <div>
-      <label>{inputName}</label>
+      <span>{inputName}</span>
       <select onChange={(e) => setChosenOption(e.target.value)}>
         {selectOptions}
       </select>

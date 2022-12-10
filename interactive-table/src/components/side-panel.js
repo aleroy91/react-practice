@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Radio } from "./radio";
+import { Select } from "./select";
 import { Form } from "./form";
 
 export const SidePanel = (props) => {
@@ -31,6 +32,11 @@ export const SidePanel = (props) => {
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
+  const selectedNumericTableColumns = selectedTableColumns.map((property) => {
+    if (property.type === "number") {
+      return property.name;
+    }
+  });
   const selectedTableColumnsTypes = [];
   selectedTableColumnsArray.forEach((columnName) => {
     availableTableColumns.forEach((availableColumn) => {
@@ -51,6 +57,11 @@ export const SidePanel = (props) => {
     />
   );
 
+  <Select
+    inputName={"Show records where"}
+    inputValuesArray={selectedNumericTableColumns}
+    setChosenOption={setColumnToFilter}
+  />;
   const higherOrLower = (
     <div>
       <span>Show records where</span>
