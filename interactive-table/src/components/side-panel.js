@@ -28,22 +28,20 @@ export const SidePanel = (props) => {
     setRadioChecked(newRadioButtonArrayValues);
     filterStringData(positionsArray[i], true);
   };
-
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
-  const selectedNumericTableColumns = selectedTableColumns.map((property) => {
-    if (property.type === "number") {
-      return property.name;
-    }
-  });
+  const selectedNumericTableColumnsArray = [];
   const selectedTableColumnsTypes = [];
   selectedTableColumnsArray.forEach((columnName) => {
     availableTableColumns.forEach((availableColumn) => {
       if (availableColumn.name === columnName) {
         selectedTableColumnsTypes.push(availableColumn.type);
-        if (availableColumn.type === "number" && columnToFilter === null) {
-          setColumnToFilter(columnName);
+        if (availableColumn.type === "number") {
+          selectedNumericTableColumnsArray.push(availableColumn.name);
+          if (columnToFilter === null) {
+            setColumnToFilter(columnName);
+          }
         }
       }
     });
@@ -57,24 +55,13 @@ export const SidePanel = (props) => {
     />
   );
 
-  <Select
-    inputName={"Show records where"}
-    inputValuesArray={selectedNumericTableColumns}
-    setChosenOption={setColumnToFilter}
-  />;
   const higherOrLower = (
     <div>
-      <span>Show records where</span>
-      <select onChange={(e) => setColumnToFilter(e.target.value)}>
-        {selectedTableColumnsArray.map(
-          (column, i) =>
-            selectedTableColumnsTypes[i] === "number" && (
-              <option key={i + 1} value={column}>
-                {column}
-              </option>
-            )
-        )}
-      </select>
+      <Select
+        inputName={"Show records where:"}
+        inputValuesArray={selectedNumericTableColumnsArray}
+        setChosenOption={setColumnToFilter}
+      />
       <select
         onChange={(e) => setIsGreaterOrEqual(Number.parseInt(e.target.value))}
       >
@@ -92,7 +79,12 @@ export const SidePanel = (props) => {
     </div>
   );
   const clearFilterButton = (
-    <button onClick={() => filterStringData("")}>Clear Filter</button>
+    <button
+      className="button__action--secondary"
+      onClick={() => filterStringData("")}
+    >
+      Clear Filter
+    </button>
   );
 
   return (
@@ -102,8 +94,8 @@ export const SidePanel = (props) => {
           <div className="side-panel__content">
             <h3 className="side-panel__header">Filter Table Data</h3>
             {filterByPosition}
-            {clearFilterButton}
             {higherOrLower}
+            {clearFilterButton}
           </div>
           <button className="button__exit" onClick={() => toggleSidePanel()}>
             <span className="material-icons">close</span>

@@ -15,7 +15,7 @@ export const Select = (props) => {
 
   return (
     <div>
-      <span>{inputName}</span>
+      <p>{inputName}</p>
       <select onChange={(e) => setChosenOption(e.target.value)}>
         {selectOptions}
       </select>

@@ -1,4 +1,4 @@
-.button__action {
+.button__action--primary {
   width: fit-content;
   border: 1px;
   border-radius: 5px;
@@ -6,6 +6,16 @@
   margin: 5px auto;
   background-color: #1c849b;
   color: white;
+}
+
+.button__action--secondary {
+  width: fit-content;
+  border: 1px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px auto;
+  background-color: white;
+  color: #1c849b;
 }
 
 .button__exit {
@@ -72,7 +82,8 @@
   color: white;
 }
 
-.button__action:hover,
+.button__action--primary:hover,
+.button__action--secondary:hover,
 .button__exit:hover,
 .button__edit-columns:hover,
 .button__filter:hover,

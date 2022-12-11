@@ -7,7 +7,7 @@ export const Radio = (props) => {
 
   const radioButtonControl = inputNamesArray.map((inputName, index) => {
     return (
-      <div className="radio">
+      <div className="radio" key={index + 1}>
         <input
           type="radio"
           checked={inputValuesArray[index]}
