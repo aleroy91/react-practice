@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Radio } from "./radio";
 import { Select } from "./select";
-import { Form } from "./form";
+import { NumberPicker } from "./number-picker";
 
 export const SidePanel = (props) => {
   const {
@@ -28,6 +28,10 @@ export const SidePanel = (props) => {
     setRadioChecked(newRadioButtonArrayValues);
     filterStringData(positionsArray[i], true);
   };
+  const updateIsGreaterOrEqual = (inputValue) =>
+    setIsGreaterOrEqual(Number.parseInt(inputValue));
+  const updateNumericData = (inputValue) =>
+    filterNumericData(columnToFilter, inputValue, isGreaterOrEqual);
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
@@ -59,23 +63,20 @@ export const SidePanel = (props) => {
     <div>
       <Select
         inputName={"Show records where:"}
-        inputValuesArray={selectedNumericTableColumnsArray}
+        selectNamesArray={selectedNumericTableColumnsArray}
+        selectValuesArray={selectedNumericTableColumnsArray}
         setChosenOption={setColumnToFilter}
       />
-      <select
-        onChange={(e) => setIsGreaterOrEqual(Number.parseInt(e.target.value))}
-      >
-        <option value={1}>Higher Than or Equal to</option>
-        <option value={0}>Lower Than or Equal to</option>
-      </select>
-      <input
-        type="number"
-        min="4"
-        max="12"
-        onChange={(e) =>
-          filterNumericData(columnToFilter, e.target.value, isGreaterOrEqual)
-        }
-      ></input>
+      <Select
+        selectNamesArray={["Higher Than or Equal to", "Lower Than or Equal to"]}
+        selectValuesArray={[1, 0]}
+        setChosenOption={updateIsGreaterOrEqual}
+      />
+      <NumberPicker
+        inputMin={4}
+        inputMax={12}
+        updateNumericData={updateNumericData}
+      />
     </div>
   );
   const clearFilterButton = (

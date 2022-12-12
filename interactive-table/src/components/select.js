@@ -1,21 +1,21 @@
 import React from "react";
 
 export const Select = (props) => {
-  const { inputName, inputValuesArray, setChosenOption } = {
+  const { inputName, selectNamesArray, selectValuesArray, setChosenOption } = {
     ...props,
   };
 
-  const selectOptions = inputValuesArray.map((inputValue, index) => {
+  const selectOptions = selectValuesArray.map((inputValue, index) => {
     return (
       <option key={index + 1} value={inputValue}>
-        {inputValue}
+        {selectNamesArray[index]}
       </option>
     );
   });
 
   return (
     <div>
-      <p>{inputName}</p>
+      {inputName && <p>{inputName}</p>}
       <select onChange={(e) => setChosenOption(e.target.value)}>
         {selectOptions}
       </select>

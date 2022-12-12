@@ -1,8 +1,18 @@
 import { Checkbox } from "./checkbox";
 import { Radio } from "./radio";
+import { Select } from "./select";
+import { NumberPicker } from "./number-picker";
 
 export const ControlledInput = (props) => {
-  const { inputName, inputType, inputValue, onInputChange } = {
+  const {
+    inputName,
+    inputOptionsArray,
+    inputType,
+    inputValue,
+    inputMin,
+    inputMax,
+    onInputChange,
+  } = {
     ...props,
   };
 
@@ -19,9 +29,26 @@ export const ControlledInput = (props) => {
       case "radio":
         return (
           <Radio
-            inputNamesArray={inputName}
+            inputNamesArray={inputOptionsArray}
             inputValuesArray={inputValue}
             onInputChange={onInputChange}
+          />
+        );
+      case "select":
+        return (
+          <Select
+            inputName={inputName}
+            selectNamesArray={inputOptionsArray}
+            selectValuesArray={inputValue}
+            setChosenOption={onInputChange}
+          />
+        );
+      case "number":
+        return (
+          <NumberPicker
+            inputMin={inputMin}
+            inputMax={inputMax}
+            updateNumericData={onInputChange}
           />
         );
       default:

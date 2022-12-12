@@ -5,15 +5,21 @@ export const Form = (props) => {
 
   const formElementsFactory = formInputsArray.map((inputObject, index) => {
     const inputName = inputObject.name;
+    const inputOptions = inputObject.options;
     const inputType = inputObject.type;
     const inputValue = inputObject.value;
+    const inputMinimum = inputObject.minimum;
+    const inputMaximum = inputObject.maximum;
 
     return (
       <ControlledInput
         key={index}
         inputName={inputName}
+        inputOptionsArray={inputOptions}
         inputType={inputType}
         inputValue={inputValue}
+        inputMin={inputMinimum}
+        inputMax={inputMaximum}
         onInputChange={onInputChange}
       />
     );
