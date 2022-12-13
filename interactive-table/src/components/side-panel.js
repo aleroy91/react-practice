@@ -31,7 +31,7 @@ export const SidePanel = (props) => {
   const updateIsGreaterOrEqual = (inputValue) =>
     setIsGreaterOrEqual(Number.parseInt(inputValue));
   const updateNumericData = (inputValue) =>
-    filterNumericData(columnToFilter, inputValue, isGreaterOrEqual);
+    filterNumericData(columnToFilter, inputValue, isGreaterOrEqual, false);
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );

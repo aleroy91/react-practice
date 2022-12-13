@@ -136,11 +136,17 @@ export const TableWithMultipleRecordCards = ({
     setShowSidePanel(!showSidePanel);
   };
 
-  const filterNumericData = (recordAttribute, value, greaterOrEqual) => {
+  const filterNumericData = (
+    recordAttribute,
+    value,
+    greaterOrEqual,
+    useFullData
+  ) => {
     let attribute = recordAttribute.toLowerCase();
     let filteredData = [];
+    let dataToUse = useFullData ? data : recordData;
 
-    data.forEach((record) => {
+    dataToUse.forEach((record) => {
       let recordKeysArray = Object.keys(record);
 
       recordKeysArray.forEach((property) => {
