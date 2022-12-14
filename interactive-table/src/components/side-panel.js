@@ -12,12 +12,9 @@ export const SidePanel = (props) => {
     selectedTableColumns,
     availableTableColumns,
   } = { ...props };
-  const [radioChecked, setRadioChecked] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const defaultRadioSelection = [false, false, false, false];
+  const [numberPickerInput, setNumberPickerInput] = useState(4);
+  const [radioChecked, setRadioChecked] = useState(defaultRadioSelection);
   const [columnToFilter, setColumnToFilter] = useState(null);
   const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(1);
   const positionsArray = ["Goalkeeper", "Defence", "Midfield", "Forward"];
@@ -30,8 +27,10 @@ export const SidePanel = (props) => {
   };
   const updateIsGreaterOrEqual = (inputValue) =>
     setIsGreaterOrEqual(Number.parseInt(inputValue));
-  const updateNumericData = (inputValue) =>
+  const updateNumericData = (inputValue) => {
     filterNumericData(columnToFilter, inputValue, isGreaterOrEqual, false);
+    setNumberPickerInput(inputValue);
+  };
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
@@ -50,6 +49,11 @@ export const SidePanel = (props) => {
       }
     });
   });
+  const clearFilters = () => {
+    filterStringData("");
+    setRadioChecked(defaultRadioSelection);
+    setNumberPickerInput("");
+  };
 
   const filterByPosition = (
     <Radio
@@ -73,6 +77,7 @@ export const SidePanel = (props) => {
         setChosenOption={updateIsGreaterOrEqual}
       />
       <NumberPicker
+        inputValue={numberPickerInput}
         inputMin={4}
         inputMax={12}
         updateNumericData={updateNumericData}
@@ -82,7 +87,7 @@ export const SidePanel = (props) => {
   const clearFilterButton = (
     <button
       className="button__action--secondary"
-      onClick={() => filterStringData("")}
+      onClick={() => clearFilters()}
     >
       Clear Filter
     </button>
