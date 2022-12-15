@@ -46,6 +46,7 @@ export const ControlledInput = (props) => {
       case "number":
         return (
           <NumberPicker
+            value={inputName}
             inputMin={inputMin}
             inputMax={inputMax}
             updateNumericData={onInputChange}
