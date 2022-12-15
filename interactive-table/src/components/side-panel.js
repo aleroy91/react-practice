@@ -52,7 +52,7 @@ export const SidePanel = (props) => {
   const clearFilters = () => {
     filterStringData("");
     setRadioChecked(defaultRadioSelection);
-    setNumberPickerInput("");
+    setNumberPickerInput(4);
   };
 
   const filterByPosition = (
