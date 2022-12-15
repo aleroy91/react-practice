@@ -1,0 +1,14 @@
+.number-picker {
+  display: flex;
+}
+
+.number-picker > .number-picker__buttons-container {
+  margin: 2px auto 2px -22px;
+}
+
+.number-picker__buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+}
