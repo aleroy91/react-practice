@@ -5,7 +5,7 @@
   border-radius: 10px;
   border: solid 1px lightgrey;
   width: fit-content;
-  margin: auto;
+  margin: 10px;
 }
 
 .record-card:hover {
