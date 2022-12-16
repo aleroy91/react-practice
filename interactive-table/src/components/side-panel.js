@@ -91,7 +91,7 @@ export const SidePanel = (props) => {
       className="button__action--secondary"
       onClick={() => clearFilters()}
     >
-      Clear Filter
+      <h4>Clear Filter</h4>
     </button>
   );
 

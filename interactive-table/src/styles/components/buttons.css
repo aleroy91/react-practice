@@ -9,11 +9,11 @@
 }
 
 .button__action--secondary {
-  width: fit-content;
+  width: 100%;
   border: 1px;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 5px 10px;
-  margin: 5px auto;
+  margin: 30px auto;
   background-color: white;
   color: #1c849b;
 }
