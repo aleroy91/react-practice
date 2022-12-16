@@ -57,14 +57,16 @@ export const SidePanel = (props) => {
 
   const filterByPosition = (
     <Radio
+      inputName={"Position:"}
       inputNamesArray={positionsArray}
       inputValuesArray={radioChecked}
       updateRadioButtonArray={updateRadioButtonArray}
+      inputStyle={""}
     />
   );
 
   const higherOrLower = (
-    <div>
+    <div className="multi-input-container">
       <Select
         inputName={"Show records where:"}
         selectNamesArray={selectedNumericTableColumnsArray}

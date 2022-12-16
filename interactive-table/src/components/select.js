@@ -16,7 +16,10 @@ export const Select = (props) => {
   return (
     <div>
       {inputName && <p>{inputName}</p>}
-      <select onChange={(e) => setChosenOption(e.target.value)}>
+      <select
+        className="multi-input-container__input"
+        onChange={(e) => setChosenOption(e.target.value)}
+      >
         {selectOptions}
       </select>
     </div>

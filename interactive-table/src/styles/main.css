@@ -9,6 +9,8 @@
 @import "components/icons.css";
 @import "components/side-panel.css";
 @import "components/number-picker.css";
+@import "components/radio.css";
+@import "components/multi-input.css";
 
 @font-face {
   font-family: "Roboto-Regular";

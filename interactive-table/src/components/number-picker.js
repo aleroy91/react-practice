@@ -8,6 +8,7 @@ export const NumberPicker = (props) => {
   return (
     <div className="number-picker">
       <input
+        className="multi-input-container__input"
         value={inputValue}
         type="number"
         min={inputMin}
