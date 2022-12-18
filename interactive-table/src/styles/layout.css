@@ -18,6 +18,12 @@
   padding: 10px 20px;
 }
 
+.text-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
 .image-container {
   height: 250px;
   width: 250px;

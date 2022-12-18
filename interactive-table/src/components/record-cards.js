@@ -63,10 +63,13 @@ export const RecordCard = (props) => {
             gif={gif}
             alt={name}
           />
-          <h4>Position: {position}</h4>
-          <h4>Price: £{price}m</h4>
-          <h4>Points: {points}</h4>
-          <h4>Expected Points: {expected_points}</h4>
+          <h3>Statistics</h3>
+          <div className="text-container">
+            <h4>Position: {position}</h4>
+            <h4>Price: £{price}m</h4>
+            <h4>Points: {points}</h4>
+            <h4>Expected Points: {expected_points}</h4>
+          </div>
           <Notes notesText={notes} onNotesChange={handleNoteschange} />
         </div>
       </div>
