@@ -1,0 +1,9 @@
+.select__option {
+  background-color: #1c849b;
+  color: white;
+}
+
+.select__option:checked {
+  background-color: white;
+  color: #1c849b;
+}

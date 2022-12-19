@@ -7,7 +7,7 @@ export const Select = (props) => {
 
   const selectOptions = selectValuesArray.map((inputValue, index) => {
     return (
-      <option key={index + 1} value={inputValue}>
+      <option className="select__option" key={index + 1} value={inputValue}>
         {selectNamesArray[index]}
       </option>
     );
