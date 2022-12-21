@@ -40,6 +40,7 @@ export const TableWithMultipleRecordCards = ({
     Object.keys(data[0]).forEach((element) => {
       if (element !== "photo" && element !== "gif") {
         let sanitisedColumnName = element;
+
         for (var i = 0; i < element.length; i++) {
           if (i === 0 || element[i - 1] === "_") {
             sanitisedColumnName = setCharAt(
@@ -48,6 +49,7 @@ export const TableWithMultipleRecordCards = ({
               element.charAt(i).toUpperCase()
             );
           }
+
           if (element[i] === "_") {
             sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
           }
@@ -83,6 +85,7 @@ export const TableWithMultipleRecordCards = ({
         }
       }
     });
+
     setSelectedTableColumns(newSelectedTableColumns);
   };
 
@@ -173,9 +176,6 @@ export const TableWithMultipleRecordCards = ({
 
     dataToUse.forEach((record) => {
       let newRecord = record;
-      delete newRecord.photo;
-      delete newRecord.gif;
-
       let sanitisedRecordArray = Object.values(newRecord);
       let inputInRecord = false;
 

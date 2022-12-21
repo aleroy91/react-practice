@@ -10,6 +10,7 @@ export const Modal = (props) => {
   } = {
     ...props,
   };
+
   const buildModalFormArray = (formArray) => {
     return formArray.map((formInput) => {
       return {
