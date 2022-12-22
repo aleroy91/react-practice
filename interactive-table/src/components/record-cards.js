@@ -4,16 +4,18 @@ export const RecordCardsArray = (props) => {
   const {
     selectedRecordsArray,
     recordData,
+    unfilteredRecordData,
     updateRecordInfo,
     displayRecordCard,
   } = { ...props };
+
   const recordCardsFromArray = selectedRecordsArray.map(
     (selectedrecordId, index) => (
       <RecordCard
         key={index}
         hide={false}
         recordIndex={selectedrecordId}
-        record={recordData[selectedrecordId]}
+        record={unfilteredRecordData[selectedrecordId]}
         updateRecordInfo={updateRecordInfo}
         displayRecordCard={displayRecordCard}
       />

@@ -259,6 +259,7 @@ export const TableWithMultipleRecordCards = ({
       <RecordCardsArray
         selectedRecordsArray={selectedRecordsArray}
         recordData={recordData}
+        unfilteredRecordData={data}
         updateRecordInfo={updateRecordInfo}
         displayRecordCard={displayRecordCard}
       />
