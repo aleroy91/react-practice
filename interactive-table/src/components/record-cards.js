@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export const RecordCardsArray = (props) => {
   const {
     selectedRecordsArray,
-    recordData,
     unfilteredRecordData,
     updateRecordInfo,
     displayRecordCard,
