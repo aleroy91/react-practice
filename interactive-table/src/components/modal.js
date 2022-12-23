@@ -1,4 +1,5 @@
 import { Form } from "./form";
+import { ExitButton } from "./styled-components";
 
 export const Modal = (props) => {
   const {
@@ -29,9 +30,9 @@ export const Modal = (props) => {
         <div>
           <div className="modal-container"></div>
           <div className="modal">
-            <button className="button__exit" onClick={() => displaySettings()}>
+            <ExitButton onClick={() => displaySettings()}>
               <span className="material-icons">close</span>
-            </button>
+            </ExitButton>
             <Form
               name="Select Columns"
               formInputsArray={columnSettingsArray}
