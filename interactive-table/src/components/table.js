@@ -1,4 +1,5 @@
 import React from "react";
+import { SortButton, TableEditButton } from "./styled-components";
 
 export const Table = (props) => {
   const {
@@ -20,8 +21,7 @@ export const Table = (props) => {
       <th className="table__column-header" key={index}>
         <div className="table__column-header--horizontal-group">
           <h4>{columnObject.name}</h4>
-          <button
-            className="button__sort"
+          <SortButton
             onClick={() => {
               sortData(columnObject.property, index, !sortOrder[index]);
             }}
@@ -31,7 +31,7 @@ export const Table = (props) => {
             ) : (
               <span className="material-icons">arrow_downward</span>
             )}
-          </button>
+          </SortButton>
         </div>
       </th>
     );
@@ -64,12 +64,9 @@ export const Table = (props) => {
         </thead>
         <tbody>{tableBody}</tbody>
       </table>
-      <button
-        className="button__edit-columns "
-        onClick={() => displaySettings()}
-      >
+      <TableEditButton onClick={() => displaySettings()}>
         <span className="material-icons">playlist_add</span>
-      </button>
+      </TableEditButton>
     </div>
   );
 };

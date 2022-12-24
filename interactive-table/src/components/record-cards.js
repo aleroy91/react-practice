@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ExitButton, ActionButton, SubmitButton } from "./styled-components";
 
 export const RecordCardsArray = (props) => {
   const {
@@ -48,12 +49,9 @@ export const RecordCard = (props) => {
   return (
     <div className="container">
       <div className="record-card">
-        <button
-          className="button__exit"
-          onClick={() => displayRecordCard(recordIndex)}
-        >
+        <ExitButton onClick={() => displayRecordCard(recordIndex)}>
           <span className="material-icons">close</span>
-        </button>
+        </ExitButton>
         <div key={number} className="vertical-container">
           <h1>{name}</h1>
           <Avatar
@@ -127,16 +125,15 @@ const Notes = ({ notesText, onNotesChange }) => {
       )}
       <div className="horizontal-container">
         {displayNotesHideTextarea && (
-          <button
-            className="button__action--primary"
+          <ActionButton
+            primary
             onClick={() => setDisplayNotesHideTextarea(false)}
           >
             {notes ? "Edit" : "Add"} Notes
-          </button>
+          </ActionButton>
         )}
         {showSaveNotesButton && (
-          <button
-            className="button__submit"
+          <SubmitButton
             onClick={() => {
               onNotesChange(notes);
               setDisplayNotesHideTextarea(true);
@@ -144,7 +141,7 @@ const Notes = ({ notesText, onNotesChange }) => {
             }}
           >
             Save Changes
-          </button>
+          </SubmitButton>
         )}
       </div>
     </div>

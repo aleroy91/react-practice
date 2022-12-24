@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Radio } from "./radio";
 import { Select } from "./select";
 import { NumberPicker } from "./number-picker";
+import { ExitButton, ActionButton } from "./styled-components";
 
 export const SidePanel = (props) => {
   const {
@@ -87,12 +88,9 @@ export const SidePanel = (props) => {
     </div>
   );
   const clearFilterButton = (
-    <button
-      className="button__action--secondary"
-      onClick={() => clearFilters()}
-    >
+    <ActionButton onClick={() => clearFilters()}>
       <h4>Clear Filter</h4>
-    </button>
+    </ActionButton>
   );
 
   return (
@@ -105,9 +103,9 @@ export const SidePanel = (props) => {
             {higherOrLower}
             {clearFilterButton}
           </div>
-          <button className="button__exit" onClick={() => toggleSidePanel()}>
+          <ExitButton onClick={() => toggleSidePanel()}>
             <span className="material-icons">close</span>
-          </button>
+          </ExitButton>
         </div>
       )}
     </div>

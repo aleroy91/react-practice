@@ -1,5 +1,6 @@
 import React from "react";
 import { SearchBar } from "./search-bar";
+import { FilterButton } from "./styled-components";
 
 export const Toolbar = (props) => {
   const { filterStringData, toggleSidePanel } = { ...props };
@@ -14,12 +15,9 @@ export const Toolbar = (props) => {
             </div>
             <div className="horizontal-container">
               <SearchBar filterStringData={filterStringData} />
-              <button
-                className="button__filter"
-                onClick={() => toggleSidePanel()}
-              >
+              <FilterButton onClick={() => toggleSidePanel()}>
                 <span className="material-icons">tune</span>
-              </button>
+              </FilterButton>
             </div>
           </div>
         </div>
