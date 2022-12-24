@@ -88,7 +88,7 @@ export const SidePanel = (props) => {
     </div>
   );
   const clearFilterButton = (
-    <ActionButton onClick={() => clearFilters()}>
+    <ActionButton primary onClick={() => clearFilters()}>
       <h4>Clear Filter</h4>
     </ActionButton>
   );
