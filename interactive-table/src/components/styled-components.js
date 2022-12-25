@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Button = styled.button`
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+`;
+
 export const ExitButton = styled.button`
   display: flex;
   width: fit-content;
@@ -9,11 +16,6 @@ export const ExitButton = styled.button`
   margin: 0 0 auto auto;
   background-color: crimson;
   color: white;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
 
 export const ActionButton = styled.button`
@@ -24,11 +26,6 @@ export const ActionButton = styled.button`
   margin: 30px auto;
   background-color: ${(props) => (props.primary ? "white" : "#1c849b")};
   color: ${(props) => (props.primary ? "#1c849b" : "white")};
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
 
 export const SubmitButton = styled.button`
@@ -39,11 +36,6 @@ export const SubmitButton = styled.button`
   margin: 5px auto;
   background-color: darkgreen;
   color: white;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
 
 export const FilterButton = styled.button`
@@ -55,11 +47,6 @@ export const FilterButton = styled.button`
   margin: 5px 5px 5px 15px;
   color: #1c849b;
   background-color: white;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
 
 export const SortButton = styled.button`
@@ -69,11 +56,6 @@ export const SortButton = styled.button`
   padding: 5px 10px;
   color: white;
   background-color: #1c849b;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
 
 export const TableEditButton = styled.button`
@@ -85,9 +67,4 @@ export const TableEditButton = styled.button`
   margin: 21px auto auto 5px;
   color: white;
   background-color: #1c849b;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-  }
 `;
