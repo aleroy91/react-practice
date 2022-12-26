@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Radio } from "./radio";
 import { Select } from "./select";
 import { NumberPicker } from "./number-picker";
-import { ExitButton, ActionButton } from "./styled-components";
+import { ExitButton, ActionButton, CenteredHeader } from "./styled-components";
 
 export const SidePanel = (props) => {
   const {
@@ -89,7 +89,7 @@ export const SidePanel = (props) => {
   );
   const clearFilterButton = (
     <ActionButton primary onClick={() => clearFilters()}>
-      <h4>Clear Filter</h4>
+      <CenteredHeader>Clear Filter</CenteredHeader>
     </ActionButton>
   );
 

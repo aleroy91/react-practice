@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const BoldHeader = styled.header`
+  font-weight: 600;
+`;
+
+export const CenteredHeader = styled(BoldHeader)`
+  margin: 5px auto;
+`;
+
 export const Button = styled.button`
   border: 1px;
 
@@ -13,7 +21,7 @@ export const FlexButton = styled(Button)`
   display: flex;
 `;
 
-export const FitContentButton = styled(Button)`
+export const FitContentButton = styled(FlexButton)`
   width: fit-content;
   height: fit-content;
 `;

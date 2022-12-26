@@ -125,10 +125,7 @@ const Notes = ({ notesText, onNotesChange }) => {
       )}
       <div className="horizontal-container">
         {displayNotesHideTextarea && (
-          <ActionButton
-            primary
-            onClick={() => setDisplayNotesHideTextarea(false)}
-          >
+          <ActionButton onClick={() => setDisplayNotesHideTextarea(false)}>
             {notes ? "Edit" : "Add"} Notes
           </ActionButton>
         )}
