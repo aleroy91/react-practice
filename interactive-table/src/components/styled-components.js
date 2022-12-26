@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
+  border: 1px;
+
   &:hover {
     cursor: pointer;
     opacity: 0.7;
   }
 `;
 
-export const ExitButton = styled.button`
+export const FlexButton = styled(Button)`
   display: flex;
+`;
+
+export const FitContentButton = styled(Button)`
   width: fit-content;
-  border: 1px;
+  height: fit-content;
+`;
+
+export const ExitButton = styled(FitContentButton)`
   border-radius: 5px;
   padding: 2px;
   margin: 0 0 auto auto;
@@ -18,9 +26,8 @@ export const ExitButton = styled.button`
   color: white;
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled(FitContentButton)`
   width: 100%;
-  border: 1px;
   border-radius: 20px;
   padding: 5px 10px;
   margin: 30px auto;
@@ -28,9 +35,7 @@ export const ActionButton = styled.button`
   color: ${(props) => (props.primary ? "#1c849b" : "white")};
 `;
 
-export const SubmitButton = styled.button`
-  width: fit-content;
-  border: 1px;
+export const SubmitButton = styled(FitContentButton)`
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px auto;
@@ -38,10 +43,7 @@ export const SubmitButton = styled.button`
   color: white;
 `;
 
-export const FilterButton = styled.button`
-  width: fit-content;
-  height: fit-content;
-  border: 1px;
+export const FilterButton = styled(FitContentButton)`
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px 5px 5px 15px;
@@ -49,19 +51,14 @@ export const FilterButton = styled.button`
   background-color: white;
 `;
 
-export const SortButton = styled.button`
-  width: fit-content;
-  border: 1px;
+export const SortButton = styled(FitContentButton)`
   border-radius: 5px;
   padding: 5px 10px;
   color: white;
   background-color: #1c849b;
 `;
 
-export const TableEditButton = styled.button`
-  width: fit-content;
-  height: fit-content;
-  border: 1px;
+export const TableEditButton = styled(FitContentButton)`
   border-radius: 0 5px 5px 0;
   padding: 14px 10px;
   margin: 21px auto auto 5px;
