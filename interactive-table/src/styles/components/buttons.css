@@ -19,18 +19,6 @@
   border-color: #1c849b transparent transparent transparent;
 }
 
-.button__action--primary:hover,
-.button__action--secondary:hover,
-.button__exit:hover,
-.button__edit-columns:hover,
-.button__filter:hover,
-.button__sort:hover,
-.button__search:hover,
-.button__submit:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
 .button__number-picker:hover {
   background-color: lightgrey;
 }

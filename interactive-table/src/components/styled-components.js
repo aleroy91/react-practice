@@ -68,7 +68,7 @@ export const SortButton = styled(FitContentButton)`
 
 export const TableEditButton = styled(FitContentButton)`
   border-radius: 0 5px 5px 0;
-  padding: 14px 10px;
+  padding: 15px 10px 16px;
   margin: 21px auto auto 5px;
   color: white;
   background-color: #1c849b;
