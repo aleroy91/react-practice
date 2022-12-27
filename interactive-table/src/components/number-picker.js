@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  NumberPickerButton,
+  NumberPickerArrowUp,
+  NumberPickerArrowDown,
+} from "./styled-components";
 
 export const NumberPicker = (props) => {
   const { inputValue, inputMin, inputMax, updateNumericData } = {
@@ -18,18 +23,16 @@ export const NumberPicker = (props) => {
       <span className="number-picker__buttons-container">
         <div>
           <div className="number-picker__buttons-container">
-            <button
-              className="button__number-picker"
+            <NumberPickerButton
               onClick={() => updateNumericData(Number.parseInt(inputValue) + 1)}
             >
-              <div className="button__number-picker--arrow-up"></div>
-            </button>
-            <button
-              className="button__number-picker"
+              <NumberPickerArrowUp />
+            </NumberPickerButton>
+            <NumberPickerButton
               onClick={() => updateNumericData(Number.parseInt(inputValue) - 1)}
             >
-              <div className="button__number-picker--arrow-down"></div>
-            </button>
+              <NumberPickerArrowDown />
+            </NumberPickerButton>
           </div>
         </div>
       </span>

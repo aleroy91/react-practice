@@ -17,6 +17,32 @@ export const Button = styled.button`
   }
 `;
 
+export const NumberPickerButton = styled.button`
+  background-color: white;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+  }
+`;
+
+export const NumberPickerArrowUp = styled.div`
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 3px 6px 3px;
+  border-color: transparent transparent #1c849b transparent;
+`;
+
+export const NumberPickerArrowDown = styled.div`
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 3px 0 3px;
+  border-color: #1c849b transparent transparent transparent;
+`;
+
 export const FlexButton = styled(Button)`
   display: flex;
 `;
