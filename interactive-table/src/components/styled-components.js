@@ -21,26 +21,41 @@ export const NumberPickerButton = styled.button`
   background-color: white;
   border: 1px solid transparent;
 
-  &:hover {
-    background-color: lightgrey;
+  :hover {
+    background-color: #1c849b;
     cursor: pointer;
   }
 `;
 
-export const NumberPickerArrowUp = styled.div`
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 3px 6px 3px;
-  border-color: transparent transparent #1c849b transparent;
-`;
+export const NumberPickerArrow = styled.div`
+  ${(props) => {
+    switch (props.$direction) {
+      case "down":
+        return `
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 6px 3px 0 3px;
+          border-color: #1c849b transparent transparent transparent;
 
-export const NumberPickerArrowDown = styled.div`
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 6px 3px 0 3px;
-  border-color: #1c849b transparent transparent transparent;
+          ${NumberPickerButton}:hover && {
+            border-color: white transparent transparent transparent;
+          }
+        `;
+      default:
+        return `
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 3px 6px 3px;
+          border-color: transparent transparent #1c849b transparent;
+
+          ${NumberPickerButton}:hover && {
+            border-color: transparent transparent white transparent;
+          }
+        `;
+    }
+  }}
 `;
 
 export const FlexButton = styled(Button)`
