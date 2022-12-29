@@ -1,5 +1,10 @@
 import React from "react";
-import { NumberPickerButton, NumberPickerArrow } from "./styled-components";
+import {
+  NumberPickerButton,
+  NumberPickerArrow,
+  FlexContainer,
+  NumberPickerButtonsContainer,
+} from "./styled-components";
 
 export const NumberPicker = (props) => {
   const { inputValue, inputMin, inputMax, updateNumericData } = {
@@ -7,7 +12,7 @@ export const NumberPicker = (props) => {
   };
 
   return (
-    <div className="number-picker">
+    <FlexContainer>
       <input
         className="multi-input-container__input"
         value={inputValue}
@@ -16,22 +21,23 @@ export const NumberPicker = (props) => {
         max={inputMax}
         onChange={(e) => updateNumericData(e.target.value)}
       />
-      <span className="number-picker__buttons-container">
+      <NumberPickerButtonsContainer>
         <div>
-          <div className="number-picker__buttons-container">
+          <NumberPickerButtonsContainer>
             <NumberPickerButton
               onClick={() => updateNumericData(Number.parseInt(inputValue) + 1)}
             >
               <NumberPickerArrow />
             </NumberPickerButton>
             <NumberPickerButton
+              $direction="down"
               onClick={() => updateNumericData(Number.parseInt(inputValue) - 1)}
             >
               <NumberPickerArrow $direction="down" />
             </NumberPickerButton>
-          </div>
+          </NumberPickerButtonsContainer>
         </div>
-      </span>
-    </div>
+      </NumberPickerButtonsContainer>
+    </FlexContainer>
   );
 };

@@ -1,5 +1,24 @@
 import styled from "styled-components";
 
+// Layout Elements
+
+export const FlexContainer = styled.div`
+  display: flex;
+`;
+
+export const NumberPickerButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+
+  ${FlexContainer} & {
+    margin: auto -18px auto;
+  }
+`;
+
+// Header Elements
+
 export const BoldHeader = styled.header`
   font-weight: 600;
 `;
@@ -7,6 +26,8 @@ export const BoldHeader = styled.header`
 export const CenteredHeader = styled(BoldHeader)`
   margin: 5px auto;
 `;
+
+// Button Elements
 
 export const Button = styled.button`
   border: 1px;
@@ -25,16 +46,34 @@ export const NumberPickerButton = styled.button`
     background-color: #1c849b;
     cursor: pointer;
   }
-`;
 
-export const NumberPickerArrow = styled.div`
   ${(props) => {
     switch (props.$direction) {
       case "down":
         return `
-          width: 0;
-          height: 0;
-          border-style: solid;
+          :hover {
+            border-radius: 0 0 3px 0;
+          }    
+        `;
+      default:
+        return `
+          :hover {
+            border-radius: 0 3px 0 0;
+          }
+        `;
+    }
+  }}
+`;
+
+export const NumberPickerArrow = styled.div`
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  ${(props) => {
+    switch (props.$direction) {
+      case "down":
+        return `
           border-width: 6px 3px 0 3px;
           border-color: #1c849b transparent transparent transparent;
 
@@ -44,9 +83,6 @@ export const NumberPickerArrow = styled.div`
         `;
       default:
         return `
-          width: 0;
-          height: 0;
-          border-style: solid;
           border-width: 0 3px 6px 3px;
           border-color: transparent transparent #1c849b transparent;
 
@@ -94,7 +130,7 @@ export const SubmitButton = styled(FitContentButton)`
 
 export const FilterButton = styled(FitContentButton)`
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 6px 10px 7px;
   margin: 5px 5px 5px 15px;
   color: #1c849b;
   background-color: white;
