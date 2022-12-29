@@ -17,6 +17,17 @@ export const NumberPickerButtonsContainer = styled.div`
   }
 `;
 
+export const MultiInputContainer = styled(FlexContainer)`
+  color: white;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0 0 20px;
+  border-bottom: 1px white solid;
+`;
+
 // Header Elements
 
 export const BoldHeader = styled.header`
@@ -149,4 +160,19 @@ export const TableEditButton = styled(FitContentButton)`
   margin: 21px auto auto 5px;
   color: white;
   background-color: #1c849b;
+`;
+
+// Input Elements
+
+export const MultiInput = styled.input`
+  margin: 2px 5px;
+  border-radius: 4px;
+  height: 25px;
+  font-weight: 600;
+  color: #1c849b;
+  border-style: none;
+
+  hover: {
+    cursor: pointer;
+  }
 `;

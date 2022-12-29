@@ -1,4 +1,5 @@
 import React from "react";
+import { MultiInputContainer } from "./styled-components";
 
 export const Radio = (props) => {
   const {
@@ -27,9 +28,9 @@ export const Radio = (props) => {
   });
 
   return (
-    <div className="multi-input-container">
+    <MultiInputContainer>
       <p>{inputName}</p>
       {radioButtonControl}
-    </div>
+    </MultiInputContainer>
   );
 };

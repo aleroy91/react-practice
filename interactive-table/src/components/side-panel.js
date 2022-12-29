@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Radio } from "./radio";
 import { Select } from "./select";
 import { NumberPicker } from "./number-picker";
-import { ExitButton, ActionButton, CenteredHeader } from "./styled-components";
+import {
+  ExitButton,
+  ActionButton,
+  CenteredHeader,
+  MultiInputContainer,
+} from "./styled-components";
 
 export const SidePanel = (props) => {
   const {
@@ -67,7 +72,7 @@ export const SidePanel = (props) => {
   );
 
   const higherOrLower = (
-    <div className="multi-input-container">
+    <MultiInputContainer>
       <Select
         inputName={"Show records where:"}
         selectNamesArray={selectedNumericTableColumnsArray}
@@ -85,7 +90,7 @@ export const SidePanel = (props) => {
         inputMax={12}
         updateNumericData={updateNumericData}
       />
-    </div>
+    </MultiInputContainer>
   );
   const clearFilterButton = (
     <ActionButton primary onClick={() => clearFilters()}>

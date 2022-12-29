@@ -4,6 +4,7 @@ import {
   NumberPickerArrow,
   FlexContainer,
   NumberPickerButtonsContainer,
+  MultiInput,
 } from "./styled-components";
 
 export const NumberPicker = (props) => {
@@ -13,8 +14,7 @@ export const NumberPicker = (props) => {
 
   return (
     <FlexContainer>
-      <input
-        className="multi-input-container__input"
+      <MultiInput
         value={inputValue}
         type="number"
         min={inputMin}

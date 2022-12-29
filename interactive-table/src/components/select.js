@@ -1,4 +1,5 @@
 import React from "react";
+import { MultiInput } from "./styled-components";
 
 export const Select = (props) => {
   const { inputName, selectNamesArray, selectValuesArray, setChosenOption } = {
@@ -16,12 +17,9 @@ export const Select = (props) => {
   return (
     <div>
       {inputName && <p>{inputName}</p>}
-      <select
-        className="multi-input-container__input"
-        onChange={(e) => setChosenOption(e.target.value)}
-      >
+      <MultiInput as="select" onChange={(e) => setChosenOption(e.target.value)}>
         {selectOptions}
-      </select>
+      </MultiInput>
     </div>
   );
 };
