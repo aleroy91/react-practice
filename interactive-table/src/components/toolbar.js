@@ -1,13 +1,30 @@
 import React from "react";
 import { SearchBar } from "./search-bar";
 import { FilterButton } from "./styled-components";
+import styled from "styled-components";
+
+const ToolbarDiv = styled.div`
+  text-align: start;
+  font-size: 1.5em;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1c849b;
+  color: white;
+`;
+
+const ToolBarBottomSpacing = styled.div`
+  margin-bottom: 200px;
+`;
 
 export const Toolbar = (props) => {
   const { filterStringData, toggleSidePanel } = { ...props };
 
   return (
-    <div className="toolbar--margin-bottom">
-      <div className="toolbar">
+    <ToolBarBottomSpacing>
+      <ToolbarDiv>
         <div className="horizontal-container">
           <div className="vertical-container">
             <div className="horizontal-container">
@@ -21,7 +38,7 @@ export const Toolbar = (props) => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </ToolbarDiv>
+    </ToolBarBottomSpacing>
   );
 };

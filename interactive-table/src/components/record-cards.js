@@ -1,5 +1,30 @@
 import React, { useState } from "react";
 import { ExitButton, ActionButton, SubmitButton } from "./styled-components";
+import styled from "styled-components";
+
+const TextArea = styled.textarea`
+  border: 1px white solid;
+  border-radius: 5px;
+  font-family: "Roboto-Regular", sans-serif;
+
+  :hover {
+    border: 1px lightgrey solid;
+  }
+`;
+
+const RecordCardDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px lightgrey;
+  width: fit-content;
+  margin: 10px;
+
+  :hover {
+    border: solid 1px #1c849b;
+  }
+`;
 
 export const RecordCardsArray = (props) => {
   const {
@@ -48,7 +73,7 @@ export const RecordCard = (props) => {
 
   return (
     <div className="container">
-      <div className="record-card">
+      <RecordCardDiv>
         <ExitButton onClick={() => displayRecordCard(recordIndex)}>
           <span className="material-icons">close</span>
         </ExitButton>
@@ -71,7 +96,7 @@ export const RecordCard = (props) => {
           </div>
           <Notes notesText={notes} onNotesChange={handleNoteschange} />
         </div>
-      </div>
+      </RecordCardDiv>
     </div>
   );
 };
@@ -112,8 +137,7 @@ const Notes = ({ notesText, onNotesChange }) => {
         <p className="text-container">{notes}</p>
       )}
       {!displayNotesHideTextarea && (
-        <textarea
-          className="textarea"
+        <TextArea
           placeholder="Add Notes..."
           autoFocus
           value={notes}

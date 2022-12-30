@@ -8,6 +8,33 @@ import {
   CenteredHeader,
   MultiInputContainer,
 } from "./styled-components";
+import styled from "styled-components";
+
+const SidePanelDiv = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20px;
+  box-shadow: 1px 1px 10px 0 black;
+  width: fit-content;
+  background-color: #1c849b;
+  display: flex;
+`;
+
+const SidePanelHeader = styled.h3`
+  color: white;
+  margin: 0;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid white;
+`;
+
+const SidePanelContentDiv = styled.div`
+  align-self: flex-start;
+  margin: 40px 20px;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const SidePanel = (props) => {
   const {
@@ -100,17 +127,17 @@ export const SidePanel = (props) => {
   return (
     <div>
       {showSidePanel && (
-        <div className="side-panel">
-          <div className="side-panel__content">
-            <h3 className="side-panel__header">Filter Table Data</h3>
+        <SidePanelDiv>
+          <SidePanelContentDiv>
+            <SidePanelHeader>Filter Table Data</SidePanelHeader>
             {filterByPosition}
             {higherOrLower}
             {clearFilterButton}
-          </div>
+          </SidePanelContentDiv>
           <ExitButton onClick={() => toggleSidePanel()}>
             <span className="material-icons">close</span>
           </ExitButton>
-        </div>
+        </SidePanelDiv>
       )}
     </div>
   );

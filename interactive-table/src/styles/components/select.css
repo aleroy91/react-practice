@@ -1,9 +1,0 @@
-.select__option {
-  background-color: white;
-  color: #1c849b;
-}
-
-.select__option:focus {
-  background-color: #1c849b;
-  color: white;
-}

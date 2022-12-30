@@ -1,5 +1,37 @@
 import React from "react";
 import { SortButton, TableEditButton } from "./styled-components";
+import styled from "styled-components";
+
+const TableComponent = styled.table`
+  margin: 20px auto auto;
+  border: 1px lightgrey solid;
+  border-spacing: 0;
+  border-radius: 0 0 10px 10px;
+`;
+
+const TableColumnHeader = styled.th`
+  text-align: start;
+  padding: 0.5rem;
+`;
+
+const TableRowHeader = styled.thead`
+  background-color: #1c849b;
+  color: white;
+  border-bottom: #1c849b 1px solid;
+`;
+
+const TableRowElement = styled.tr`
+  background-color: ${(props) => (props.primary ? "#b9d9eb" : "white")};
+
+  :hover {
+    background-color: ${(props) => (props.primary ? "#f08080" : "aliceblue")};
+    cursor: pointer;
+  }
+`;
+
+const TableDataCell = styled.td`
+  padding: 0.5rem;
+`;
 
 export const Table = (props) => {
   const {
@@ -18,8 +50,8 @@ export const Table = (props) => {
 
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
-      <th className="table__column-header" key={index}>
-        <div className="table__column-header--horizontal-group">
+      <TableColumnHeader key={index}>
+        <div className="horizontal-container">
           <h4>{columnObject.name}</h4>
           <SortButton
             onClick={() => {
@@ -33,7 +65,7 @@ export const Table = (props) => {
             )}
           </SortButton>
         </div>
-      </th>
+      </TableColumnHeader>
     );
   });
 
@@ -58,12 +90,12 @@ export const Table = (props) => {
 
   return (
     <div className="horizontal-container">
-      <table className="table">
-        <thead className="table__row-header">
+      <TableComponent>
+        <TableRowHeader>
           <tr>{tableColumns}</tr>
-        </thead>
+        </TableRowHeader>
         <tbody>{tableBody}</tbody>
-      </table>
+      </TableComponent>
       <TableEditButton onClick={() => displaySettings()}>
         <span className="material-icons">playlist_add</span>
       </TableEditButton>
@@ -72,22 +104,21 @@ export const Table = (props) => {
 };
 
 const TableRow = ({ record, onClick, isRecordSelected, cellValues }) => {
-  let rowClass = "table__row";
   const tableCells = cellValues.map((valueName, index) => {
-    return (
-      <td className="table__data-cell" key={index}>
-        {record[valueName] || ""}
-      </td>
-    );
+    return <TableDataCell key={index}>{record[valueName] || ""}</TableDataCell>;
   });
 
   if (isRecordSelected) {
-    rowClass = "table__row--selected";
+    return (
+      <TableRowElement primary key={record.id} onClick={onClick}>
+        {tableCells}
+      </TableRowElement>
+    );
+  } else {
+    return (
+      <TableRowElement key={record.id} onClick={onClick}>
+        {tableCells}
+      </TableRowElement>
+    );
   }
-
-  return (
-    <tr key={record.id} onClick={onClick} className={rowClass}>
-      {tableCells}
-    </tr>
-  );
 };

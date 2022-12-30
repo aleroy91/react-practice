@@ -28,6 +28,19 @@ export const MultiInputContainer = styled(FlexContainer)`
   border-bottom: 1px white solid;
 `;
 
+// Background Elements
+
+export const ModalBackground = styled.div`
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  opacity: 0.5;
+  background-color: grey;
+`;
+
 // Header Elements
 
 export const BoldHeader = styled.header`
