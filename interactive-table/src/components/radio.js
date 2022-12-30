@@ -1,5 +1,5 @@
 import React from "react";
-import { MultiInputContainer } from "./styled-components";
+import { MultiInputContainer, RadioButton } from "./styled-components";
 
 export const Radio = (props) => {
   const {
@@ -7,15 +7,14 @@ export const Radio = (props) => {
     inputNamesArray,
     inputValuesArray,
     updateRadioButtonArray,
-    inputStyle,
   } = {
     ...props,
   };
 
   const radioButtonControl = inputNamesArray.map((inputName, index) => {
     return (
-      <div className={inputStyle ? inputStyle : "radio"} key={index + 1}>
-        <input
+      <div key={index + 1}>
+        <RadioButton
           type="radio"
           checked={inputValuesArray[index]}
           onChange={() => {

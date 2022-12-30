@@ -10,7 +10,6 @@ export const Form = (props) => {
     const inputValue = inputObject.value;
     const inputMinimum = inputObject.minimum;
     const inputMaximum = inputObject.maximum;
-    const inputStyle = inputObject.inputStyle;
 
     return (
       <ControlledInput
@@ -22,7 +21,6 @@ export const Form = (props) => {
         inputMin={inputMinimum}
         inputMax={inputMaximum}
         onInputChange={onInputChange}
-        inputStyle={inputStyle}
       />
     );
   });

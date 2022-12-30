@@ -176,3 +176,8 @@ export const MultiInput = styled.input`
     cursor: pointer;
   }
 `;
+
+export const RadioButton = styled.input`
+  color: white;
+  font-weight: 600;
+`;

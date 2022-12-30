@@ -12,7 +12,6 @@ export const ControlledInput = (props) => {
     inputMin,
     inputMax,
     onInputChange,
-    inputStyle,
   } = {
     ...props,
   };
@@ -34,7 +33,6 @@ export const ControlledInput = (props) => {
             inputNamesArray={inputOptionsArray}
             inputValuesArray={inputValue}
             onInputChange={onInputChange}
-            inputStyle={inputStyle}
           />
         );
       case "select":

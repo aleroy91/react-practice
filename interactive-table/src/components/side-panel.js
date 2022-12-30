@@ -67,7 +67,6 @@ export const SidePanel = (props) => {
       inputNamesArray={positionsArray}
       inputValuesArray={radioChecked}
       updateRadioButtonArray={updateRadioButtonArray}
-      inputStyle={""}
     />
   );
 
