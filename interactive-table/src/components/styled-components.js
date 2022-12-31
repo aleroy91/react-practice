@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 // Layout Elements
 
+export const BasicContainer = styled.div`
+  margin: auto;
+`;
+
 export const FlexContainer = styled.div`
   display: flex;
 `;

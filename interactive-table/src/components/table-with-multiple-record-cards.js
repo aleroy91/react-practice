@@ -4,6 +4,7 @@ import { Table } from "./table";
 import { Modal } from "./modal";
 import { Toolbar } from "./toolbar";
 import { SidePanel } from "./side-panel";
+import { BasicContainer } from "./styled-components";
 
 export const TableWithMultipleRecordCards = ({
   data,
@@ -251,7 +252,7 @@ export const TableWithMultipleRecordCards = ({
   };
 
   return (
-    <div className="container">
+    <BasicContainer>
       <Toolbar
         filterStringData={filterStringData}
         toggleSidePanel={toggleSidePanel}
@@ -286,6 +287,6 @@ export const TableWithMultipleRecordCards = ({
         selectedTableColumns={selectedTableColumns}
         availableTableColumns={availableTableColumns}
       />
-    </div>
+    </BasicContainer>
   );
 };

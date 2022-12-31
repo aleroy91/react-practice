@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { ExitButton, ActionButton, SubmitButton } from "./styled-components";
+import {
+  ExitButton,
+  ActionButton,
+  SubmitButton,
+  BasicContainer,
+} from "./styled-components";
 import styled from "styled-components";
 
 const TextArea = styled.textarea`
@@ -72,7 +77,7 @@ export const RecordCard = (props) => {
     updateRecordInfo(recordIndex, updatedNotes);
 
   return (
-    <div className="container">
+    <BasicContainer>
       <RecordCardDiv>
         <ExitButton onClick={() => displayRecordCard(recordIndex)}>
           <span className="material-icons">close</span>
@@ -97,7 +102,7 @@ export const RecordCard = (props) => {
           <Notes notesText={notes} onNotesChange={handleNoteschange} />
         </div>
       </RecordCardDiv>
-    </div>
+    </BasicContainer>
   );
 };
 
