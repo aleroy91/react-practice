@@ -1,7 +1,3 @@
-.container {
-  margin: auto;
-}
-
 .horizontal-container {
   display: flex;
   flex-direction: row;
