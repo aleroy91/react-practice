@@ -1,12 +1,15 @@
 import React from "react";
-import { SortButton, TableEditButton } from "./styled-components";
+import {
+  SortButton,
+  TableEditButton,
+  HorizontalContainer,
+} from "./styled-components";
 import styled from "styled-components";
 
 const TableComponent = styled.table`
   margin: 20px auto auto;
   border: 1px lightgrey solid;
   border-spacing: 0;
-  border-radius: 0 0 10px 10px;
 `;
 
 const TableColumnHeader = styled.th`
@@ -51,7 +54,7 @@ export const Table = (props) => {
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
       <TableColumnHeader key={index}>
-        <div className="horizontal-container">
+        <HorizontalContainer>
           <h4>{columnObject.name}</h4>
           <SortButton
             onClick={() => {
@@ -64,7 +67,7 @@ export const Table = (props) => {
               <span className="material-icons">arrow_downward</span>
             )}
           </SortButton>
-        </div>
+        </HorizontalContainer>
       </TableColumnHeader>
     );
   });
@@ -89,7 +92,7 @@ export const Table = (props) => {
   });
 
   return (
-    <div className="horizontal-container">
+    <HorizontalContainer>
       <TableComponent>
         <TableRowHeader>
           <tr>{tableColumns}</tr>
@@ -99,7 +102,7 @@ export const Table = (props) => {
       <TableEditButton onClick={() => displaySettings()}>
         <span className="material-icons">playlist_add</span>
       </TableEditButton>
-    </div>
+    </HorizontalContainer>
   );
 };
 

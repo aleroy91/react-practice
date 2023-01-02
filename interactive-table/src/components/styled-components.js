@@ -10,6 +10,27 @@ export const FlexContainer = styled.div`
   display: flex;
 `;
 
+const ColumnContainer = styled(FlexContainer)`
+  flex-direction: column;
+`;
+
+export const HorizontalContainer = styled(FlexContainer)`
+  flex-direction: row;
+  width: fit-content;
+  align-items: center;
+  justify-items: center;
+  margin: auto;
+`;
+
+export const VerticalContainer = styled(ColumnContainer)`
+  text-align: center;
+  padding: 10px 20px;
+`;
+
+export const TextContainer = styled(ColumnContainer)`
+  text-align: left;
+`;
+
 export const NumberPickerButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;

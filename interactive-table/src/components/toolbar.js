@@ -1,6 +1,10 @@
 import React from "react";
 import { SearchBar } from "./search-bar";
-import { FilterButton } from "./styled-components";
+import {
+  FilterButton,
+  HorizontalContainer,
+  VerticalContainer,
+} from "./styled-components";
 import styled from "styled-components";
 
 const ToolbarDiv = styled.div`
@@ -25,19 +29,19 @@ export const Toolbar = (props) => {
   return (
     <ToolBarBottomSpacing>
       <ToolbarDiv>
-        <div className="horizontal-container">
-          <div className="vertical-container">
-            <div className="horizontal-container">
+        <HorizontalContainer>
+          <VerticalContainer>
+            <HorizontalContainer>
               <h1>Players Table</h1>
-            </div>
-            <div className="horizontal-container">
+            </HorizontalContainer>
+            <HorizontalContainer>
               <SearchBar filterStringData={filterStringData} />
               <FilterButton onClick={() => toggleSidePanel()}>
                 <span className="material-icons">tune</span>
               </FilterButton>
-            </div>
-          </div>
-        </div>
+            </HorizontalContainer>
+          </VerticalContainer>
+        </HorizontalContainer>
       </ToolbarDiv>
     </ToolBarBottomSpacing>
   );

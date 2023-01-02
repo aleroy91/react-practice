@@ -1,4 +1,5 @@
 import React from "react";
+import { HorizontalContainer } from "./styled-components";
 import styled from "styled-components";
 
 const SearchBarInput = styled.input`
@@ -19,7 +20,7 @@ export const SearchBar = (props) => {
   const { filterStringData } = { ...props };
 
   return (
-    <div className="horizontal-container">
+    <HorizontalContainer>
       <SearchBarInput
         placeholder="Filter Records"
         onChange={(event) => {
@@ -27,6 +28,6 @@ export const SearchBar = (props) => {
         }}
       />
       <span className="material-icons icon--search">search</span>
-    </div>
+    </HorizontalContainer>
   );
 };

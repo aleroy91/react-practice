@@ -4,8 +4,21 @@ import {
   ActionButton,
   SubmitButton,
   BasicContainer,
+  HorizontalContainer,
+  VerticalContainer,
+  TextContainer,
 } from "./styled-components";
 import styled from "styled-components";
+
+const ImageContainer = styled(BasicContainer)`
+  height: 250px;
+  width: 250px;
+`;
+
+const Image = styled.img`
+  max-height: 250px;
+  max-width: 250px;
+`;
 
 const TextArea = styled.textarea`
   border: 1px white solid;
@@ -52,7 +65,7 @@ export const RecordCardsArray = (props) => {
     )
   );
 
-  return <div className="horizontal-container">{recordCardsFromArray}</div>;
+  return <HorizontalContainer>{recordCardsFromArray}</HorizontalContainer>;
 };
 
 export const RecordCard = (props) => {
@@ -82,7 +95,7 @@ export const RecordCard = (props) => {
         <ExitButton onClick={() => displayRecordCard(recordIndex)}>
           <span className="material-icons">close</span>
         </ExitButton>
-        <div key={number} className="vertical-container">
+        <VerticalContainer key={number}>
           <h1>{name}</h1>
           <Avatar
             onMouseEnter={toggleGif}
@@ -93,14 +106,14 @@ export const RecordCard = (props) => {
             alt={name}
           />
           <h3>Statistics</h3>
-          <div className="text-container">
+          <TextContainer>
             <h4>Position: {position}</h4>
             <h4>Price: £{price}m</h4>
             <h4>Points: {points}</h4>
             <h4>Expected Points: {expected_points}</h4>
-          </div>
+          </TextContainer>
           <Notes notesText={notes} onNotesChange={handleNoteschange} />
-        </div>
+        </VerticalContainer>
       </RecordCardDiv>
     </BasicContainer>
   );
@@ -108,25 +121,16 @@ export const RecordCard = (props) => {
 
 const Avatar = (props) => {
   return (
-    <div
-      className="image-container"
+    <ImageContainer
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
       {props.isUserHovering ? (
-        <img
-          className="image-container__image"
-          src={props.gif}
-          alt={props.name}
-        />
+        <Image src={props.gif} alt={props.name} />
       ) : (
-        <img
-          className="image-container__image"
-          src={props.photo}
-          alt={props.name}
-        />
+        <Image src={props.photo} alt={props.name} />
       )}
-    </div>
+    </ImageContainer>
   );
 };
 
@@ -137,9 +141,9 @@ const Notes = ({ notesText, onNotesChange }) => {
   const [showSaveNotesButton, setShowSaveNotesButton] = useState(false);
 
   return (
-    <div className="vertical-container">
+    <VerticalContainer>
       {notes && displayNotesHideTextarea && (
-        <p className="text-container">{notes}</p>
+        <TextContainer as="p">{notes}</TextContainer>
       )}
       {!displayNotesHideTextarea && (
         <TextArea
@@ -152,7 +156,7 @@ const Notes = ({ notesText, onNotesChange }) => {
           }}
         />
       )}
-      <div className="horizontal-container">
+      <HorizontalContainer>
         {displayNotesHideTextarea && (
           <ActionButton onClick={() => setDisplayNotesHideTextarea(false)}>
             {notes ? "Edit" : "Add"} Notes
@@ -169,7 +173,7 @@ const Notes = ({ notesText, onNotesChange }) => {
             Save Changes
           </SubmitButton>
         )}
-      </div>
-    </div>
+      </HorizontalContainer>
+    </VerticalContainer>
   );
 };
