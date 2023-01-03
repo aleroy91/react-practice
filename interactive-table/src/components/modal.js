@@ -1,6 +1,17 @@
 import { Form } from "./form";
-import { ExitButton, ModalBackground } from "./styled-components";
+import { ExitButton } from "./styled-components";
 import styled from "styled-components";
+
+const ModalBackground = styled.div`
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  opacity: 0.5;
+  background-color: grey;
+`;
 
 const ModalDiv = styled.div`
   z-index: 9999;

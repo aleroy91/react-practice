@@ -6,7 +6,7 @@ import {
   BasicContainer,
   HorizontalContainer,
   VerticalContainer,
-  TextContainer,
+  ColumnContainer,
 } from "./styled-components";
 import styled from "styled-components";
 
@@ -28,6 +28,10 @@ const TextArea = styled.textarea`
   :hover {
     border: 1px lightgrey solid;
   }
+`;
+
+const TextContainer = styled(ColumnContainer)`
+  text-align: left;
 `;
 
 const RecordCardDiv = styled.div`

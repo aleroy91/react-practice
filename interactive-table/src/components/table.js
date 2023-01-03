@@ -1,10 +1,21 @@
 import React from "react";
-import {
-  SortButton,
-  TableEditButton,
-  HorizontalContainer,
-} from "./styled-components";
+import { FitContentButton, HorizontalContainer } from "./styled-components";
 import styled from "styled-components";
+
+const SortButton = styled(FitContentButton)`
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  background-color: #1c849b;
+`;
+
+const TableEditButton = styled(FitContentButton)`
+  border-radius: 0 5px 5px 0;
+  padding: 15px 10px 16px;
+  margin: 21px auto auto 5px;
+  color: white;
+  background-color: #1c849b;
+`;
 
 const TableComponent = styled.table`
   margin: 20px auto auto;

@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchBar } from "./search-bar";
 import {
-  FilterButton,
+  FitContentButton,
   HorizontalContainer,
   VerticalContainer,
 } from "./styled-components";
@@ -21,6 +21,14 @@ const ToolbarDiv = styled.div`
 
 const ToolBarBottomSpacing = styled.div`
   margin-bottom: 200px;
+`;
+
+const FilterButton = styled(FitContentButton)`
+  border-radius: 5px;
+  padding: 6px 10px 7px;
+  margin: 5px 5px 5px 15px;
+  color: #1c849b;
+  background-color: white;
 `;
 
 export const Toolbar = (props) => {

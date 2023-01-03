@@ -5,10 +5,14 @@ import { NumberPicker } from "./number-picker";
 import {
   ExitButton,
   ActionButton,
-  CenteredHeader,
   MultiInputContainer,
 } from "./styled-components";
 import styled from "styled-components";
+
+const CenteredHeader = styled.header`
+  font-weight: 600;
+  margin: 5px auto;
+`;
 
 const SidePanelDiv = styled.div`
   position: fixed;

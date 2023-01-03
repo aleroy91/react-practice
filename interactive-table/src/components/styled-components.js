@@ -10,7 +10,7 @@ export const FlexContainer = styled.div`
   display: flex;
 `;
 
-const ColumnContainer = styled(FlexContainer)`
+export const ColumnContainer = styled(FlexContainer)`
   flex-direction: column;
 `;
 
@@ -27,21 +27,6 @@ export const VerticalContainer = styled(ColumnContainer)`
   padding: 10px 20px;
 `;
 
-export const TextContainer = styled(ColumnContainer)`
-  text-align: left;
-`;
-
-export const NumberPickerButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
-
-  ${FlexContainer} & {
-    margin: auto -18px auto;
-  }
-`;
-
 export const MultiInputContainer = styled(FlexContainer)`
   color: white;
   font-weight: 600;
@@ -53,94 +38,15 @@ export const MultiInputContainer = styled(FlexContainer)`
   border-bottom: 1px white solid;
 `;
 
-// Background Elements
-
-export const ModalBackground = styled.div`
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vw;
-  opacity: 0.5;
-  background-color: grey;
-`;
-
-// Header Elements
-
-export const BoldHeader = styled.header`
-  font-weight: 600;
-`;
-
-export const CenteredHeader = styled(BoldHeader)`
-  margin: 5px auto;
-`;
-
 // Button Elements
 
-export const Button = styled.button`
+const Button = styled.button`
   border: 1px;
 
   &:hover {
     cursor: pointer;
     opacity: 0.7;
   }
-`;
-
-export const NumberPickerButton = styled.button`
-  background-color: white;
-  border: 1px solid transparent;
-
-  :hover {
-    background-color: #1c849b;
-    cursor: pointer;
-  }
-
-  ${(props) => {
-    switch (props.$direction) {
-      case "down":
-        return `
-          :hover {
-            border-radius: 0 0 3px 0;
-          }    
-        `;
-      default:
-        return `
-          :hover {
-            border-radius: 0 3px 0 0;
-          }
-        `;
-    }
-  }}
-`;
-
-export const NumberPickerArrow = styled.div`
-  width: 0;
-  height: 0;
-  border-style: solid;
-
-  ${(props) => {
-    switch (props.$direction) {
-      case "down":
-        return `
-          border-width: 6px 3px 0 3px;
-          border-color: #1c849b transparent transparent transparent;
-
-          ${NumberPickerButton}:hover && {
-            border-color: white transparent transparent transparent;
-          }
-        `;
-      default:
-        return `
-          border-width: 0 3px 6px 3px;
-          border-color: transparent transparent #1c849b transparent;
-
-          ${NumberPickerButton}:hover && {
-            border-color: transparent transparent white transparent;
-          }
-        `;
-    }
-  }}
 `;
 
 export const FlexButton = styled(Button)`
@@ -175,29 +81,6 @@ export const SubmitButton = styled(FitContentButton)`
   margin: 5px auto;
   background-color: darkgreen;
   color: white;
-`;
-
-export const FilterButton = styled(FitContentButton)`
-  border-radius: 5px;
-  padding: 6px 10px 7px;
-  margin: 5px 5px 5px 15px;
-  color: #1c849b;
-  background-color: white;
-`;
-
-export const SortButton = styled(FitContentButton)`
-  border-radius: 5px;
-  padding: 5px 10px;
-  color: white;
-  background-color: #1c849b;
-`;
-
-export const TableEditButton = styled(FitContentButton)`
-  border-radius: 0 5px 5px 0;
-  padding: 15px 10px 16px;
-  margin: 21px auto auto 5px;
-  color: white;
-  background-color: #1c849b;
 `;
 
 // Input Elements
