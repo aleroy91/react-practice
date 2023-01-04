@@ -8,6 +8,7 @@ import {
   MultiInputContainer,
 } from "./styled-components";
 import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -139,7 +140,7 @@ export const SidePanel = (props) => {
             {clearFilterButton}
           </SidePanelContentDiv>
           <ExitButton onClick={() => toggleSidePanel()}>
-            <span className="material-icons">close</span>
+            <CloseIcon />
           </ExitButton>
         </SidePanelDiv>
       )}

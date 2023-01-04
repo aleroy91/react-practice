@@ -9,6 +9,7 @@ import {
   ColumnContainer,
 } from "./styled-components";
 import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ImageContainer = styled(BasicContainer)`
   height: 250px;
@@ -97,7 +98,7 @@ export const RecordCard = (props) => {
     <BasicContainer>
       <RecordCardDiv>
         <ExitButton onClick={() => displayRecordCard(recordIndex)}>
-          <span className="material-icons">close</span>
+          <CloseIcon />
         </ExitButton>
         <VerticalContainer key={number}>
           <h1>{name}</h1>

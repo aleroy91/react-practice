@@ -1,6 +1,7 @@
 import { Form } from "./form";
 import { ExitButton } from "./styled-components";
 import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ModalBackground = styled.div`
   z-index: 999;
@@ -56,7 +57,7 @@ export const Modal = (props) => {
           <ModalBackground />
           <ModalDiv>
             <ExitButton onClick={() => displaySettings()}>
-              <span className="material-icons">close</span>
+              <CloseIcon />
             </ExitButton>
             <Form
               name="Select Columns"

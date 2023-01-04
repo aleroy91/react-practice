@@ -6,6 +6,7 @@ import {
   VerticalContainer,
 } from "./styled-components";
 import styled from "styled-components";
+import TuneTwoToneIcon from "@mui/icons-material/TuneTwoTone";
 
 const ToolbarDiv = styled.div`
   text-align: start;
@@ -45,7 +46,7 @@ export const Toolbar = (props) => {
             <HorizontalContainer>
               <SearchBar filterStringData={filterStringData} />
               <FilterButton onClick={() => toggleSidePanel()}>
-                <span className="material-icons">tune</span>
+                <TuneTwoToneIcon />
               </FilterButton>
             </HorizontalContainer>
           </VerticalContainer>

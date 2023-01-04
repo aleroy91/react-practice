@@ -1,6 +1,9 @@
 import React from "react";
 import { FitContentButton, HorizontalContainer } from "./styled-components";
 import styled from "styled-components";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
 const SortButton = styled(FitContentButton)`
   border-radius: 5px;
@@ -72,11 +75,7 @@ export const Table = (props) => {
               sortData(columnObject.property, index, !sortOrder[index]);
             }}
           >
-            {sortOrder[index] ? (
-              <span className="material-icons">arrow_upward</span>
-            ) : (
-              <span className="material-icons">arrow_downward</span>
-            )}
+            {sortOrder[index] ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
           </SortButton>
         </HorizontalContainer>
       </TableColumnHeader>
@@ -111,7 +110,7 @@ export const Table = (props) => {
         <tbody>{tableBody}</tbody>
       </TableComponent>
       <TableEditButton onClick={() => displaySettings()}>
-        <span className="material-icons">playlist_add</span>
+        <PlaylistAddIcon />
       </TableEditButton>
     </HorizontalContainer>
   );
