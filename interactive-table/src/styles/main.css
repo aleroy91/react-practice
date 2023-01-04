@@ -19,15 +19,6 @@
   font-weight: 400;
 }
 
-@font-face {
-  font-family: "Material Icons";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Material Icons"), local("MaterialIcons-Regular"),
-    url("../assets/material-design-icons-4.0.0/font/MaterialIcons-Regular.ttf")
-      format("truetype");
-}
-
 body {
   font-family: "Roboto-Light", sans-serif;
   font-size: 1em;
@@ -55,30 +46,4 @@ h4 {
   font-family: "Roboto-Regular", sans-serif;
   font-size: 1em;
   margin: 10px;
-}
-
-.material-icons {
-  font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: "liga";
 }
