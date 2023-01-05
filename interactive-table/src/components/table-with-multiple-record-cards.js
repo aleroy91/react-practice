@@ -5,6 +5,7 @@ import { Modal } from "./modal";
 import { Toolbar } from "./toolbar";
 import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
+import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 
 export const TableWithMultipleRecordCards = ({
   data,
@@ -252,41 +253,43 @@ export const TableWithMultipleRecordCards = ({
   };
 
   return (
-    <BasicContainer>
-      <Toolbar
-        filterStringData={filterStringData}
-        toggleSidePanel={toggleSidePanel}
-      />
-      <RecordCardsArray
-        selectedRecordsArray={selectedRecordsArray}
-        unfilteredRecordData={data}
-        updateRecordInfo={updateRecordInfo}
-        displayRecordCard={displayRecordCard}
-      />
-      <Modal
-        isDisplayed={isDisplayed}
-        selectedInputs={selectedColumns}
-        availableInputs={availableTableColumns}
-        updateSelectedInputs={updateSelectedInputs}
-        displaySettings={displaySettings}
-      />
-      <Table
-        selectedRecordsArray={selectedRecordsArray}
-        records={recordData}
-        displayRecordCard={displayRecordCard}
-        displaySettings={displaySettings}
-        selectedTableColumns={selectedTableColumns}
-        sortData={sortData}
-        sortOrder={sortOrder}
-      />
-      <SidePanel
-        showSidePanel={showSidePanel}
-        toggleSidePanel={toggleSidePanel}
-        filterStringData={filterStringData}
-        filterNumericData={filterNumericData}
-        selectedTableColumns={selectedTableColumns}
-        availableTableColumns={availableTableColumns}
-      />
-    </BasicContainer>
+    <DisplaySidePanelProvider>
+      <BasicContainer>
+        <Toolbar
+          filterStringData={filterStringData}
+          toggleSidePanel={toggleSidePanel}
+        />
+        <RecordCardsArray
+          selectedRecordsArray={selectedRecordsArray}
+          unfilteredRecordData={data}
+          updateRecordInfo={updateRecordInfo}
+          displayRecordCard={displayRecordCard}
+        />
+        <Modal
+          isDisplayed={isDisplayed}
+          selectedInputs={selectedColumns}
+          availableInputs={availableTableColumns}
+          updateSelectedInputs={updateSelectedInputs}
+          displaySettings={displaySettings}
+        />
+        <Table
+          selectedRecordsArray={selectedRecordsArray}
+          records={recordData}
+          displayRecordCard={displayRecordCard}
+          displaySettings={displaySettings}
+          selectedTableColumns={selectedTableColumns}
+          sortData={sortData}
+          sortOrder={sortOrder}
+        />
+        <SidePanel
+          showSidePanel={showSidePanel}
+          toggleSidePanel={toggleSidePanel}
+          filterStringData={filterStringData}
+          filterNumericData={filterNumericData}
+          selectedTableColumns={selectedTableColumns}
+          availableTableColumns={availableTableColumns}
+        />
+      </BasicContainer>
+    </DisplaySidePanelProvider>
   );
 };

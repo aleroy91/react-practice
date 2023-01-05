@@ -9,6 +9,7 @@ import {
 } from "./styled-components";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSidePanelDisplay } from "../contexts/sidePanelContext";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -50,6 +51,7 @@ export const SidePanel = (props) => {
     selectedTableColumns,
     availableTableColumns,
   } = { ...props };
+
   const defaultRadioSelection = [false, false, false, false];
   const [numberPickerInput, setNumberPickerInput] = useState(4);
   const [radioChecked, setRadioChecked] = useState(defaultRadioSelection);
@@ -129,9 +131,11 @@ export const SidePanel = (props) => {
     </ActionButton>
   );
 
+  const displaySidePanel = useSidePanelDisplay();
+
   return (
     <div>
-      {showSidePanel && (
+      {displaySidePanel && (
         <SidePanelDiv>
           <SidePanelContentDiv>
             <SidePanelHeader>Filter Table Data</SidePanelHeader>
