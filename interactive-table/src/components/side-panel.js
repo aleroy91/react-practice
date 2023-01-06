@@ -9,7 +9,10 @@ import {
 } from "./styled-components";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
-import { useSidePanelDisplay } from "../contexts/sidePanelContext";
+import {
+  useSidePanelDisplay,
+  useSidePanelDisplayUpdate,
+} from "../contexts/sidePanelContext";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -44,8 +47,6 @@ const SidePanelContentDiv = styled.div`
 
 export const SidePanel = (props) => {
   const {
-    showSidePanel,
-    toggleSidePanel,
     filterStringData,
     filterNumericData,
     selectedTableColumns,
@@ -132,6 +133,7 @@ export const SidePanel = (props) => {
   );
 
   const displaySidePanel = useSidePanelDisplay();
+  const toggleSidePanel = useSidePanelDisplayUpdate();
 
   return (
     <div>
@@ -143,7 +145,7 @@ export const SidePanel = (props) => {
             {higherOrLower}
             {clearFilterButton}
           </SidePanelContentDiv>
-          <ExitButton onClick={() => toggleSidePanel()}>
+          <ExitButton onClick={toggleSidePanel}>
             <CloseIcon />
           </ExitButton>
         </SidePanelDiv>

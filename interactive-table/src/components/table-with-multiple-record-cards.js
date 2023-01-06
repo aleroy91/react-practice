@@ -12,7 +12,6 @@ export const TableWithMultipleRecordCards = ({
   defaultTableSettings,
 }) => {
   const [isDisplayed, setIsDisplayed] = useState(false);
-  const [showSidePanel, setShowSidePanel] = useState(false);
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
   const [selectedTableColumns, setSelectedTableColumns] = useState(
@@ -137,10 +136,6 @@ export const TableWithMultipleRecordCards = ({
     setIsDisplayed(!isDisplayed);
   };
 
-  const toggleSidePanel = () => {
-    setShowSidePanel(!showSidePanel);
-  };
-
   const filterNumericData = (
     recordAttribute,
     value,
@@ -255,10 +250,7 @@ export const TableWithMultipleRecordCards = ({
   return (
     <DisplaySidePanelProvider>
       <BasicContainer>
-        <Toolbar
-          filterStringData={filterStringData}
-          toggleSidePanel={toggleSidePanel}
-        />
+        <Toolbar filterStringData={filterStringData} />
         <RecordCardsArray
           selectedRecordsArray={selectedRecordsArray}
           unfilteredRecordData={data}
@@ -282,8 +274,6 @@ export const TableWithMultipleRecordCards = ({
           sortOrder={sortOrder}
         />
         <SidePanel
-          showSidePanel={showSidePanel}
-          toggleSidePanel={toggleSidePanel}
           filterStringData={filterStringData}
           filterNumericData={filterNumericData}
           selectedTableColumns={selectedTableColumns}
