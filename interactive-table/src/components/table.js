@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import { useModalUpdate } from "../contexts/modalContext";
 
 const SortButton = styled(FitContentButton)`
   border-radius: 5px;
@@ -55,7 +56,6 @@ export const Table = (props) => {
     selectedRecordsArray,
     records,
     displayRecordCard,
-    displaySettings,
     selectedTableColumns,
     sortData,
     sortOrder,
@@ -101,6 +101,8 @@ export const Table = (props) => {
     );
   });
 
+  const toggleModal = useModalUpdate();
+
   return (
     <HorizontalContainer>
       <TableComponent>
@@ -109,7 +111,7 @@ export const Table = (props) => {
         </TableRowHeader>
         <tbody>{tableBody}</tbody>
       </TableComponent>
-      <TableEditButton onClick={() => displaySettings()}>
+      <TableEditButton onClick={toggleModal}>
         <PlaylistAddIcon />
       </TableEditButton>
     </HorizontalContainer>

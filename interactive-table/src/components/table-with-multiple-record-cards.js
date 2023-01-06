@@ -6,12 +6,12 @@ import { Toolbar } from "./toolbar";
 import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
+import { DisplayModalProvider } from "../contexts/modalContext";
 
 export const TableWithMultipleRecordCards = ({
   data,
   defaultTableSettings,
 }) => {
-  const [isDisplayed, setIsDisplayed] = useState(false);
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
   const [selectedTableColumns, setSelectedTableColumns] = useState(
@@ -132,10 +132,6 @@ export const TableWithMultipleRecordCards = ({
     setSelectedRecordsArray([...newSelectedRecordsArray]);
   };
 
-  const displaySettings = () => {
-    setIsDisplayed(!isDisplayed);
-  };
-
   const filterNumericData = (
     recordAttribute,
     value,
@@ -249,37 +245,36 @@ export const TableWithMultipleRecordCards = ({
 
   return (
     <DisplaySidePanelProvider>
-      <BasicContainer>
-        <Toolbar filterStringData={filterStringData} />
-        <RecordCardsArray
-          selectedRecordsArray={selectedRecordsArray}
-          unfilteredRecordData={data}
-          updateRecordInfo={updateRecordInfo}
-          displayRecordCard={displayRecordCard}
-        />
-        <Modal
-          isDisplayed={isDisplayed}
-          selectedInputs={selectedColumns}
-          availableInputs={availableTableColumns}
-          updateSelectedInputs={updateSelectedInputs}
-          displaySettings={displaySettings}
-        />
-        <Table
-          selectedRecordsArray={selectedRecordsArray}
-          records={recordData}
-          displayRecordCard={displayRecordCard}
-          displaySettings={displaySettings}
-          selectedTableColumns={selectedTableColumns}
-          sortData={sortData}
-          sortOrder={sortOrder}
-        />
-        <SidePanel
-          filterStringData={filterStringData}
-          filterNumericData={filterNumericData}
-          selectedTableColumns={selectedTableColumns}
-          availableTableColumns={availableTableColumns}
-        />
-      </BasicContainer>
+      <DisplayModalProvider>
+        <BasicContainer>
+          <Toolbar filterStringData={filterStringData} />
+          <RecordCardsArray
+            selectedRecordsArray={selectedRecordsArray}
+            unfilteredRecordData={data}
+            updateRecordInfo={updateRecordInfo}
+            displayRecordCard={displayRecordCard}
+          />
+          <Modal
+            selectedInputs={selectedColumns}
+            availableInputs={availableTableColumns}
+            updateSelectedInputs={updateSelectedInputs}
+          />
+          <Table
+            selectedRecordsArray={selectedRecordsArray}
+            records={recordData}
+            displayRecordCard={displayRecordCard}
+            selectedTableColumns={selectedTableColumns}
+            sortData={sortData}
+            sortOrder={sortOrder}
+          />
+          <SidePanel
+            filterStringData={filterStringData}
+            filterNumericData={filterNumericData}
+            selectedTableColumns={selectedTableColumns}
+            availableTableColumns={availableTableColumns}
+          />
+        </BasicContainer>
+      </DisplayModalProvider>
     </DisplaySidePanelProvider>
   );
 };

@@ -2,6 +2,7 @@ import { Form } from "./form";
 import { ExitButton } from "./styled-components";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
+import { useModal, useModalUpdate } from "../contexts/modalContext";
 
 const ModalBackground = styled.div`
   z-index: 999;
@@ -28,13 +29,7 @@ const ModalDiv = styled.div`
 `;
 
 export const Modal = (props) => {
-  const {
-    isDisplayed,
-    selectedInputs,
-    availableInputs,
-    updateSelectedInputs,
-    displaySettings,
-  } = {
+  const { selectedInputs, availableInputs, updateSelectedInputs } = {
     ...props,
   };
 
@@ -49,14 +44,16 @@ export const Modal = (props) => {
   };
 
   let columnSettingsArray = buildModalFormArray(availableInputs);
+  const displayModal = useModal();
+  const toggleModal = useModalUpdate();
 
   return (
     <div>
-      {isDisplayed && (
+      {displayModal && (
         <div>
           <ModalBackground />
           <ModalDiv>
-            <ExitButton onClick={() => displaySettings()}>
+            <ExitButton onClick={toggleModal}>
               <CloseIcon />
             </ExitButton>
             <Form
