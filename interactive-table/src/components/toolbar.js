@@ -7,7 +7,7 @@ import {
 } from "./styled-components";
 import styled from "styled-components";
 import TuneTwoToneIcon from "@mui/icons-material/TuneTwoTone";
-import { useSidePanelDisplayUpdate } from "../contexts/sidePanelContext";
+import { useSidePanelUpdate } from "../contexts/sidePanelContext";
 
 const ToolbarDiv = styled.div`
   text-align: start;
@@ -35,7 +35,7 @@ const FilterButton = styled(FitContentButton)`
 
 export const Toolbar = (props) => {
   const { filterStringData } = { ...props };
-  const toggleSidePanel = useSidePanelDisplayUpdate();
+  const toggleSidePanel = useSidePanelUpdate();
 
   return (
     <ToolBarBottomSpacing>

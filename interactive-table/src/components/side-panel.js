@@ -9,10 +9,7 @@ import {
 } from "./styled-components";
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  useSidePanelDisplay,
-  useSidePanelDisplayUpdate,
-} from "../contexts/sidePanelContext";
+import { useSidePanel, useSidePanelUpdate } from "../contexts/sidePanelContext";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -132,8 +129,8 @@ export const SidePanel = (props) => {
     </ActionButton>
   );
 
-  const displaySidePanel = useSidePanelDisplay();
-  const toggleSidePanel = useSidePanelDisplayUpdate();
+  const displaySidePanel = useSidePanel();
+  const toggleSidePanel = useSidePanelUpdate();
 
   return (
     <div>

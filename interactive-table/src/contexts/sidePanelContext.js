@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 
-const SidePanelDisplayContext = React.createContext();
-const SidePanelUpdateDisplayContext = React.createContext();
+const SidePanelContext = React.createContext();
+const SidePanelUpdateContext = React.createContext();
 
-export function useSidePanelDisplay() {
-  return useContext(SidePanelDisplayContext);
+export function useSidePanel() {
+  return useContext(SidePanelContext);
 }
 
-export function useSidePanelDisplayUpdate() {
-  return useContext(SidePanelUpdateDisplayContext);
+export function useSidePanelUpdate() {
+  return useContext(SidePanelUpdateContext);
 }
 
 export function DisplaySidePanelProvider({ children }) {
@@ -19,10 +19,10 @@ export function DisplaySidePanelProvider({ children }) {
   };
 
   return (
-    <SidePanelDisplayContext.Provider value={showSidePanel}>
-      <SidePanelUpdateDisplayContext.Provider value={toggleSidePanel}>
+    <SidePanelContext.Provider value={showSidePanel}>
+      <SidePanelUpdateContext.Provider value={toggleSidePanel}>
         {children}
-      </SidePanelUpdateDisplayContext.Provider>
-    </SidePanelDisplayContext.Provider>
+      </SidePanelUpdateContext.Provider>
+    </SidePanelContext.Provider>
   );
 }
