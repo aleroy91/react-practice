@@ -60,6 +60,7 @@ export const Table = (props) => {
     sortData,
     sortOrder,
   } = { ...props };
+  const toggleModal = useModalUpdate();
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
@@ -100,8 +101,6 @@ export const Table = (props) => {
       />
     );
   });
-
-  const toggleModal = useModalUpdate();
 
   return (
     <HorizontalContainer>

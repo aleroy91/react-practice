@@ -49,13 +49,19 @@ export const SidePanel = (props) => {
     selectedTableColumns,
     availableTableColumns,
   } = { ...props };
+  const displaySidePanel = useSidePanel();
+  const toggleSidePanel = useSidePanelUpdate();
 
-  const defaultRadioSelection = [false, false, false, false];
   const [numberPickerInput, setNumberPickerInput] = useState(4);
   const [radioChecked, setRadioChecked] = useState(defaultRadioSelection);
   const [columnToFilter, setColumnToFilter] = useState(null);
   const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(1);
+
+  const defaultRadioSelection = [false, false, false, false];
   const positionsArray = ["Goalkeeper", "Defence", "Midfield", "Forward"];
+  const selectedNumericTableColumnsArray = [];
+  const selectedTableColumnsTypes = [];
+
   const updateRadioButtonArray = (i) => {
     const newRadioButtonArrayValues = radioChecked.map((element, index) =>
       i === index ? true : false
@@ -63,17 +69,19 @@ export const SidePanel = (props) => {
     setRadioChecked(newRadioButtonArrayValues);
     filterStringData(positionsArray[i], true);
   };
+
   const updateIsGreaterOrEqual = (inputValue) =>
     setIsGreaterOrEqual(Number.parseInt(inputValue));
+
   const updateNumericData = (inputValue) => {
     filterNumericData(columnToFilter, inputValue, isGreaterOrEqual, false);
     setNumberPickerInput(inputValue);
   };
+
   const selectedTableColumnsArray = selectedTableColumns.map(
     (property) => property.name
   );
-  const selectedNumericTableColumnsArray = [];
-  const selectedTableColumnsTypes = [];
+
   selectedTableColumnsArray.forEach((columnName) => {
     availableTableColumns.forEach((availableColumn) => {
       if (availableColumn.name === columnName) {
@@ -87,6 +95,7 @@ export const SidePanel = (props) => {
       }
     });
   });
+
   const clearFilters = () => {
     filterStringData("");
     setRadioChecked(defaultRadioSelection);
@@ -123,14 +132,12 @@ export const SidePanel = (props) => {
       />
     </MultiInputContainer>
   );
+
   const clearFilterButton = (
     <ActionButton primary onClick={() => clearFilters()}>
       <CenteredHeader>Clear Filter</CenteredHeader>
     </ActionButton>
   );
-
-  const displaySidePanel = useSidePanel();
-  const toggleSidePanel = useSidePanelUpdate();
 
   return (
     <div>

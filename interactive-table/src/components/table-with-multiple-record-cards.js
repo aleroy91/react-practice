@@ -20,9 +20,9 @@ export const TableWithMultipleRecordCards = ({
   const [sortOrder, setSortOrder] = useState(
     selectedTableColumns.map(() => false)
   );
-
   let availableTableColumns = defaultTableSettings.defaultColumns;
   let selectedColumns = selectedTableColumns.map((input) => input.name);
+
   let setCharAt = (stringToModify, index, characterToModify) => {
     if (index > stringToModify.length - 1) {
       return stringToModify;
