@@ -53,11 +53,11 @@ export const SidePanel = (props) => {
   const toggleSidePanel = useSidePanelUpdate();
 
   const [numberPickerInput, setNumberPickerInput] = useState(4);
+  const defaultRadioSelection = [false, false, false, false];
   const [radioChecked, setRadioChecked] = useState(defaultRadioSelection);
   const [columnToFilter, setColumnToFilter] = useState(null);
   const [isGreaterOrEqual, setIsGreaterOrEqual] = useState(1);
 
-  const defaultRadioSelection = [false, false, false, false];
   const positionsArray = ["Goalkeeper", "Defence", "Midfield", "Forward"];
   const selectedNumericTableColumnsArray = [];
   const selectedTableColumnsTypes = [];
