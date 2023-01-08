@@ -78,18 +78,14 @@ export const SidePanel = (props) => {
     setNumberPickerInput(inputValue);
   };
 
-  const selectedTableColumnsArray = selectedTableColumns.map(
-    (property) => property.name
-  );
-
-  selectedTableColumnsArray.forEach((columnName) => {
+  selectedTableColumns.forEach((column) => {
     availableTableColumns.forEach((availableColumn) => {
-      if (availableColumn.name === columnName) {
+      if (availableColumn.name === column.name) {
         selectedTableColumnsTypes.push(availableColumn.type);
         if (availableColumn.type === "number") {
           selectedNumericTableColumnsArray.push(availableColumn.name);
           if (columnToFilter === null) {
-            setColumnToFilter(columnName);
+            setColumnToFilter(column.name);
           }
         }
       }
