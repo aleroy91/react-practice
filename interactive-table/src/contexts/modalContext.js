@@ -3,15 +3,15 @@ import React, { useContext, useState } from "react";
 const ModalContext = React.createContext();
 const ModalUpdateContext = React.createContext();
 
-export function useModal() {
+export const useModal = () => {
   return useContext(ModalContext);
-}
+};
 
-export function useModalUpdate() {
+export const useModalUpdate = () => {
   return useContext(ModalUpdateContext);
-}
+};
 
-export function DisplayModalProvider({ children }) {
+export const DisplayModalProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -25,4 +25,4 @@ export function DisplayModalProvider({ children }) {
       </ModalUpdateContext.Provider>
     </ModalContext.Provider>
   );
-}
+};

@@ -3,15 +3,15 @@ import React, { useContext, useState } from "react";
 const SidePanelContext = React.createContext();
 const SidePanelUpdateContext = React.createContext();
 
-export function useSidePanel() {
+export const useSidePanel = () => {
   return useContext(SidePanelContext);
-}
+};
 
-export function useSidePanelUpdate() {
+export const useSidePanelUpdate = () => {
   return useContext(SidePanelUpdateContext);
-}
+};
 
-export function DisplaySidePanelProvider({ children }) {
+export const DisplaySidePanelProvider = ({ children }) => {
   const [showSidePanel, setShowSidePanel] = useState(false);
 
   const toggleSidePanel = () => {
@@ -25,4 +25,4 @@ export function DisplaySidePanelProvider({ children }) {
       </SidePanelUpdateContext.Provider>
     </SidePanelContext.Provider>
   );
-}
+};
