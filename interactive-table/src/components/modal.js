@@ -41,12 +41,14 @@ export const Modal = (props) => {
   const selectedInputs = useSelectedTableColumns();
   const updateSelectedInputs = useSelectedTableColumnsUpdate();
 
+  let selectedInputNames = selectedInputs.map((input) => input.name);
+
   const buildModalFormArray = (formArray) => {
     return formArray.map((formInput) => {
       return {
         name: formInput.name,
         type: "checkbox",
-        value: selectedInputs.includes(formInput.name),
+        value: selectedInputNames.includes(formInput.name),
       };
     });
   };

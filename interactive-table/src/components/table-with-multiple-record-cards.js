@@ -8,21 +8,21 @@ import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 import { DisplayModalProvider } from "../contexts/modalContext";
 import { setCharAt } from "../helper-functions/setCharAt";
+import { useSelectedTableColumns } from "../contexts/tableColumnsContext";
 
 export const TableWithMultipleRecordCards = ({
   data,
   defaultTableSettings,
 }) => {
+  const selectedTableColumns = useSelectedTableColumns();
+
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
-  const [selectedTableColumns, setSelectedTableColumns] = useState(
-    defaultTableSettings.defaultColumns
-  );
   const [sortOrder, setSortOrder] = useState(
     selectedTableColumns.map(() => false)
   );
+
   let availableTableColumns = defaultTableSettings.defaultColumns;
-  let selectedColumns = selectedTableColumns.map((input) => input.name);
 
   if (data) {
     let tableColumnsFromData = [];
@@ -56,28 +56,6 @@ export const TableWithMultipleRecordCards = ({
 
     availableTableColumns = tableColumnsFromData;
   }
-
-  const updateSelectedInputs = (newInputName, newInputValue) => {
-    const newSelectedTableColumns = selectedTableColumns;
-    const selectedColumnsArray = selectedTableColumns.map(
-      (input) => input.name
-    );
-
-    availableTableColumns.forEach((columnObject, availableColumnIndex) => {
-      if (newInputName === columnObject.name) {
-        let selectedColumnIndex = selectedColumnsArray.indexOf(newInputName);
-        if (newInputValue) {
-          columnObject.value = newInputValue;
-          newSelectedTableColumns.splice(availableColumnIndex, 0, columnObject);
-        } else {
-          columnObject.value = newInputValue;
-          newSelectedTableColumns.splice(selectedColumnIndex, 1);
-        }
-      }
-    });
-
-    setSelectedTableColumns(newSelectedTableColumns);
-  };
 
   const updateRecordInfo = (recordId, recordNotes) => {
     recordData[recordId] = { ...recordData[recordId], notes: recordNotes };
@@ -243,11 +221,7 @@ export const TableWithMultipleRecordCards = ({
             updateRecordInfo={updateRecordInfo}
             displayRecordCard={displayRecordCard}
           />
-          <Modal
-            selectedInputs={selectedColumns}
-            availableInputs={availableTableColumns}
-            updateSelectedInputs={updateSelectedInputs}
-          />
+          <Modal availableInputs={availableTableColumns} />
           <Table
             selectedRecordsArray={selectedRecordsArray}
             records={recordData}
