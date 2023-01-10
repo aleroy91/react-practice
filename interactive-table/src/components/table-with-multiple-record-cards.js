@@ -7,6 +7,7 @@ import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 import { DisplayModalProvider } from "../contexts/modalContext";
+import { setCharAt } from "../helper-functions/setCharAt";
 
 export const TableWithMultipleRecordCards = ({
   data,
@@ -22,18 +23,6 @@ export const TableWithMultipleRecordCards = ({
   );
   let availableTableColumns = defaultTableSettings.defaultColumns;
   let selectedColumns = selectedTableColumns.map((input) => input.name);
-
-  let setCharAt = (stringToModify, index, characterToModify) => {
-    if (index > stringToModify.length - 1) {
-      return stringToModify;
-    } else {
-      return (
-        stringToModify.substring(0, index) +
-        characterToModify +
-        stringToModify.substring(index + 1)
-      );
-    }
-  };
 
   if (data) {
     let tableColumnsFromData = [];
