@@ -1,27 +1,29 @@
-// import React, { useReducer } from "react";
+import React, { useContext, useState, useReducer } from "react";
+import { mockData } from "../data/mockData";
 
-// export const TableContext = React.createContext();
-// export const TableUpdateContext = React.createContext();
+export const TableContext = React.createContext();
+export const TableUpdateContext = React.createContext();
 
-// export function TableDataProvider({ children }) {
-//   const [tableData, action] = useReducer(tableDataReducer, initialTableData);
+export function useTableData() {
+  return useContext(TableContext);
+}
 
-//   return (
-//     <TableContext.Provider value={tableData}>
-//       <TableUpdateContext.Provider value={action}>
-//         {children}
-//       </TableUpdateContext.Provider>
-//     </TableContext.Provider>
-//   );
-// }
+export function useTableDataUpdate() {
+  return useContext(TableUpdateContext);
+}
 
-// export function useTableData() {
-//   return useContext(TableContext);
-// }
+export function TableDataProvider({ children }) {
+  const [tableData, setTableData] = useState(mockData);
+  //   const [tableData, action] = useReducer(tableDataReducer, initialTableData);
 
-// export function useTableDataUpdate() {
-//   return useContext(TableUpdateContext);
-// }
+  return (
+    <TableContext.Provider value={tableData}>
+      <TableUpdateContext.Provider value={setTableData}>
+        {children}
+      </TableUpdateContext.Provider>
+    </TableContext.Provider>
+  );
+}
 
 // function tableDataReducer(tableData, action) {
 //   switch (action.type) {

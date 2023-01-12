@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { defaultTableSettings } from "../data/defaultTableSettings";
-import { mockData } from "../data/mockData";
 import { setCharAt } from "../helper-functions/setCharAt";
+import { useTableData } from "./tableDataContext";
 
 const SelectedTableColumnsContext = React.createContext();
 const SelectedTableColumnsUpdateContext = React.createContext();
@@ -15,6 +15,7 @@ export const useSelectedTableColumnsUpdate = () => {
 };
 
 export const DisplaySelectedTableColumnsProvider = ({ children }) => {
+  const data = useTableData();
   const [selectedTableColumns, setSelectedTableColumns] = useState(
     defaultTableSettings.defaultColumns
   );
@@ -24,7 +25,6 @@ export const DisplaySelectedTableColumnsProvider = ({ children }) => {
     const selectedColumnsArray = selectedTableColumns.map(
       (input) => input.name
     );
-    let data = mockData;
     let availableTableColumns = defaultTableSettings.defaultColumns;
 
     if (data) {

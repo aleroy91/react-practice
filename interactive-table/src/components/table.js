@@ -5,6 +5,11 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useModalUpdate } from "../contexts/modalContext";
+import {
+  useTableSortOrder,
+  useTableSortOrderUpdate,
+} from "../contexts/tableSortContext";
+import { useTableData } from "../contexts/tableDataContext";
 
 const SortButton = styled(FitContentButton)`
   border-radius: 5px;
@@ -52,15 +57,13 @@ const TableDataCell = styled.td`
 `;
 
 export const Table = (props) => {
-  const {
-    selectedRecordsArray,
-    records,
-    displayRecordCard,
-    selectedTableColumns,
-    sortData,
-    sortOrder,
-  } = { ...props };
+  const { selectedRecordsArray, displayRecordCard, selectedTableColumns } = {
+    ...props,
+  };
   const toggleModal = useModalUpdate();
+  const sortOrder = useTableSortOrder();
+  const sortData = useTableSortOrderUpdate();
+  const records = useTableData();
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();

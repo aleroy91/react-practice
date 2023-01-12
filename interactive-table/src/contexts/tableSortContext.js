@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { mockData } from "../data/mockData";
 import { useSelectedTableColumns } from "./tableColumnsContext";
+import { useTableData, useTableDataUpdate } from "./tableDataContext";
 
 const TableSortOrderContext = React.createContext();
 const TableSortOrderUpdateContext = React.createContext();
@@ -15,8 +15,9 @@ export const useTableSortOrderUpdate = () => {
 
 export const TableSortOrderProvider = ({ children }) => {
   const selectedTableColumns = useSelectedTableColumns();
-
-  const [recordData, setRecordData] = useState(mockData);
+  const recordData = useTableData();
+  const setRecordData = useTableDataUpdate();
+  //   const [recordData, setRecordData] = useState(mockData);
   const [sortOrder, setSortOrder] = useState(
     selectedTableColumns.map(() => false)
   );
@@ -74,7 +75,7 @@ export const TableSortOrderProvider = ({ children }) => {
 
   return (
     <TableSortOrderContext.Provider value={sortOrder}>
-      <TableSortOrderUpdateContext.Provider value={setSortOrder}>
+      <TableSortOrderUpdateContext.Provider value={sortData}>
         {children}
       </TableSortOrderUpdateContext.Provider>
     </TableSortOrderContext.Provider>
