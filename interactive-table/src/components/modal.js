@@ -7,6 +7,7 @@ import {
   useSelectedTableColumns,
   useSelectedTableColumnsUpdate,
 } from "../contexts/tableColumnsContext";
+import { defaultTableSettings } from "../data/defaultTableSettings";
 
 const ModalBackground = styled.div`
   z-index: 999;
@@ -33,9 +34,7 @@ const ModalDiv = styled.div`
 `;
 
 export const Modal = (props) => {
-  const { availableInputs } = {
-    ...props,
-  };
+  const availableInputs = defaultTableSettings.defaultColumns;
   const displayModal = useModal();
   const toggleModal = useModalUpdate();
   const selectedInputs = useSelectedTableColumns();

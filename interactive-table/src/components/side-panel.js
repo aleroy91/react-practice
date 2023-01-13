@@ -10,6 +10,7 @@ import {
 import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSidePanel, useSidePanelUpdate } from "../contexts/sidePanelContext";
+import { defaultTableSettings } from "../data/defaultTableSettings";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -43,14 +44,13 @@ const SidePanelContentDiv = styled.div`
 `;
 
 export const SidePanel = (props) => {
-  const {
-    filterStringData,
-    filterNumericData,
-    selectedTableColumns,
-    availableTableColumns,
-  } = { ...props };
+  const { filterStringData, filterNumericData, selectedTableColumns } = {
+    ...props,
+  };
   const displaySidePanel = useSidePanel();
   const toggleSidePanel = useSidePanelUpdate();
+
+  const availableTableColumns = defaultTableSettings.defaultColumns;
 
   const [numberPickerInput, setNumberPickerInput] = useState(4);
   const defaultRadioSelection = [false, false, false, false];

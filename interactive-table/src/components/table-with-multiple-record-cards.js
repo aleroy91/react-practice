@@ -7,52 +7,13 @@ import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 import { DisplayModalProvider } from "../contexts/modalContext";
-import { setCharAt } from "../helper-functions/setCharAt";
 import { useSelectedTableColumns } from "../contexts/tableColumnsContext";
 
-export const TableWithMultipleRecordCards = ({
-  data,
-  defaultTableSettings,
-}) => {
+export const TableWithMultipleRecordCards = ({ data }) => {
   const selectedTableColumns = useSelectedTableColumns();
 
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
-
-  let availableTableColumns = defaultTableSettings.defaultColumns;
-
-  if (data) {
-    let tableColumnsFromData = [];
-
-    Object.keys(data[0]).forEach((element) => {
-      if (element !== "photo" && element !== "gif") {
-        let sanitisedColumnName = element;
-
-        for (var i = 0; i < element.length; i++) {
-          if (i === 0 || element[i - 1] === "_") {
-            sanitisedColumnName = setCharAt(
-              sanitisedColumnName,
-              i,
-              element.charAt(i).toUpperCase()
-            );
-          }
-
-          if (element[i] === "_") {
-            sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
-          }
-        }
-
-        tableColumnsFromData.push({
-          name: sanitisedColumnName,
-          type: typeof data[0][element],
-          value: false,
-          property: element,
-        });
-      }
-    });
-
-    availableTableColumns = tableColumnsFromData;
-  }
 
   const updateRecordInfo = (recordId, recordNotes) => {
     recordData[recordId] = { ...recordData[recordId], notes: recordNotes };
@@ -167,7 +128,7 @@ export const TableWithMultipleRecordCards = ({
             updateRecordInfo={updateRecordInfo}
             displayRecordCard={displayRecordCard}
           />
-          <Modal availableInputs={availableTableColumns} />
+          <Modal />
           <Table
             selectedRecordsArray={selectedRecordsArray}
             records={recordData}
@@ -178,7 +139,6 @@ export const TableWithMultipleRecordCards = ({
             filterStringData={filterStringData}
             filterNumericData={filterNumericData}
             selectedTableColumns={selectedTableColumns}
-            availableTableColumns={availableTableColumns}
           />
         </BasicContainer>
       </DisplayModalProvider>
