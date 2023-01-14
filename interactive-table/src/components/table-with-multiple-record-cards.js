@@ -57,37 +57,6 @@ export const TableWithMultipleRecordCards = ({ data }) => {
     setSelectedRecordsArray([...newSelectedRecordsArray]);
   };
 
-  const filterNumericData = (
-    recordAttribute,
-    value,
-    greaterOrEqual,
-    useFullData
-  ) => {
-    let attribute = recordAttribute.toLowerCase();
-    let filteredData = [];
-    let dataToUse = useFullData ? data : recordData;
-
-    dataToUse.forEach((record) => {
-      let recordKeysArray = Object.keys(record);
-
-      recordKeysArray.forEach((property) => {
-        if (property === attribute) {
-          if (greaterOrEqual) {
-            if (record[attribute] >= value) {
-              filteredData.push(record);
-            }
-          } else {
-            if (record[attribute] <= value) {
-              filteredData.push(record);
-            }
-          }
-        }
-      });
-    });
-
-    setRecordData(filteredData);
-  };
-
   const filterStringData = (input, useFullData) => {
     let filteredData = [];
     let dataToUse = useFullData ? data : recordData;
@@ -137,7 +106,6 @@ export const TableWithMultipleRecordCards = ({ data }) => {
           />
           <SidePanel
             filterStringData={filterStringData}
-            filterNumericData={filterNumericData}
             selectedTableColumns={selectedTableColumns}
           />
         </BasicContainer>
