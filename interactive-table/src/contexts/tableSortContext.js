@@ -17,7 +17,7 @@ export const TableSortOrderProvider = ({ children }) => {
   const selectedTableColumns = useSelectedTableColumns();
   const recordData = useTableData();
   const setRecordData = useTableDataUpdate();
-  //   const [recordData, setRecordData] = useState(mockData);
+
   const [sortOrder, setSortOrder] = useState(
     selectedTableColumns.map(() => false)
   );

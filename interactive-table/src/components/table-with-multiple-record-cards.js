@@ -57,40 +57,11 @@ export const TableWithMultipleRecordCards = ({ data }) => {
     setSelectedRecordsArray([...newSelectedRecordsArray]);
   };
 
-  const filterStringData = (input, useFullData) => {
-    let filteredData = [];
-    let dataToUse = useFullData ? data : recordData;
-
-    dataToUse.forEach((record) => {
-      let newRecord = record;
-      let sanitisedRecordArray = Object.values(newRecord);
-      let inputInRecord = false;
-
-      sanitisedRecordArray.forEach((property) => {
-        if (typeof property === "string") {
-          if (property.toLowerCase().includes(input.toLowerCase())) {
-            inputInRecord = true;
-          }
-        }
-      });
-
-      if (inputInRecord) {
-        filteredData.push(record);
-      }
-    });
-
-    if (input === "") {
-      setRecordData(data);
-    } else {
-      setRecordData(filteredData);
-    }
-  };
-
   return (
     <DisplaySidePanelProvider>
       <DisplayModalProvider>
         <BasicContainer>
-          <Toolbar filterStringData={filterStringData} />
+          <Toolbar />
           <RecordCardsArray
             selectedRecordsArray={selectedRecordsArray}
             unfilteredRecordData={data}
@@ -104,10 +75,7 @@ export const TableWithMultipleRecordCards = ({ data }) => {
             displayRecordCard={displayRecordCard}
             selectedTableColumns={selectedTableColumns}
           />
-          <SidePanel
-            filterStringData={filterStringData}
-            selectedTableColumns={selectedTableColumns}
-          />
+          <SidePanel selectedTableColumns={selectedTableColumns} />
         </BasicContainer>
       </DisplayModalProvider>
     </DisplaySidePanelProvider>

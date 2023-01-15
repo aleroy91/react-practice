@@ -5,11 +5,8 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useModalUpdate } from "../contexts/modalContext";
-import {
-  useTableSortOrder,
-  useTableSortOrderUpdate,
-} from "../contexts/tableSortContext";
-import { useTableData } from "../contexts/tableDataContext";
+import { tableDataReducer, useTableData } from "../contexts/tableDataContext";
+import { useReducer } from "react";
 
 const SortButton = styled(FitContentButton)`
   border-radius: 5px;
@@ -60,10 +57,10 @@ export const Table = (props) => {
   const { selectedRecordsArray, displayRecordCard, selectedTableColumns } = {
     ...props,
   };
-  const toggleModal = useModalUpdate();
-  const sortOrder = useTableSortOrder();
-  const sortData = useTableSortOrderUpdate();
   const records = useTableData();
+  const [sortOrder, dispatch] = useReducer(tableDataReducer, records);
+
+  const toggleModal = useModalUpdate();
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
@@ -76,7 +73,12 @@ export const Table = (props) => {
           <h4>{columnObject.name}</h4>
           <SortButton
             onClick={() => {
-              sortData(columnObject.property, index, !sortOrder[index]);
+              dispatch({
+                type: "sort",
+                columnName: columnObject.property,
+                columnIndex: index,
+                highToLow: !sortOrder[index],
+              });
             }}
           >
             {sortOrder[index] ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
