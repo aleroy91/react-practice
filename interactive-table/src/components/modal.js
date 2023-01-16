@@ -4,10 +4,10 @@ import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import { useModal, useModalUpdate } from "../contexts/modalContext";
 import {
+  useAvailableTableColumns,
   useSelectedTableColumns,
-  useSelectedTableColumnsUpdate,
-} from "../contexts/tableColumnsContext";
-import { defaultTableSettings } from "../data/defaultTableSettings";
+  useTableDataUpdate,
+} from "../contexts/tableDataContext";
 
 const ModalBackground = styled.div`
   z-index: 999;
@@ -34,11 +34,11 @@ const ModalDiv = styled.div`
 `;
 
 export const Modal = (props) => {
-  const availableInputs = defaultTableSettings.defaultColumns;
+  const availableInputs = useAvailableTableColumns();
   const displayModal = useModal();
   const toggleModal = useModalUpdate();
   const selectedInputs = useSelectedTableColumns();
-  const updateSelectedInputs = useSelectedTableColumnsUpdate();
+  const updateSelectedInputs = useTableDataUpdate();
 
   let selectedInputNames = selectedInputs.map((input) => input.name);
 

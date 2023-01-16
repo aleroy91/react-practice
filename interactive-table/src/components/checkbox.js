@@ -1,27 +1,36 @@
-import React, { useState, useReducer } from "react";
-import { tableDataReducer, useTableData } from "../contexts/tableDataContext";
+import React, { useReducer } from "react";
+import {
+  tableDataReducer,
+  useSelectedTableColumns,
+  useTableData,
+} from "../contexts/tableDataContext";
 
 export const Checkbox = (props) => {
-  const { inputName, inputValue, onInputChange } = {
+  const { inputName } = {
     ...props,
   };
 
-  const records = useTableData();
+  const selectedColumns = useSelectedTableColumns();
+  const [selected, dispatch] = useReducer(tableDataReducer, selectedColumns);
 
-  const [checkboxValue, setCheckboxValue] = useState(inputValue);
-  const [selected, dispatch] = useReducer(tableDataReducer, records);
+  let isSelected = false;
+  selectedColumns.forEach((inputObject) => {
+    if (inputObject.name === inputName) {
+      isSelected = true;
+    }
+  });
 
   return (
     <div>
       <input
         type="checkbox"
-        checked={checkboxValue}
+        checked={isSelected}
         onChange={() => {
           dispatch({
+            type: "updateSelectedColumns",
             inputName: inputName,
-            inputValue: !checkboxValue,
+            inputValue: !isSelected,
           });
-          setCheckboxValue(!checkboxValue);
         }}
       />
       <label>{inputName}</label>

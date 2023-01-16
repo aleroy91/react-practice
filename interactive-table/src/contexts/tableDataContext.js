@@ -1,4 +1,4 @@
-import React, { useContext, useState, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { mockData } from "../data/mockData";
 import { defaultTableSettings } from "../data/defaultTableSettings";
 import { setCharAt } from "../helper-functions/setCharAt";
@@ -14,25 +14,85 @@ export function useTableDataUpdate() {
   return useContext(TableUpdateContext);
 }
 
-export function TableDataProvider({ children }) {
-  // const [tableData, setTableData] = useState(mockData);
-  const [tableData, action] = useReducer(tableDataReducer, mockData);
+export function useSelectedTableColumns() {
+  const tableData = useTableData();
 
-  return (
-    <TableContext.Provider value={tableData}>
-      <TableUpdateContext.Provider value={action}>
-        {children}
-      </TableUpdateContext.Provider>
-    </TableContext.Provider>
-  );
+  if (tableData.selectedTableColumns) {
+    return tableData.selectedTableColumns;
+  }
+
+  return defaultTableSettings.defaultColumns;
+}
+
+export function useAvailableTableColumns() {
+  let tableColumnsFromData = [];
+  const tableData = useTableData();
+
+  Object.keys(tableData[0]).forEach((element) => {
+    if (element !== "photo" && element !== "gif") {
+      let sanitisedColumnName = element;
+
+      for (var i = 0; i < element.length; i++) {
+        if (i === 0 || element[i - 1] === "_") {
+          sanitisedColumnName = setCharAt(
+            sanitisedColumnName,
+            i,
+            element.charAt(i).toUpperCase()
+          );
+        }
+
+        if (element[i] === "_") {
+          sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
+        }
+      }
+
+      tableColumnsFromData.push({
+        name: sanitisedColumnName,
+        type: typeof tableData[0][element],
+        value: false,
+        property: element,
+      });
+    }
+  });
+
+  return tableColumnsFromData;
 }
 
 export function tableDataReducer(tableData, action) {
+  let tableColumnsFromData = [];
+
+  Object.keys(mockData[0]).forEach((element) => {
+    if (element !== "photo" && element !== "gif") {
+      let sanitisedColumnName = element;
+
+      for (var i = 0; i < element.length; i++) {
+        if (i === 0 || element[i - 1] === "_") {
+          sanitisedColumnName = setCharAt(
+            sanitisedColumnName,
+            i,
+            element.charAt(i).toUpperCase()
+          );
+        }
+
+        if (element[i] === "_") {
+          sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
+        }
+      }
+
+      tableColumnsFromData.push({
+        name: sanitisedColumnName,
+        type: typeof mockData[0][element],
+        value: false,
+        property: element,
+      });
+    }
+  });
+
   switch (action.type) {
     case "updateSelectedColumns": {
       let newInputName = action.inputName;
       let newInputValue = action.inputValue;
-      let availableTableColumns = defaultTableSettings.defaultColumns;
+      let availableTableColumns = tableColumnsFromData;
       let selectedTableColumns = tableData.selectedTableColumns
         ? tableData.selectedTableColumns
         : defaultTableSettings.defaultColumns;
@@ -40,39 +100,6 @@ export function tableDataReducer(tableData, action) {
       let selectedColumnsArray = selectedTableColumns.map(
         (input) => input.name
       );
-
-      if (tableData) {
-        let tableColumnsFromData = [];
-
-        Object.keys(tableData[0]).forEach((element) => {
-          if (element !== "photo" && element !== "gif") {
-            let sanitisedColumnName = element;
-
-            for (var i = 0; i < element.length; i++) {
-              if (i === 0 || element[i - 1] === "_") {
-                sanitisedColumnName = setCharAt(
-                  sanitisedColumnName,
-                  i,
-                  element.charAt(i).toUpperCase()
-                );
-              }
-
-              if (element[i] === "_") {
-                sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
-              }
-            }
-
-            tableColumnsFromData.push({
-              name: sanitisedColumnName,
-              type: typeof tableData[0][element],
-              value: false,
-              property: element,
-            });
-          }
-        });
-
-        availableTableColumns = tableColumnsFromData;
-      }
 
       availableTableColumns.forEach((columnObject, availableColumnIndex) => {
         if (newInputName === columnObject.name) {
@@ -148,7 +175,7 @@ export function tableDataReducer(tableData, action) {
           "A sort was not performed as the data provided was neither of type string nor type number"
         );
       }
-      console.log(sortedData);
+
       return sortedData;
     }
     // case "filter": {
@@ -217,4 +244,16 @@ export function tableDataReducer(tableData, action) {
       throw Error("Unknown action: " + action.type);
     }
   }
+}
+
+export function TableDataProvider({ children }) {
+  const [tableData, dispatch] = useReducer(tableDataReducer, mockData);
+
+  return (
+    <TableContext.Provider value={tableData}>
+      <TableUpdateContext.Provider value={dispatch}>
+        {children}
+      </TableUpdateContext.Provider>
+    </TableContext.Provider>
+  );
 }

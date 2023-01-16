@@ -11,6 +11,7 @@ import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSidePanel, useSidePanelUpdate } from "../contexts/sidePanelContext";
 import { defaultTableSettings } from "../data/defaultTableSettings";
+import { useSelectedTableColumns } from "../contexts/tableDataContext";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -44,11 +45,12 @@ const SidePanelContentDiv = styled.div`
 `;
 
 export const SidePanel = (props) => {
-  const { filterStringData, filterNumericData, selectedTableColumns } = {
+  const { filterStringData, filterNumericData } = {
     ...props,
   };
   const displaySidePanel = useSidePanel();
   const toggleSidePanel = useSidePanelUpdate();
+  const selectedTableColumns = useSelectedTableColumns();
 
   const availableTableColumns = defaultTableSettings.defaultColumns;
 
