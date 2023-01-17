@@ -90,8 +90,7 @@ export function tableDataReducer(tableData, action) {
 
   switch (action.type) {
     case "updateSelectedColumns": {
-      let newInputName = action.inputName;
-      let newInputValue = action.inputValue;
+      let { inputName: newInputName, inputValue: newInputValue } = action;
       let availableTableColumns = tableColumnsFromData;
       let selectedTableColumns = tableData.selectedTableColumns
         ? tableData.selectedTableColumns

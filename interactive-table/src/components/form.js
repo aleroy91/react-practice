@@ -4,12 +4,14 @@ export const Form = (props) => {
   const { name, formInputsArray, onInputChange } = { ...props };
 
   const formElementsFactory = formInputsArray.map((inputObject, index) => {
-    const inputName = inputObject.name;
-    const inputOptions = inputObject.options;
-    const inputType = inputObject.type;
-    const inputValue = inputObject.value;
-    const inputMinimum = inputObject.minimum;
-    const inputMaximum = inputObject.maximum;
+    const {
+      name: inputName,
+      options: inputOptions,
+      type: inputType,
+      value: inputValue,
+      minimum: inputMinimum,
+      maximum: inputMaximum,
+    } = inputObject;
 
     return (
       <ControlledInput
