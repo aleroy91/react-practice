@@ -15,12 +15,6 @@ export function useTableDataUpdate() {
 }
 
 export function useSelectedTableColumns() {
-  const tableData = useTableData();
-
-  if (tableData.selectedTableColumns) {
-    return tableData.selectedTableColumns;
-  }
-
   return defaultTableSettings.defaultColumns;
 }
 
@@ -118,7 +112,7 @@ export function tableDataReducer(tableData, action) {
         }
       });
 
-      return { selectedTableColumns: newSelectedTableColumns };
+      return newSelectedTableColumns;
     }
     case "sort": {
       const typeOfDataInColumnName = typeof tableData[0][action.columnName];

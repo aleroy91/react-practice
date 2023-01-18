@@ -4,10 +4,11 @@ import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import { useModal, useModalUpdate } from "../contexts/modalContext";
 import {
+  tableDataReducer,
   useAvailableTableColumns,
-  useSelectedTableColumns,
-  useTableDataUpdate,
 } from "../contexts/tableDataContext";
+import { useReducer } from "react";
+import { defaultTableSettings } from "../data/defaultTableSettings";
 
 const ModalBackground = styled.div`
   z-index: 999;
@@ -33,14 +34,23 @@ const ModalDiv = styled.div`
   border: solid 3px #1c849b;
 `;
 
-export const Modal = (props) => {
+export const Modal = () => {
+  const [selected, dispatch] = useReducer(
+    tableDataReducer,
+    defaultTableSettings.defaultColumns
+  );
   const availableInputs = useAvailableTableColumns();
   const displayModal = useModal();
   const toggleModal = useModalUpdate();
-  const selectedInputs = useSelectedTableColumns();
-  const updateSelectedInputs = useTableDataUpdate();
+  let selectedInputNames = selected.map((input) => input.name);
 
-  let selectedInputNames = selectedInputs.map((input) => input.name);
+  const updateColumnSelection = (inputName, inputValue) => {
+    dispatch({
+      type: "updateSelectedColumns",
+      inputName: inputName,
+      inputValue: inputValue,
+    });
+  };
 
   const buildModalFormArray = (formArray) => {
     return formArray.map((formInput) => {
@@ -66,7 +76,7 @@ export const Modal = (props) => {
             <Form
               name="Select Columns"
               formInputsArray={columnSettingsArray}
-              onInputChange={updateSelectedInputs}
+              onInputChange={updateColumnSelection}
             />
           </ModalDiv>
         </div>
