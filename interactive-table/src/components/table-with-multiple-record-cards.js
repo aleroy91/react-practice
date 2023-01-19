@@ -7,11 +7,8 @@ import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 import { DisplayModalProvider } from "../contexts/modalContext";
-import { useSelectedTableColumns } from "../contexts/tableColumnsContext";
 
 export const TableWithMultipleRecordCards = ({ data }) => {
-  const selectedTableColumns = useSelectedTableColumns();
-
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
 

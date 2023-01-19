@@ -14,10 +14,6 @@ export function useTableDataUpdate() {
   return useContext(TableUpdateContext);
 }
 
-export function useSelectedTableColumns() {
-  return defaultTableSettings.defaultColumns;
-}
-
 export function useAvailableTableColumns() {
   let tableColumnsFromData = [];
   const tableData = useTableData();

@@ -5,12 +5,9 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { useModalUpdate } from "../contexts/modalContext";
-import {
-  tableDataReducer,
-  useSelectedTableColumns,
-  useTableData,
-} from "../contexts/tableDataContext";
+import { tableDataReducer, useTableData } from "../contexts/tableDataContext";
 import { useReducer } from "react";
+import { defaultTableSettings } from "../data/defaultTableSettings";
 
 const SortButton = styled(FitContentButton)`
   border-radius: 5px;
@@ -65,7 +62,7 @@ export const Table = (props) => {
   const [sortOrder, dispatch] = useReducer(tableDataReducer, records);
 
   const toggleModal = useModalUpdate();
-  const selectedTableColumns = useSelectedTableColumns();
+  const selectedTableColumns = defaultTableSettings.defaultColumns;
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
