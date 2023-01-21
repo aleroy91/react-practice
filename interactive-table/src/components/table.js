@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FitContentButton, HorizontalContainer } from "./styled-components";
 import styled from "styled-components";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -59,14 +59,25 @@ export const Table = (props) => {
     ...props,
   };
   const records = useTableData();
-  const [sortOrder, dispatch] = useReducer(tableDataReducer, records);
-
   const toggleModal = useModalUpdate();
+
   const selectedTableColumns = defaultTableSettings.defaultColumns;
+
+  const [tableRecordData, dispatch] = useReducer(tableDataReducer, records);
+  const defaultSortOrder = tableRecordData.map(() => false);
+  const [sortOrderArray, setSortOrderArray] = useState(defaultSortOrder);
 
   const selectedCellValues = selectedTableColumns.map((tableColumnObject) => {
     return tableColumnObject.name.toLowerCase();
   });
+
+  const updateSortOrderArray = (index) => {
+    let newSortOrderArray = sortOrderArray.map((column, columnIndex) =>
+      columnIndex === index ? !sortOrderArray[index] : sortOrderArray[index]
+    );
+
+    setSortOrderArray(newSortOrderArray);
+  };
 
   const tableColumns = selectedTableColumns.map((columnObject, index) => {
     return (
@@ -75,22 +86,27 @@ export const Table = (props) => {
           <h4>{columnObject.name}</h4>
           <SortButton
             onClick={() => {
+              updateSortOrderArray(index);
               dispatch({
                 type: "sort",
                 columnName: columnObject.property,
                 columnIndex: index,
-                highToLow: !sortOrder[index],
+                highToLow: !sortOrderArray[index],
               });
             }}
           >
-            {sortOrder[index] ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+            {sortOrderArray[index] ? (
+              <ArrowUpwardIcon />
+            ) : (
+              <ArrowDownwardIcon />
+            )}
           </SortButton>
         </HorizontalContainer>
       </TableColumnHeader>
     );
   });
 
-  const tableBody = records.map((record) => {
+  const tableBody = tableRecordData.map((record) => {
     let isRecordSelected = false;
 
     if (selectedRecordsArray.includes(record.id)) {

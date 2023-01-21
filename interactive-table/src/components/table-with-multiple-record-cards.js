@@ -68,7 +68,6 @@ export const TableWithMultipleRecordCards = ({ data }) => {
           <Modal />
           <Table
             selectedRecordsArray={selectedRecordsArray}
-            records={recordData}
             displayRecordCard={displayRecordCard}
           />
           <SidePanel />
