@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { HorizontalContainer } from "./styled-components";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
+import { tableDataReducer, useTableData } from "../contexts/tableDataContext";
 
 const SearchBarInput = styled.input`
   border: 1px white solid;
@@ -17,15 +18,20 @@ const SearchBarInput = styled.input`
   }
 `;
 
-export const SearchBar = (props) => {
-  const { filterStringData } = { ...props };
+export const SearchBar = () => {
+  const data = useTableData();
+  const [filteredData, dispatch] = useReducer(tableDataReducer, data);
 
   return (
     <HorizontalContainer>
       <SearchBarInput
         placeholder="Filter Records"
         onChange={(event) => {
-          filterStringData(event.target.value);
+          dispatch({
+            type: "filter",
+            primitive: "string",
+            value: event.target.value,
+          });
         }}
       />
       <SearchIcon sx={{ color: "#1c849b", zIndex: 1 }} />

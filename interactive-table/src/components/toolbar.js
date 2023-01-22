@@ -33,8 +33,7 @@ const FilterButton = styled(FitContentButton)`
   background-color: white;
 `;
 
-export const Toolbar = (props) => {
-  const { filterStringData } = { ...props };
+export const Toolbar = () => {
   const toggleSidePanel = useSidePanelUpdate();
 
   return (
@@ -46,7 +45,7 @@ export const Toolbar = (props) => {
               <h1>Players Table</h1>
             </HorizontalContainer>
             <HorizontalContainer>
-              <SearchBar filterStringData={filterStringData} />
+              <SearchBar />
               <FilterButton onClick={toggleSidePanel}>
                 <TuneTwoToneIcon />
               </FilterButton>

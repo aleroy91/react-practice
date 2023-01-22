@@ -164,71 +164,64 @@ export function tableDataReducer(tableData, action) {
           "A sort was not performed as the data provided was neither of type string nor type number"
         );
       }
-
+      console.log(sortedData);
       return sortedData;
     }
-    // case "filter": {
-    //   const filterNumericData = (
-    //     recordAttribute,
-    //     value,
-    //     greaterOrEqual,
-    //     useFullData
-    //   ) => {
-    //     let attribute = recordAttribute.toLowerCase();
-    //     let filteredData = [];
-    //     let dataToUse = useFullData ? data : recordData;
+    case "filter": {
+      let {
+        primitive,
+        value,
+        greaterOrEqual = null,
+        filterByColumn = null,
+      } = { ...action };
 
-    //     dataToUse.forEach((record) => {
-    //       let recordKeysArray = Object.keys(record);
+      let filteredData = [];
+      if (primitive === "number") {
+        let attribute = filterByColumn.toLowerCase();
 
-    //       recordKeysArray.forEach((property) => {
-    //         if (property === attribute) {
-    //           if (greaterOrEqual) {
-    //             if (record[attribute] >= value) {
-    //               filteredData.push(record);
-    //             }
-    //           } else {
-    //             if (record[attribute] <= value) {
-    //               filteredData.push(record);
-    //             }
-    //           }
-    //         }
-    //       });
-    //     });
+        tableData.forEach((record) => {
+          let recordKeysArray = Object.keys(record);
 
-    //     setRecordData(filteredData);
-    //   };
-    // }
-    // case "filterString": {
-    //   const filterStringData = (input, useFullData) => {
-    //     let filteredData = [];
-    //     let dataToUse = useFullData ? data : recordData;
+          recordKeysArray.forEach((property) => {
+            if (property === attribute) {
+              if (greaterOrEqual) {
+                if (record[attribute] >= value) {
+                  filteredData.push(record);
+                }
+              } else {
+                if (record[attribute] <= value) {
+                  filteredData.push(record);
+                }
+              }
+            }
+          });
+        });
+      } else if (primitive === "string") {
+        tableData.forEach((record) => {
+          let newRecord = record;
+          let sanitisedRecordArray = Object.values(newRecord);
+          let inputInRecord = false;
 
-    //     dataToUse.forEach((record) => {
-    //       let newRecord = record;
-    //       let sanitisedRecordArray = Object.values(newRecord);
-    //       let inputInRecord = false;
+          sanitisedRecordArray.forEach((property) => {
+            if (typeof property === "string") {
+              if (property.toLowerCase().includes(value.toLowerCase())) {
+                inputInRecord = true;
+              }
+            }
+          });
 
-    //       sanitisedRecordArray.forEach((property) => {
-    //         if (typeof property === "string") {
-    //           if (property.toLowerCase().includes(input.toLowerCase())) {
-    //             inputInRecord = true;
-    //           }
-    //         }
-    //       });
+          if (inputInRecord) {
+            filteredData.push(record);
+          }
+        });
 
-    //       if (inputInRecord) {
-    //         filteredData.push(record);
-    //       }
-    //     });
+        if (value === "") {
+          filteredData = mockData;
+        }
+      }
 
-    //     if (input === "") {
-    //       setRecordData(data);
-    //     } else {
-    //       setRecordData(filteredData);
-    //     }
-    //   };
-    // }
+      return filteredData;
+    }
     default: {
       throw Error("Unknown action: " + action.type);
     }
