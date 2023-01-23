@@ -7,10 +7,39 @@ import { SidePanel } from "./side-panel";
 import { BasicContainer } from "./styled-components";
 import { DisplaySidePanelProvider } from "../contexts/sidePanelContext";
 import { DisplayModalProvider } from "../contexts/modalContext";
+import { tableDataReducer, useTableData } from "../contexts/tableDataContext";
+import { useReducer } from "react";
 
 export const TableWithMultipleRecordCards = ({ data }) => {
+  const records = useTableData();
+  const [tableRecordData, dispatch] = useReducer(tableDataReducer, records);
+
   const [recordData, setRecordData] = useState(data);
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
+
+  const updateTableData = (params) => {
+    if (params.type === "sort") {
+      dispatch({
+        type: "sort",
+        columnName: params.columnName,
+        columnIndex: params.columnIndex,
+        highToLow: params.highToLow,
+      });
+    } else if (params.type === "filter") {
+      dispatch({
+        type: "filter",
+        primitive: params.primitive,
+        value: params.value,
+        filterTotalDataset: params.filterTotalDataset,
+      });
+    } else {
+      throw Error(
+        params.type
+          ? "Unknown action: " + params.type
+          : "Update type is undefined"
+      );
+    }
+  };
 
   const updateRecordInfo = (recordId, recordNotes) => {
     recordData[recordId] = { ...recordData[recordId], notes: recordNotes };
@@ -58,7 +87,7 @@ export const TableWithMultipleRecordCards = ({ data }) => {
     <DisplaySidePanelProvider>
       <DisplayModalProvider>
         <BasicContainer>
-          <Toolbar />
+          <Toolbar updateTableData={updateTableData} />
           <RecordCardsArray
             selectedRecordsArray={selectedRecordsArray}
             unfilteredRecordData={data}
@@ -67,6 +96,8 @@ export const TableWithMultipleRecordCards = ({ data }) => {
           />
           <Modal />
           <Table
+            tableRecordData={tableRecordData}
+            updateTableData={updateTableData}
             selectedRecordsArray={selectedRecordsArray}
             displayRecordCard={displayRecordCard}
           />

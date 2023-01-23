@@ -164,22 +164,25 @@ export function tableDataReducer(tableData, action) {
           "A sort was not performed as the data provided was neither of type string nor type number"
         );
       }
-      console.log(sortedData);
+
       return sortedData;
     }
     case "filter": {
       let {
         primitive,
         value,
-        greaterOrEqual = null,
-        filterByColumn = null,
+        greaterOrEqual,
+        filterByColumn,
+        filterTotalDataset = false,
       } = { ...action };
 
       let filteredData = [];
+      let data = filterTotalDataset ? mockData : tableData;
+
       if (primitive === "number") {
         let attribute = filterByColumn.toLowerCase();
 
-        tableData.forEach((record) => {
+        data.forEach((record) => {
           let recordKeysArray = Object.keys(record);
 
           recordKeysArray.forEach((property) => {
@@ -197,7 +200,7 @@ export function tableDataReducer(tableData, action) {
           });
         });
       } else if (primitive === "string") {
-        tableData.forEach((record) => {
+        data.forEach((record) => {
           let newRecord = record;
           let sanitisedRecordArray = Object.values(newRecord);
           let inputInRecord = false;
