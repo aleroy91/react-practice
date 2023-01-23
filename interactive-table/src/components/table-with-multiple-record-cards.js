@@ -18,27 +18,15 @@ export const TableWithMultipleRecordCards = ({ data }) => {
   const [selectedRecordsArray, setSelectedRecordsArray] = useState([]);
 
   const updateTableData = (params) => {
-    if (params.type === "sort") {
-      dispatch({
-        type: "sort",
-        columnName: params.columnName,
-        columnIndex: params.columnIndex,
-        highToLow: params.highToLow,
-      });
-    } else if (params.type === "filter") {
-      dispatch({
-        type: "filter",
-        primitive: params.primitive,
-        value: params.value,
-        filterTotalDataset: params.filterTotalDataset,
-      });
-    } else {
-      throw Error(
-        params.type
-          ? "Unknown action: " + params.type
-          : "Update type is undefined"
-      );
-    }
+    dispatch({
+      type: params.type,
+      columnName: params.columnName,
+      columnIndex: params.columnIndex,
+      highToLow: params.highToLow,
+      primitive: params.primitive,
+      value: params.value,
+      filterTotalDataset: params.filterTotalDataset,
+    });
   };
 
   const updateRecordInfo = (recordId, recordNotes) => {
