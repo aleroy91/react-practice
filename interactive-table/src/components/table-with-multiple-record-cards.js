@@ -89,7 +89,7 @@ export const TableWithMultipleRecordCards = ({ data }) => {
             selectedRecordsArray={selectedRecordsArray}
             displayRecordCard={displayRecordCard}
           />
-          <SidePanel />
+          <SidePanel updateTableData={updateTableData} />
         </BasicContainer>
       </DisplayModalProvider>
     </DisplaySidePanelProvider>

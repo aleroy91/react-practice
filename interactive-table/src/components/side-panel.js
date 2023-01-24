@@ -44,6 +44,7 @@ const SidePanelContentDiv = styled.div`
 `;
 
 export const SidePanel = (props) => {
+  const updateTableData = props.updateTableData;
   const { filterStringData, filterNumericData } = {
     ...props,
   };
@@ -68,7 +69,13 @@ export const SidePanel = (props) => {
       i === index ? true : false
     );
     setRadioChecked(newRadioButtonArrayValues);
-    filterStringData(positionsArray[i], true);
+    updateTableData({
+      type: "filter",
+      primitive: "string",
+      propertyToFilter: "position",
+      value: positionsArray[i],
+      filterTotalDataset: true,
+    });
   };
 
   const updateIsGreaterOrEqual = (inputValue) =>
@@ -137,7 +144,7 @@ export const SidePanel = (props) => {
   );
 
   return (
-    <div>
+    <>
       {displaySidePanel && (
         <SidePanelDiv>
           <SidePanelContentDiv>
@@ -151,6 +158,6 @@ export const SidePanel = (props) => {
           </ExitButton>
         </SidePanelDiv>
       )}
-    </div>
+    </>
   );
 };
