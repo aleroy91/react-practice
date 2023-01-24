@@ -45,7 +45,7 @@ const SidePanelContentDiv = styled.div`
 
 export const SidePanel = (props) => {
   const updateTableData = props.updateTableData;
-  const { filterStringData, filterNumericData } = {
+  const { filterNumericData } = {
     ...props,
   };
   const displaySidePanel = useSidePanel();
@@ -72,9 +72,7 @@ export const SidePanel = (props) => {
     updateTableData({
       type: "filter",
       primitive: "string",
-      propertyToFilter: "position",
       value: positionsArray[i],
-      filterTotalDataset: true,
     });
   };
 
@@ -101,7 +99,11 @@ export const SidePanel = (props) => {
   });
 
   const clearFilters = () => {
-    filterStringData("");
+    updateTableData({
+      type: "filter",
+      primitive: "string",
+      value: "",
+    });
     setRadioChecked(defaultRadioSelection);
     setNumberPickerInput(4);
   };
