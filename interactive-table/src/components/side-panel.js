@@ -11,6 +11,7 @@ import styled from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import { useSidePanel, useSidePanelUpdate } from "../contexts/sidePanelContext";
 import { defaultTableSettings } from "../data/defaultTableSettings";
+import { useAvailableTableColumns } from "../contexts/tableDataContext";
 
 const CenteredHeader = styled.header`
   font-weight: 600;
@@ -50,9 +51,10 @@ export const SidePanel = (props) => {
   };
   const displaySidePanel = useSidePanel();
   const toggleSidePanel = useSidePanelUpdate();
-  const selectedTableColumns = defaultTableSettings.defaultColumns;
 
-  const availableTableColumns = defaultTableSettings.defaultColumns;
+  // Replace these two constants with data from context
+  const selectedTableColumns = defaultTableSettings.defaultColumns;
+  const availableTableColumns = useAvailableTableColumns();
 
   const [numberPickerInput, setNumberPickerInput] = useState(4);
   const defaultRadioSelection = [false, false, false, false];
@@ -73,6 +75,7 @@ export const SidePanel = (props) => {
       type: "filter",
       primitive: "string",
       value: positionsArray[i],
+      filterTotalDataset: true,
     });
   };
 

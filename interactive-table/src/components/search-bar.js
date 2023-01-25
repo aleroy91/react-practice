@@ -29,7 +29,6 @@ export const SearchBar = (props) => {
             type: "filter",
             primitive: "string",
             value: event.target.value,
-            filterTotalDataset: true,
           })
         }
       />
