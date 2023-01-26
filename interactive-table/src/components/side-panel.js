@@ -46,9 +46,6 @@ const SidePanelContentDiv = styled.div`
 
 export const SidePanel = (props) => {
   const updateTableData = props.updateTableData;
-  const { filterNumericData } = {
-    ...props,
-  };
   const displaySidePanel = useSidePanel();
   const toggleSidePanel = useSidePanelUpdate();
 
@@ -83,7 +80,14 @@ export const SidePanel = (props) => {
     setIsGreaterOrEqual(Number.parseInt(inputValue));
 
   const updateNumericData = (inputValue) => {
-    filterNumericData(columnToFilter, inputValue, isGreaterOrEqual, false);
+    updateTableData({
+      type: "filter",
+      primitive: "number",
+      filterByColumn: columnToFilter,
+      value: inputValue,
+      greaterOrEqual: isGreaterOrEqual,
+      filterTotalDataset: false,
+    });
     setNumberPickerInput(inputValue);
   };
 

@@ -26,6 +26,8 @@ export const TableWithMultipleRecordCards = ({ data }) => {
       primitive: params.primitive,
       value: params.value,
       filterTotalDataset: params.filterTotalDataset,
+      filterByColumn: params.filterByColumn,
+      greaterOrEqual: params.greaterOrEqual,
     });
   };
 

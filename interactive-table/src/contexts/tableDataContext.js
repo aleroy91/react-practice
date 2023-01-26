@@ -177,14 +177,17 @@ export function tableDataReducer(tableData, action) {
       } = { ...action };
 
       let filteredData = [];
-      let data = filterTotalDataset ? mockData : tableData;
+      let data = mockData;
+
+      if (tableData && filterTotalDataset) {
+        data = tableData;
+      }
 
       if (primitive === "number") {
         let attribute = filterByColumn.toLowerCase();
 
         data.forEach((record) => {
           let recordKeysArray = Object.keys(record);
-
           recordKeysArray.forEach((property) => {
             if (property === attribute) {
               if (greaterOrEqual) {
