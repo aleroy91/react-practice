@@ -179,7 +179,7 @@ export function tableDataReducer(tableData, action) {
       let filteredData = [];
       let data = mockData;
 
-      if (tableData && filterTotalDataset) {
+      if (tableData.length && !filterTotalDataset) {
         data = tableData;
       }
 
