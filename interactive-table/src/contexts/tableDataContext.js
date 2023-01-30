@@ -1,7 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { mockData } from "../data/mockData";
 import { defaultTableSettings } from "../data/defaultTableSettings";
-import { setCharAt } from "../helper-functions/setCharAt";
+import { tableColumnsFromData } from "../helper-functions/tableColumnsFromData";
 
 export const TableContext = React.createContext();
 export const TableUpdateContext = React.createContext();
@@ -15,73 +15,18 @@ export function useTableDataUpdate() {
 }
 
 export function useAvailableTableColumns() {
-  let tableColumnsFromData = [];
   const tableData = useTableData();
 
-  Object.keys(tableData[0]).forEach((element) => {
-    if (element !== "photo" && element !== "gif") {
-      let sanitisedColumnName = element;
-
-      for (var i = 0; i < element.length; i++) {
-        if (i === 0 || element[i - 1] === "_") {
-          sanitisedColumnName = setCharAt(
-            sanitisedColumnName,
-            i,
-            element.charAt(i).toUpperCase()
-          );
-        }
-
-        if (element[i] === "_") {
-          sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
-        }
-      }
-
-      tableColumnsFromData.push({
-        name: sanitisedColumnName,
-        type: typeof tableData[0][element],
-        value: false,
-        property: element,
-      });
-    }
-  });
-
-  return tableColumnsFromData;
+  return tableColumnsFromData(tableData);
 }
 
 export function tableDataReducer(tableData, action) {
-  let tableColumnsFromData = [];
-
-  Object.keys(mockData[0]).forEach((element) => {
-    if (element !== "photo" && element !== "gif") {
-      let sanitisedColumnName = element;
-
-      for (var i = 0; i < element.length; i++) {
-        if (i === 0 || element[i - 1] === "_") {
-          sanitisedColumnName = setCharAt(
-            sanitisedColumnName,
-            i,
-            element.charAt(i).toUpperCase()
-          );
-        }
-
-        if (element[i] === "_") {
-          sanitisedColumnName = setCharAt(sanitisedColumnName, i, " ");
-        }
-      }
-
-      tableColumnsFromData.push({
-        name: sanitisedColumnName,
-        type: typeof mockData[0][element],
-        value: false,
-        property: element,
-      });
-    }
-  });
+  let columnsFromData = tableColumnsFromData(mockData);
 
   switch (action.type) {
     case "updateSelectedColumns": {
       let { inputName: newInputName, inputValue: newInputValue } = action;
-      let availableTableColumns = tableColumnsFromData;
+      let availableTableColumns = columnsFromData;
       let selectedTableColumns = tableData.selectedTableColumns
         ? tableData.selectedTableColumns
         : defaultTableSettings.defaultColumns;
