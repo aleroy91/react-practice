@@ -27,9 +27,7 @@ export function tableDataReducer(tableData, action) {
     case "updateSelectedColumns": {
       let { inputName: newInputName, inputValue: newInputValue } = action;
       let availableTableColumns = columnsFromData;
-      let selectedTableColumns = tableData.selectedTableColumns
-        ? tableData.selectedTableColumns
-        : defaultTableSettings.defaultColumns;
+      let selectedTableColumns = defaultTableSettings.defaultColumns;
       let newSelectedTableColumns = selectedTableColumns;
       let selectedColumnsArray = selectedTableColumns.map(
         (input) => input.name
@@ -60,14 +58,8 @@ export function tableDataReducer(tableData, action) {
 
       let sortedData = [...tableData];
       let { highToLow, columnName, columnIndex } = { ...action };
-
-      let selectedTableColumns = tableData.selectedTableColumns
-        ? tableData.selectedTableColumns
-        : defaultTableSettings.defaultColumns;
-
-      let newSortOrder = tableData.sortOrder
-        ? tableData.sortOrder
-        : selectedTableColumns.map(() => false);
+      let selectedTableColumns = defaultTableSettings.defaultColumns;
+      let newSortOrder = selectedTableColumns.map(() => false);
 
       newSortOrder[columnIndex] = highToLow;
 
